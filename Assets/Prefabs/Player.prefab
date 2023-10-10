@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 6472795919350257933}
   - component: {fileID: 7049615616675799970}
   - component: {fileID: 6507404116350518164}
-  - component: {fileID: 2790268072091495689}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -98,7 +97,7 @@ Transform:
   - {fileID: 1972293261948255622}
   - {fileID: 8233265823937568930}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6472795919350257933
 Rigidbody:
@@ -221,31 +220,6 @@ MonoBehaviour:
   cameraDashFov: 100
   dashCooldown: 1
   dashKey: 304
---- !u!114 &2790268072091495689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222947262723677520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbcdca6846fec7b478faa873dd2ca1f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pm: {fileID: 7049615616675799970}
-  cam: {fileID: 0}
-  gunTip: {fileID: 0}
-  whatIsGrappleable:
-    serializedVersion: 2
-    m_Bits: 256
-  lr: {fileID: 0}
-  maxGrappleDistance: 25
-  grappleDelayTime: 0.25
-  isGrappling: 0
-  grapplingCooldown: 1
-  grappleKey: 317
-  grappleImpulseKey: 318
 --- !u!1 &6897366194372313205
 GameObject:
   m_ObjectHideFlags: 0

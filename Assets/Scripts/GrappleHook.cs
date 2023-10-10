@@ -1,101 +1,85 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GrappleHook : MonoBehaviour
 {
-    [Header("Referencias")]
-    public PlayerMovement pm;
-    public Transform cam;
-    public Transform gunTip;
-    public LayerMask whatIsGrappleable;
-    public LineRenderer lr;
+    private SpringJoint springjoint;
+    private LineRenderer rope;
 
+    [Header("References")]
+    [SerializeField] private GameObject grappleGunTip;
 
-    [Header("Variables")]
-    public float maxGrappleDistance;
-    public float grappleDelayTime;
-    private Vector3 grapplePoint;
-    public bool isGrappling;
-
-    [Header("Cooldown")]
-    public float grapplingCooldown;
-    private float grapplingCooldownTimer;
+    [Header("Parameters")]
+    [SerializeField] private float grappleLength;
+    public float ropewidth = 0.01f;
 
     [Header("Inputs")]
-    public KeyCode grappleKey = KeyCode.Mouse1;
-    public KeyCode grappleImpulseKey = KeyCode.Mouse2;
+    [SerializeField] private KeyCode grappleB1 = KeyCode.Mouse0;
+    [SerializeField] private KeyCode grappleB2 = KeyCode.Mouse1;
 
-
-
-    void Start()
+    private void Start()
     {
-        pm = GetComponent<PlayerMovement>();
+
     }
-
-    
-    void Update()
+    private void Update()
     {
-        if(Input.GetKey(grappleKey))
+        if (rope != null)
         {
-            StartGrapple();
+            rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, springjoint.connectedAnchor });
         }
-
-        if(grapplingCooldownTimer > 0)
-        {
-            grapplingCooldownTimer -= Time.deltaTime;
+        if (Input.GetKeyDown(grappleB1)) {
+            throwGrapple();
         }
-
-        lr.enabled = true;
-        lr.SetPosition(1, grapplePoint);
     }
 
     private void LateUpdate()
     {
-        if(isGrappling)
+        if (Input.GetKeyUp(grappleB1))
         {
-            lr.SetPosition(0, gunTip.position);
+            stopGrapple();
         }
     }
 
-    // Tiene 2 fases, freeze donde espera un poco y luego 
-    // Execute que es ya atraer al player al punto de enganche
-    private void StartGrapple()
-    {
-        // aun no esta activo, esta en cooldown
-        if(grapplingCooldownTimer > 0)
-        {
-            return;
-        }
-
-        isGrappling = true;
-
+    public void throwGrapple() {
         RaycastHit hit;
-
-        if(Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
+        string[] layers = {"whatIsGrappleable","whatIsGround","whatIsWall"};
+        LayerMask mask = LayerMask.GetMask(layers);
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, mask))
         {
-            grapplePoint = hit.point;
+            Vector3 pos = hit.point;
+            Visualize(pos);
 
-            Invoke(nameof(ExecuteGrapple), grappleDelayTime);
-        } else
-        {
-            grapplePoint = cam.position + cam.forward * maxGrappleDistance;
+            Debug.DrawLine(start: Camera.main.transform.position, end: pos, duration: 0.1f, color: Color.white, depthTest: true);
 
-            Invoke(nameof(StopGrapple), grappleDelayTime);
+            springjoint = gameObject.AddComponent<SpringJoint>();
+            springjoint.autoConfigureConnectedAnchor = false;
+
+            springjoint.connectedAnchor = pos;
+
+            float distance = Vector3.Distance(transform.position, pos);
+            springjoint.minDistance = distance * 0.25f;
+            springjoint.maxDistance = distance * 0.8f;
+
+            springjoint.spring = 4.5f;
+            springjoint.damper = 7f;
+            springjoint.massScale = 4.5f;
+
+            rope = gameObject.AddComponent<LineRenderer>();
+            rope.SetWidth(ropewidth, ropewidth);
         }
+        else Debug.Log("Demasiado lejos!");
     }
-
-    private void ExecuteGrapple()
+    public void stopGrapple()
     {
-
+        Destroy(springjoint);
+        Destroy(rope);
     }
-
-    private void StopGrapple()
-    {
-        isGrappling = false;
-
-        grapplingCooldownTimer = grapplingCooldown;
-
-        lr.enabled = false;
+    void Visualize(Vector3 pos) {
+        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        go.transform.localScale = Vector3.one;
+        go.transform.position = pos;
+        Destroy(go, 10);
     }
 }
