@@ -245,8 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcdca6846fec7b478faa873dd2ca1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappleGunTip: {x: 0, y: 0, z: 0}
+  grappleGunTip: {fileID: 720134597}
   grappleLength: 100
+  ropewidth: 0.01
   grappleB1: 323
   grappleB2: 324
 --- !u!1 &112197802
@@ -3623,7 +3624,7 @@ Transform:
   m_Children:
   - {fileID: 122610147}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1569069814
 MonoBehaviour:
@@ -4865,7 +4866,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2147877372935850187, guid: df29fc60efa250e4994d6151f0228aba, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2147877372935850187, guid: df29fc60efa250e4994d6151f0228aba, type: 3}
       propertyPath: m_LocalPosition.x

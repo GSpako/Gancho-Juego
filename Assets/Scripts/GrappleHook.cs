@@ -25,9 +25,8 @@ public class GrappleHook : MonoBehaviour
     }
     private void Update()
     {
-        if (rope != null)
-        {
-            rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, springjoint.connectedAnchor });
+        if (rope != null) { 
+            rope.SetPosition(0, grappleGunTip.transform.position);
         }
         if (Input.GetKeyDown(grappleB1)) {
             throwGrapple();
@@ -63,6 +62,7 @@ public class GrappleHook : MonoBehaviour
 
             rope = gameObject.AddComponent<LineRenderer>();
             rope.SetWidth(ropewidth, ropewidth);
+            rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
         }
         else Debug.Log("Demasiado lejos!");
     }
