@@ -32,16 +32,11 @@ public class GrappleHook : MonoBehaviour
         if (Input.GetKeyDown(grappleB1)) {
             throwGrapple();
         }
-    }
-
-    private void LateUpdate()
-    {
         if (Input.GetKeyUp(grappleB1))
         {
             stopGrapple();
         }
     }
-
     public void throwGrapple() {
         RaycastHit hit;
         string[] layers = {"whatIsGrappleable","whatIsGround","whatIsWall"};
