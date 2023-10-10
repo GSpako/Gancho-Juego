@@ -14,6 +14,7 @@ public class GrappleHook : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float grappleLength;
     public float ropewidth = 0.01f;
+    public Color ropecolor = Color.white;
 
     [Header("Inputs")]
     [SerializeField] private KeyCode grappleB1 = KeyCode.Mouse0;
@@ -43,7 +44,7 @@ public class GrappleHook : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, mask))
         {
             Vector3 pos = hit.point;
-            Visualize(pos);
+            //Visualize(pos);
 
             Debug.DrawLine(start: Camera.main.transform.position, end: pos, duration: 0.1f, color: Color.white, depthTest: true);
 
@@ -53,7 +54,7 @@ public class GrappleHook : MonoBehaviour
             springjoint.connectedAnchor = pos;
 
             float distance = Vector3.Distance(transform.position, pos);
-            springjoint.minDistance = distance * 0.25f;
+            springjoint.minDistance = distance * 0.01f;
             springjoint.maxDistance = distance * 0.8f;
 
             springjoint.spring = 4.5f;
@@ -61,8 +62,11 @@ public class GrappleHook : MonoBehaviour
             springjoint.massScale = 4.5f;
 
             rope = gameObject.AddComponent<LineRenderer>();
-            rope.SetWidth(ropewidth, ropewidth);
+            rope.startWidth = ropewidth;
+            rope.endWidth = ropewidth;
             rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
+            rope.material.SetColor("_Color",ropecolor);
+            rope.endColor = ropecolor;
         }
         else Debug.Log("Demasiado lejos!");
     }
@@ -75,6 +79,7 @@ public class GrappleHook : MonoBehaviour
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         go.transform.localScale = Vector3.one;
         go.transform.position = pos;
+        
         Destroy(go, 10);
     }
 }
