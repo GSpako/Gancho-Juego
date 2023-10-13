@@ -149,6 +149,9 @@ public class PlayerMovement : MonoBehaviour
 
         isSliding = false;
 
+        speedText = CanvasReferences.instance.speedText;
+        movStateText = CanvasReferences.instance.movStateText;
+
         if (playerCamera == null) {
             playerCamera = Player.camera;
         }
