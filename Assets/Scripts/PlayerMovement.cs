@@ -138,7 +138,6 @@ public class PlayerMovement : MonoBehaviour
         dashing
     }
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -149,6 +148,10 @@ public class PlayerMovement : MonoBehaviour
         slideStartYScale = transform.localScale.y;
 
         isSliding = false;
+
+        if (playerCamera == null) {
+            playerCamera = Player.camera;
+        }
     }
     private void Update()
     {

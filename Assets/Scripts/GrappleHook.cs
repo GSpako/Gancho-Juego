@@ -26,9 +26,6 @@ public class GrappleHook : MonoBehaviour
     }
     private void Update()
     {
-        if (rope != null) { 
-            rope.SetPosition(0, grappleGunTip.transform.position);
-        }
         if (Input.GetKeyDown(grappleB1)) {
             throwGrapple();
         }
@@ -36,7 +33,12 @@ public class GrappleHook : MonoBehaviour
         {
             stopGrapple();
         }
+        if (rope != null)
+        {
+            rope.SetPosition(0, grappleGunTip.transform.position);
+        }
     }
+
     public void throwGrapple() {
         RaycastHit hit;
         string[] layers = {"whatIsGrappleable","whatIsGround","whatIsWall"};

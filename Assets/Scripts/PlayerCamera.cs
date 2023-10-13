@@ -6,6 +6,10 @@ using DG.Tweening;
 
 public class PlayerCamera : MonoBehaviour
 {
+    [Header("Singleton")]
+    public static PlayerCamera instance;
+
+    [Header("Parameters")]
     public float sensibilityX;
     public float sensibilityY;
 
@@ -16,6 +20,14 @@ public class PlayerCamera : MonoBehaviour
 
 
     float xRotation, yRotation;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
