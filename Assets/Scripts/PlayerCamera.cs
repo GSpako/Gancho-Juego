@@ -26,7 +26,11 @@ public class PlayerCamera : MonoBehaviour
         if (instance == null)
             instance = this;
         else
-            Destroy(gameObject);
+        { 
+            Destroy(instance);
+            Debug.LogWarning("Cosas borradas");
+            instance = this;
+        }
     }
 
     void Start()
@@ -34,6 +38,9 @@ public class PlayerCamera : MonoBehaviour
         // en el medio y invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        xRotation = transform.rotation.eulerAngles.x;
+        yRotation = transform.rotation.eulerAngles.y;
     }
 
     
@@ -49,7 +56,11 @@ public class PlayerCamera : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        if (orientation != null)
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        else if (Player.instance != null)
+                orientation = Player.instance.GetComponent<PlayerMovement>().orientation;
     }
 
     public void DoFov(float endValue)

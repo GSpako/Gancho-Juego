@@ -9,8 +9,10 @@ public class MoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraPosition != null)
-            transform.position = cameraPosition.position;
+        if (cameraPosition != null && Player.instance != null) {
+            transform.position = Player.instance.GetComponent<PlayerMovement>().cameraPosition.position;
+
+        }
     }
 
 

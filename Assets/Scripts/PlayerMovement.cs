@@ -122,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     public Transform orientation;
+    public Transform cameraPosition;
     float horizontalInput, verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
