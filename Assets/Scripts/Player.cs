@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [Header("Parameters")]
     public LayerMask deathLayer;
 
+    private bool isDying;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -41,8 +43,10 @@ public class Player : MonoBehaviour
 
     public void kill() {
         Spawner.instance.Spawn(Spawner.types.player);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        PlayerCamera.instance.doTilt(new float[]{-50,50}[Random.Range(0,2)]);
         GetComponent<PlayerMovement>().enabled = false;
-        Destroy(gameObject,Spawner.instance.respawnTime*0.99f);
+        Destroy(gameObject,Spawner.instance.respawnTime*0.9f);
     }
     // Update is called once per frame
     void Update()
@@ -52,6 +56,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 9) { kill(); }
+        if (collision.gameObject.layer == 9 && !isDying) { kill(); isDying = true; }
     }
 }

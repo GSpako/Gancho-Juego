@@ -15,6 +15,8 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private float grappleLength;
     public float ropewidth = 0.01f;
     public Color ropecolor = Color.white;
+    [Header("Donde puede engancharse el gancho")]
+    public LayerMask enganchables;
 
     [Header("Inputs")]
     [SerializeField] private KeyCode grappleB1 = KeyCode.Mouse0;
@@ -41,9 +43,7 @@ public class GrappleHook : MonoBehaviour
 
     public void throwGrapple() {
         RaycastHit hit;
-        string[] layers = {"whatIsGrappleable","whatIsGround","whatIsWall"};
-        LayerMask mask = LayerMask.GetMask(layers);
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, mask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, enganchables))
         {
             Vector3 pos = hit.point;
             //Visualize(pos);

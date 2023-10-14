@@ -28,6 +28,10 @@ public class Spawner : MonoBehaviour
     }
 
     public void Spawn(types t) {
+
+        if (instance == null)
+
+        Debug.LogWarning("REVIVIDO?");
         switch (t) {
             case types.player:
                 Invoke("rezPlayer", respawnTime); 

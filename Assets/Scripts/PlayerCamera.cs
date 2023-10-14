@@ -21,6 +21,10 @@ public class PlayerCamera : MonoBehaviour
 
     float xRotation, yRotation;
 
+    [Header("PointOfViewCamera")]
+    public Camera povCam;  
+
+
     private void Awake()
     {
         if (instance == null)
@@ -28,7 +32,7 @@ public class PlayerCamera : MonoBehaviour
         else
         { 
             Destroy(instance);
-            Debug.LogWarning("Cosas borradas");
+            Debug.LogWarning("Se ha borrado la cámara de jugador antigua");
             instance = this;
         }
     }
@@ -66,16 +70,20 @@ public class PlayerCamera : MonoBehaviour
     public void DoFov(float endValue)
     {
         GetComponent<Camera>().DOFieldOfView(endValue, transitionTime);
+        povCam.DOFieldOfView(endValue, transitionTime);
     }
 
     public void doTilt(float zTilt)
     {
         transform.DOLocalRotate(new Vector3(0f, 0f, zTilt), transitionTime);
+        //povCam.transform.DOLocalRotate(new Vector3(0f, 0f, zTilt), transitionTime);
     }
 
     public void DoFovSlide(float endValue)
     {
         GetComponent<Camera>().DOFieldOfView(endValue, transitionTime);
+        povCam.DOFieldOfView(endValue, transitionTime);
+
     }
 
 }
