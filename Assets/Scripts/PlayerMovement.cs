@@ -312,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
         // calcular direccion de movimiento
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if (OnSlope()  && !exitingSlope)
+        if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection(moveDirection) * movementSpeed * 20f, ForceMode.Force);
             // Para que no este pegado a la rampa
