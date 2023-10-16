@@ -189,6 +189,8 @@ public class PlayerMovement : MonoBehaviour
             StopSlide();
         }
 
+        //Debug.Log(rb.velocity + " " + OnSlope().ToString());
+
     }
     void FixedUpdate()
     {
@@ -340,12 +342,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
-        if(OnSlope() && !exitingSlope)
+
+        if (OnSlope() && !exitingSlope)
         {
             // Sin esto el personaje va mas rapido en la rampa
             if(rb.velocity.magnitude > movementSpeed)
             {
-                rb.velocity = rb.velocity.normalized * movementSpeed;
+                //Nota de adrián esto capea la velocidad máxima //TODO Podemos reponerlo en el futuro si da problemas quitarlo
+
+                //rb.velocity = rb.velocity.normalized * movementSpeed;
+                
             } 
             else
             {
@@ -540,8 +546,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
+
             // angulo de la rampa, sabiendolo con el Raycast
             float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+
+            
+
             return slopeAngle < maxSlopeAngle && slopeAngle != 0;
         }
 
