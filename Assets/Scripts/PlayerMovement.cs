@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode slideKey = KeyCode.LeftControl;
     public KeyCode upwardsRunKey = KeyCode.LeftShift;
     public KeyCode downwardsRunKey = KeyCode.LeftControl;
+    public KeyCode pauseMenuKey = KeyCode.Escape;
 
 
     [Header("Ground Check")]
@@ -119,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI movStateText;
+    public PauseMenuScript pauseMenuScript;
 
     [Space]
     public Transform orientation;
@@ -167,10 +169,12 @@ public class PlayerMovement : MonoBehaviour
         CheckForWall();
         SpeedControl();
         MovementStateHandler();
-        
+        PauseMenu();
+
+
 
         // aplicarle drag si esta en el suelo
-        if(movState == MovementState.walking || movState == MovementState.sprinting) {
+        if (movState == MovementState.walking || movState == MovementState.sprinting) {
             rb.drag = groundDrag;
         } 
         else
@@ -713,6 +717,16 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.useGravity = true;
         rb.AddForce(forceToAplly, ForceMode.Impulse);
+    }
+
+
+
+
+    public void PauseMenu()
+    {
+        if(Input.GetKeyDown(pauseMenuKey)) {
+            pauseMenuScript.TogglePauseMenu();
+        }
     }
 
 }
