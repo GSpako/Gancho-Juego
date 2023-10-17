@@ -44,8 +44,10 @@ public class Player : MonoBehaviour
     public void kill() {
         Spawner.instance.Spawn(Spawner.types.player);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        PlayerCamera.instance.doTilt(new float[]{-50,50}[Random.Range(0,2)]);
+        PlayerCamera.instance.doTilt(new float[]{-20,20}[Random.Range(0,2)]);
+        PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
         GetComponent<PlayerMovement>().enabled = false;
+        camera.enabled = false;
         Destroy(gameObject,Spawner.instance.respawnTime*0.9f);
     }
     // Update is called once per frame
