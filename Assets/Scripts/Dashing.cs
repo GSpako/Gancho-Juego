@@ -35,6 +35,7 @@ public class Dashing : MonoBehaviour
     [Header("Inputs")]
     public KeyCode dashKey = KeyCode.LeftShift;
 
+    Vector3 oldVelocity;
 
     private void Start()
     {
@@ -106,6 +107,7 @@ public class Dashing : MonoBehaviour
     {
         if(resetVelocity)
         {
+            oldVelocity = rb.velocity;
             rb.velocity = Vector3.zero;
         }
 
@@ -113,7 +115,7 @@ public class Dashing : MonoBehaviour
     }
     private void ResetDash()
     {
-
+        rb.velocity = oldVelocity;
         pm.isDashing = false;
         pm.maxYSpeed = 0;
         pm.numberOfDashes = startNumberOfDashes;
