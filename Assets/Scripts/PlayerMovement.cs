@@ -247,62 +247,24 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
 
-
         // Wallrunning - 1 (Si toca y no esta en el suelo)
-        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
+        if ((wallLeft || wallRight) && verticalInput > 0 && !grounded)
         {
-            if(!isWallRunning)
+            if (!isWallRunning)
             {
                 StartWallRun();
             }
-
-            /**
-            if(wallRunTimer > 0)
-            {
-                wallRunTimer -= Time.deltaTime;
-            }
-            
-            
-            if(wallRunTimer <= 0 && isWallRunning)
-            {
-                exitingWall = true;
-                exitWallTimer = exitWallTime;
-            }
-            */
-
             if (Input.GetKey(jumpKey))
             {
+                StopWallRun();
                 WallJump();
+
             }
         }
-
-        /**
-        else if(exitingWall) {
-            if(isWallRunning)
-            {
-                StopWallRun();
-            }
-
-            if(exitWallTimer > 0)
-            {
-                exitWallTimer -= Time.deltaTime;
-            }
-            
-            if(exitWallTimer <= 0)
-            {
-                exitingWall = false;
-            }
-
+        else
+        {
+            StopWallRun();
         }
-        */
-
-            else
-            {
-                if(isWallRunning) 
-                {
-                StopWallRun();
-                }
-            }
 
     }
 
@@ -609,9 +571,81 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // ############################################
+    // ############  WALL RUNNING  ################
+    // ############################################
 
+    private void CheckForWall()
+    {
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
+        Debug.DrawRay(transform.position, orientation.right, Color.green);
+        Debug.DrawRay(transform.position, -orientation.right, Color.red);
+    }
+
+    private void StartWallRun()
+    {
+        //Empezar wallrun
+        isWallRunning = true;
+
+        //Quitar la gravedad y el movimiento vertical
+        rb.useGravity = false;
+        rb.velocity = new Vector3(rb.velocity.y, 0f, rb.velocity.z);
+
+        // Efectos de Fov de camara
+        playerCamera.DoFov(cameraFov);
+
+        // Efecto inclinacion de la camara
+        if (wallLeft)
+            playerCamera.doTilt(-cameraTilt);
+        else if (wallRight)
+            playerCamera.doTilt(cameraTilt);
+    }
+
+    private void StopWallRun()
+    {
+        //Terminar wallrun y reactivar gravedad
+        isWallRunning = false;
+        rb.useGravity = true;
+
+        //Quitar efectos de camara
+        playerCamera.DoFov(cameraStartFov);
+        playerCamera.doTilt(0f);
+
+    }
+
+    private void WallRunningMovement()
+    {
+        // Para ir en el forward de la pared siempre, sera Vector entre Arriba y Normal de la pared = wallForward
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
+        // Sin esto solo funciona por una direccion y por el otro lado salo disparado de la pared xd
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
+
+        //Moverse hacia adelante
+        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+
+        //Atraer al muro
+        rb.AddForce(-wallNormal * 5, ForceMode.Force);
+    }
+
+    private void WallJump()
+    {
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
+
+        rb.AddForce(wallForward * 12, ForceMode.Force);
+        rb.AddForce(wallNormal * 12, ForceMode.Force);
+        rb.velocity = new Vector3(rb.velocity.x, 10f, rb.velocity.z);
+    }
     // WALL RUNNING
 
+    /*
     private void CheckForWall()
     {
        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
@@ -696,15 +730,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
         }
-        */
-    }
-
+        
+    }*/
+    /*
     private void WallJump()
     {
-        /**
+        
         exitingWall = true;
         exitWallTimer = exitWallTime;
-        */
+        
 
         Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
 
@@ -713,6 +747,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.useGravity = true;
         rb.AddForce(forceToAplly, ForceMode.Impulse);
-    }
+    }*/
 
 }
