@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunSpeed = 8.5f;
     public float wallCheckDistance = 0.5f;
     public float wallRunExitTime;
-    public float wallRunDelay = .5f;
+    public float wallRunDelay = .25f;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
     private bool wallRight;
@@ -585,6 +585,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartWallRun()
     {
+        wallCheckDistance = 3f;
+
         //Empezar wallrun
         isWallRunning = true;
 
@@ -604,6 +606,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopWallRun()
     {
+        wallCheckDistance = 1f;
+
         //Terminar wallrun y reactivar gravedad
         isWallRunning = false;
         rb.useGravity = true;
@@ -634,16 +638,18 @@ public class PlayerMovement : MonoBehaviour
     private void WallJump()
     {
         wallRunExitTime = Time.time;
+        rb.velocity = rb.velocity*3 / 4;
 
-        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+        rb.AddForce(playerCamera.transform.forward * 200, ForceMode.Force);
+        rb.velocity = new Vector3(rb.velocity.x, 5f, rb.velocity.z);
+
+        //Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
         //Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
         //if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
         //    wallForward = -wallForward;
 
         //rb.AddForce(wallForward * 12, ForceMode.Force);
-        rb.AddForce(wallNormal * 20, ForceMode.Force);
-        rb.velocity = new Vector3(rb.velocity.x, 5f, rb.velocity.z);
     }
     // WALL RUNNING
 
