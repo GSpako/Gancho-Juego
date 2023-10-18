@@ -8,6 +8,8 @@ public class GrappleHook : MonoBehaviour
     private SpringJoint springjoint;
     private LineRenderer rope;
 
+    public bool grapling;
+
     [Header("References")]
     [SerializeField] private GameObject grappleGunTip;
 
@@ -22,9 +24,10 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private KeyCode grappleB1 = KeyCode.Mouse0;
     [SerializeField] private KeyCode grappleB2 = KeyCode.Mouse1;
 
+
     private void Start()
     {
-
+        grapling = false;
     }
     private void Update()
     {
@@ -69,11 +72,13 @@ public class GrappleHook : MonoBehaviour
             rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
             rope.material.SetColor("_Color",ropecolor);
             rope.endColor = ropecolor;
+            grapling = true;
         }
         else Debug.Log("Demasiado lejos!");
     }
     public void stopGrapple()
     {
+        grapling = false;
         Destroy(springjoint);
         Destroy(rope);
     }

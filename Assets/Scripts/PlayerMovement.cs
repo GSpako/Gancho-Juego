@@ -167,12 +167,12 @@ public class PlayerMovement : MonoBehaviour
         CheckForWall();
         SpeedControl();
         MovementStateHandler();
-        
+
 
         // aplicarle drag si esta en el suelo
-        if(movState == MovementState.walking || movState == MovementState.sprinting) {
+        if(movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching) {
             rb.drag = groundDrag;
-        } 
+        }
         else
         {
             rb.drag = 0;
@@ -234,15 +234,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // empezar a agacharse
-        if(Input.GetKeyDown(crouchKey))
+        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude < slideSpeed - 1 )
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             
             // Para acercar al player al suelo y que no este flotando, al cambiarle la escala
-            rb.AddForce(Vector3.down * crouchForce, ForceMode.Impulse);
+            //rb.AddForce(Vector3.down * crouchForce, ForceMode.Force);
         }
 
-        if(Input.GetKeyUp(crouchKey))
+        if(Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
@@ -278,15 +278,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * movementSpeed * 20f, ForceMode.Force);
+            if (movState != MovementState.sliding)
+                rb.AddForce(GetSlopeMoveDirection(moveDirection) * movementSpeed * 20f, ForceMode.Force);
+            
             // Para que no este pegado a la rampa
-            if (rb.velocity.y > 0)
+            else if (rb.velocity.y > 0)
             {
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                rb.AddForce(Vector3.down * 5000f);
             }
         }
         // en el suelo
-        else if (grounded)
+        else if (grounded && movState != MovementState.sliding)
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
         }
@@ -323,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
                 if (flatVelocity.magnitude > movementSpeed)
                 {
                     Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
-                    rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+                    //rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
 
                 }
 
@@ -335,7 +337,7 @@ public class PlayerMovement : MonoBehaviour
             // Para no dashear mirando hacia arriba tanto
             if(maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
             {
-                rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
+                //rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
             }
         }
     }
@@ -374,7 +376,7 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = wallRunSpeed;
         }
         // si separados, Run y Crouch a la vez
-        else if (Input.GetKey(crouchKey))
+        else if (Input.GetKey(crouchKey) && rb.velocity.magnitude < slideSpeed-1 && grounded && !OnSlope())
         {
             movState = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
@@ -389,7 +391,7 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.DoFov(cameraSprintFov);
         }
         // Sliding else if (isSliding) 
-        else if (grounded && Input.GetKey(slideKey) && slideTimer > 0)
+        else if (grounded && Input.GetKey(slideKey) && slideTimer > 0 && movState != MovementState.crouching)
         {
             movState = MovementState.sliding;
 
@@ -535,7 +537,7 @@ public class PlayerMovement : MonoBehaviour
         isSliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
-        rb.AddForce(Vector3.down * downForce, ForceMode.Impulse);
+        //rb.AddForce(Vector3.down * downForce, ForceMode.Force);
 
         playerCamera.DoFov(cameraSlideFov);
 
@@ -557,11 +559,11 @@ public class PlayerMovement : MonoBehaviour
         // Si no esta sliding en rampa normalmente o en el aire
         if (!OnSlope() || rb.velocity.y > -0.1f)
         {
-            rb.AddForce(inputDirection.normalized, ForceMode.Force);
-            slideTimer -= Time.deltaTime;
+            //rb.AddForce(inputDirection.normalized, ForceMode.Force);
+            //slideTimer -= Time.deltaTime;
         } else
         {
-            rb.AddForce(GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
+            //rb.AddForce(GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
             // aqui no timer, asi slideas siempre en rampas
         }
 
