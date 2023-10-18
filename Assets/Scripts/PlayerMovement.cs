@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 7f;
     public float walkSpeed = 5f;
     public float sprintSpeed = 9f;
-    public float groundDrag = 5f;
+    public float groundDrag = 2f;
     public Transform playerObj;
 
     [Header("Dash")]
@@ -69,10 +69,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Wall Running")]
     public LayerMask whatIsWall;
     public float wallRunForce = 200f;
-
     public float wallRunSpeed = 8.5f;
-    public float wallCheckDistance = 0.7f;
-    public float minJumpHeight = 3f;
+    public float wallCheckDistance = 0.5f;
+    public float wallRunExitTime;
+    public float wallRunDelay = .5f;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
     private bool wallRight;
@@ -248,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wallrunning - 1 (Si toca y no esta en el suelo)
-        if ((wallLeft || wallRight) && verticalInput > 0 && !grounded)
+        if ((wallLeft || wallRight) && verticalInput > 0 && !grounded && Time.time > wallRunExitTime + wallRunDelay)
         {
             if (!isWallRunning)
             {
@@ -633,15 +633,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
+        wallRunExitTime = Time.time;
+
         Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+        //Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
-        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
-            wallForward = -wallForward;
+        //if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+        //    wallForward = -wallForward;
 
-        rb.AddForce(wallForward * 12, ForceMode.Force);
-        rb.AddForce(wallNormal * 12, ForceMode.Force);
-        rb.velocity = new Vector3(rb.velocity.x, 10f, rb.velocity.z);
+        //rb.AddForce(wallForward * 12, ForceMode.Force);
+        rb.AddForce(wallNormal * 20, ForceMode.Force);
+        rb.velocity = new Vector3(rb.velocity.x, 5f, rb.velocity.z);
     }
     // WALL RUNNING
 
