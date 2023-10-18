@@ -48,6 +48,8 @@ public class GrappleHook : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, enganchables))
         {
+            grapling = true;
+
             Vector3 pos = hit.point;
             //Visualize(pos);
 
@@ -72,7 +74,6 @@ public class GrappleHook : MonoBehaviour
             rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
             rope.material.SetColor("_Color",ropecolor);
             rope.endColor = ropecolor;
-            grapling = true;
         }
         else Debug.Log("Demasiado lejos!");
     }

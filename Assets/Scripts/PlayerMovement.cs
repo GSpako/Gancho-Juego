@@ -170,18 +170,21 @@ public class PlayerMovement : MonoBehaviour
 
 
         // aplicarle drag si esta en el suelo
-        if(movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching) {
+        if (movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching)
+        {
             rb.drag = groundDrag;
+        }
+        else if (grounded) {
+            rb.drag = 0f;
         }
         else
         {
             rb.drag = 0;
         }
 
-        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0) && !isSliding)
+        if (Input.GetKeyDown(slideKey)) //&& (horizontalInput != 0 || verticalInput != 0)) //&& !isSliding)
         {
-            StartSlide();
-            
+            StartSlide();            
         }
 
         if (Input.GetKeyUp(slideKey) && isSliding)
@@ -234,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // empezar a agacharse
-        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude < slideSpeed - 1 )
+        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude < slideSpeed - 1  && !GetComponent<GrappleHook>().grapling)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             
@@ -276,15 +279,15 @@ public class PlayerMovement : MonoBehaviour
         // calcular direccion de movimiento
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if (OnSlope() && !exitingSlope)
+        if (OnSlope() && !exitingSlope && grounded)
         {
             if (movState != MovementState.sliding)
                 rb.AddForce(GetSlopeMoveDirection(moveDirection) * movementSpeed * 20f, ForceMode.Force);
             
             // Para que no este pegado a la rampa
-            else if (rb.velocity.y > 0)
+            else 
             {
-                rb.AddForce(Vector3.down * 5000f);
+                rb.AddForce(Vector3.down * 300f);
             }
         }
         // en el suelo
@@ -376,13 +379,13 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = wallRunSpeed;
         }
         // si separados, Run y Crouch a la vez
-        else if (Input.GetKey(crouchKey) && rb.velocity.magnitude < slideSpeed-1 && grounded && !OnSlope())
+        else if (Input.GetKey(crouchKey) && rb.velocity.magnitude < slideSpeed-1 && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
         {
             movState = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
         } 
         // Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetKey(sprintKey) && !GetComponent<GrappleHook>().grapling)
         {
             //Debug.Log("Sprinting");
             movState = MovementState.sprinting;
@@ -391,7 +394,7 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.DoFov(cameraSprintFov);
         }
         // Sliding else if (isSliding) 
-        else if (grounded && Input.GetKey(slideKey) && slideTimer > 0 && movState != MovementState.crouching)
+        else if (Input.GetKey(slideKey) && (slideTimer > 0 && movState != MovementState.crouching || GetComponent<GrappleHook>().grapling))
         {
             movState = MovementState.sliding;
 

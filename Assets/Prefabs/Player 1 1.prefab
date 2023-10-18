@@ -69,7 +69,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -127,7 +127,7 @@ MonoBehaviour:
   crouchYScale: 0.5
   jumpKey: 32
   sprintKey: 304
-  crouchKey: 99
+  crouchKey: 306
   slideKey: 306
   upwardsRunKey: 304
   downwardsRunKey: 306
@@ -150,7 +150,8 @@ MonoBehaviour:
   wallRunForce: 40
   wallRunSpeed: 9
   wallCheckDistance: 0.8
-  minJumpHeight: 3
+  wallRunExitTime: 0
+  wallRunDelay: 0.25
   isWallRunning: 0
   wallJumpUpForce: 0.65
   wallJumpSideForce: 0.5
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcdca6846fec7b478faa873dd2ca1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grapling: 0
   grappleGunTip: {fileID: 7727493921262748382}
   grappleLength: 100
   ropewidth: 0.01
@@ -483,8 +485,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7772617277243246912, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
+      propertyPath: field of view
+      value: 26.991467
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772617277243246912, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 1015
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772617277243246912, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7899671533180928830, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
       propertyPath: m_Enabled

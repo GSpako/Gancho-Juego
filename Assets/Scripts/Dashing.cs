@@ -110,12 +110,13 @@ public class Dashing : MonoBehaviour
             oldVelocity = rb.velocity;
             rb.velocity = Vector3.zero;
         }
-
+        rb.velocity = rb.velocity / 2;
         rb.AddForce(delayedForceToApply, ForceMode.Impulse);
     }
     private void ResetDash()
     {
-        rb.velocity = oldVelocity;
+        if (resetVelocity)
+            rb.velocity = oldVelocity;
         pm.isDashing = false;
         pm.maxYSpeed = 0;
         pm.numberOfDashes = startNumberOfDashes;
