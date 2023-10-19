@@ -12,6 +12,8 @@ public class GrappleHook : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject grappleGunTip;
+    [SerializeField] private PauseMenuScript pauseMenuScript;
+
 
     [Header("Parameters")]
     [SerializeField] private float grappleLength;
@@ -31,16 +33,20 @@ public class GrappleHook : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(grappleB1)) {
-            throwGrapple();
-        }
-        if (Input.GetKeyUp(grappleB1))
+        if(!pauseMenuScript.isGamePaused)
         {
-            stopGrapple();
-        }
-        if (rope != null)
-        {
-            rope.SetPosition(0, grappleGunTip.transform.position);
+            if (Input.GetKeyDown(grappleB1))
+            {
+                throwGrapple();
+            }
+            if (Input.GetKeyUp(grappleB1))
+            {
+                stopGrapple();
+            }
+            if (rope != null)
+            {
+                rope.SetPosition(0, grappleGunTip.transform.position);
+            }
         }
     }
 
