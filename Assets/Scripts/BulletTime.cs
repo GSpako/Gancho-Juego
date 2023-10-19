@@ -16,6 +16,8 @@ public class BulletTime : MonoBehaviour
 
     void Start()
     {
+        slowmoCharge = CanvasReferences.instance.sloMo;
+        sliderObject = slowmoCharge.gameObject;
         slowmoCharge.value = slowmoCharge.maxValue;
     }
 
@@ -67,5 +69,13 @@ public class BulletTime : MonoBehaviour
         slowMode = false;
         rate = -refilrate;
         Time.timeScale = 1.0f;
+    }
+
+    private void OnDestroy()
+    {
+        if (slowMode)
+        {
+            Time.timeScale = 1.0f;
+        }
     }
 }

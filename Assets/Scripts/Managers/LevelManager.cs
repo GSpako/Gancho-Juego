@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public Spawner spawner;
-    
+    public 
 
 
     // Start is called before the first frame update
