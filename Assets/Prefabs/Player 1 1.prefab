@@ -190,7 +190,7 @@ MonoBehaviour:
   useCameraForward: 1
   allowAllDirections: 1
   disableGravity: 1
-  resetVelocity: 1
+  resetVelocity: 0
   cameraDashFov: 100
   dashCooldown: 1
   dashKey: 304
