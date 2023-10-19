@@ -29,6 +29,7 @@ public class GrappleHook : MonoBehaviour
 
     private void Start()
     {
+        pauseMenuScript = CanvasReferences.instance.pause_script;
         grapling = false;
     }
     private void Update()

@@ -20,10 +20,24 @@ public class PauseMenuScript : MonoBehaviour
     public Button continuarButton;
 
 
+    private void Awake()
+    {
+        
+    }
+
     public void QuitGame()
     {
         Debug.Log("Sali del juego :(");
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        /*if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }*/
     }
 
 
@@ -53,6 +67,9 @@ public class PauseMenuScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        Time.timeScale = 1f;
+
+
     }
 
     public void PauseGame()
@@ -62,6 +79,8 @@ public class PauseMenuScript : MonoBehaviour
         continuarButton.Select();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        Time.timeScale = 0f;
 
     }
 

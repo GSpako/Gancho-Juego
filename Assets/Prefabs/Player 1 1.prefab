@@ -70,7 +70,7 @@ Transform:
   - {fileID: 9213889588340758789}
   - {fileID: 8475436245186515252}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grapling: 0
   grappleGunTip: {fileID: 7727493921262748382}
+  pauseMenuScript: {fileID: 0}
   grappleLength: 100
   ropewidth: 0.01
   ropecolor: {r: 1, g: 1, b: 1, a: 1}
@@ -638,6 +639,10 @@ PrefabInstance:
     - target: {fileID: 6516806098005908593, guid: fbbe50948804edd4b84633fc4f48d012, type: 3}
       propertyPath: m_Name
       value: Slowmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516806098005908593, guid: fbbe50948804edd4b84633fc4f48d012, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

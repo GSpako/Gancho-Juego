@@ -13,6 +13,7 @@ public class CanvasReferences : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI movStateText;
     public Slider sloMo;
+    public PauseMenuScript pause_script;
 
     public void Awake()
     {

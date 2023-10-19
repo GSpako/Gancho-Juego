@@ -41,24 +41,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenuScript.TogglePauseMenu();
            
         }
-
+        /*
         if (pauseMenuScript.isGamePaused) 
         {
             Time.timeScale = 0.0f;
-            //Debug.Log(Time.timeScale);
+            Debug.Log(Time.timeScale);
             // Se queda el gancho enganchado si pausas el menu :(
             //player.GetComponent<GrappleHook>().enabled = false;
         } else
         {
             Time.timeScale = 1.0f;
             //player.GetComponent<GrappleHook>().enabled = true;
-        }
+        }*/
 
     }
 

@@ -48,14 +48,15 @@ public class BulletTime : MonoBehaviour
         }
 
         if(bloquear) {return;}
-        
-        if(Input.GetKeyDown(KeyCode.E) && slowmoCharge.value > slowmoCharge.minValue)
+
+        if (Input.GetKeyDown(KeyCode.E) && slowmoCharge.value > slowmoCharge.minValue) {
+
             slowMode = !slowMode;
-        
-        if(slowMode) {
-            activarSlow();
-        } else {
-            desactivarSlow();
+
+            if (slowMode)
+                activarSlow();
+            else
+                desactivarSlow();
         }
     }
 
@@ -66,6 +67,7 @@ public class BulletTime : MonoBehaviour
     }
 
     void desactivarSlow() {
+        Debug.Log("Desactivado!" + gameObject.name);
         slowMode = false;
         rate = -refilrate;
         Time.timeScale = 1.0f;
