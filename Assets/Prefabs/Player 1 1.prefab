@@ -166,7 +166,7 @@ MonoBehaviour:
   cameraTilt: 5
   speedText: {fileID: 0}
   movStateText: {fileID: 0}
-  orientation: {fileID: 8897026813322220567}
+  orientation: {fileID: 922799581603630265}
   cameraPosition: {fileID: 0}
   movState: 0
 --- !u!114 &2733110468931208857
