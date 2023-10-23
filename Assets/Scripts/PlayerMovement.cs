@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // empezar a agacharse
-        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude < slideSpeed - 1  && !GetComponent<GrappleHook>().grapling)
+        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude <= walkSpeed  && !GetComponent<GrappleHook>().grapling)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             
@@ -379,7 +379,7 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = wallRunSpeed;
         }
         // si separados, Run y Crouch a la vez
-        else if (Input.GetKey(crouchKey) && rb.velocity.magnitude < slideSpeed-1 && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
+        else if (Input.GetKey(crouchKey) && rb.velocity.magnitude <= walkSpeed && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
         {
             movState = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
