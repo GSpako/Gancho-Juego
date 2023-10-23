@@ -38,7 +38,7 @@ public class SpringTrap : MonoBehaviour
 
     private void LanzarJugador()
     {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
+        Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
     }
 
     private IEnumerator ActivarCooldown()
@@ -48,12 +48,12 @@ public class SpringTrap : MonoBehaviour
 
     private void LanzarMatarJugador()
     {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto * 50f, ForceMode.Impulse);
+        Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto * 50f, ForceMode.Impulse);
     }
 
     private IEnumerator MatarJugadorDespuesDeTiempo()
     {
         yield return new WaitForSeconds(tiempoDeVidaMuelleMalo);
-        player.kill();
+        Player.instance.kill();
     }
 }
