@@ -39,6 +39,8 @@ public class PlayerCamera : MonoBehaviour
 
     void Start()
     {
+        DOTween.SetTweensCapacity(48825,50);
+
         // en el medio y invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
