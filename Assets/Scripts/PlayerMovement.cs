@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash")]
     public float dashSpeed = 10f;
     public float dashSpeedChangeFactor = 50f;
+    public float maxNumberOfDashes = 1f;
     public float numberOfDashes = 1f;
     [Tooltip("Se inicializa en Dashing.cs")]
     public float maxYSpeed;
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
     public float extraRayDistance = 0.2f;
 
     [Header("Rampa")]
@@ -163,11 +164,11 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + extraRayDistance, whatIsGround);
 
 
+
         MyInput();
         CheckForWall();
         SpeedControl();
         MovementStateHandler();
-
 
         // aplicarle drag si esta en el suelo
         if (movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching)
@@ -186,10 +187,13 @@ public class PlayerMovement : MonoBehaviour
         {
             StartSlide();            
         }
-
         if (Input.GetKeyUp(slideKey) && isSliding)
         {
             StopSlide();
+        }
+        if (grounded)
+        {
+            numberOfDashes = maxNumberOfDashes;
         }
 
         //Debug.Log(rb.velocity + " " + OnSlope().ToString());
@@ -315,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
             // Sin esto el personaje va mas rapido en la rampa
             if(rb.velocity.magnitude > movementSpeed)
             {
-                //Nota de adrián esto capea la velocidad máxima //TODO Podemos reponerlo en el futuro si da problemas quitarlo
+                //Nota de adri?n esto capea la velocidad m?xima //TODO Podemos reponerlo en el futuro si da problemas quitarlo
 
                 //rb.velocity = rb.velocity.normalized * movementSpeed;
                 
@@ -715,7 +719,7 @@ public class PlayerMovement : MonoBehaviour
             wallForward = -wallForward;
         }
 
-        // Añadir fuerza en la direccion de la pared
+        // A?adir fuerza en la direccion de la pared
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
         
 
