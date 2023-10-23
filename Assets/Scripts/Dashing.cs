@@ -44,7 +44,7 @@ public class Dashing : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(dashKey) && pm.numberOfDashes > 0)
+        if(Input.GetKeyDown(dashKey) && pm.numberOfDashes > 0 && !pm.grounded)
         {
             StartDash();
         }

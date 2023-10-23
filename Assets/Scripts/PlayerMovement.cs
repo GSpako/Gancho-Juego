@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
     public float extraRayDistance = 0.2f;
 
     [Header("Rampa")]
@@ -162,6 +162,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // checkear si esta en el suelo :O
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + extraRayDistance, whatIsGround);
+
+
 
         MyInput();
         CheckForWall();
