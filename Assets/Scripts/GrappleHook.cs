@@ -7,6 +7,9 @@ public class GrappleHook : MonoBehaviour
 {
     private SpringJoint springjoint;
     private LineRenderer rope;
+    private Transform collision_transform;
+    private Vector3 collision_transform_initPosition;
+    private Vector3 collPos;
 
     public bool grapling;
 
@@ -49,6 +52,12 @@ public class GrappleHook : MonoBehaviour
                 rope.SetPosition(0, grappleGunTip.transform.position);
             }
         }
+
+        if (collision_transform != null && rope != null && springjoint != null) {
+            Vector3 newPos = collPos + collision_transform.position - collision_transform_initPosition;
+            rope.SetPosition(1, newPos);
+            springjoint.connectedAnchor = newPos;
+        }
     }
 
     public void throwGrapple() {
@@ -59,6 +68,10 @@ public class GrappleHook : MonoBehaviour
 
             Vector3 pos = hit.point;
             //Visualize(pos);
+            collPos = pos;
+            //InitPos
+            collision_transform_initPosition = hit.collider.transform.position;
+            collision_transform = (hit.collider.transform);
 
             Debug.DrawLine(start: Camera.main.transform.position, end: pos, duration: 0.1f, color: Color.white, depthTest: true);
 
@@ -86,6 +99,8 @@ public class GrappleHook : MonoBehaviour
     }
     public void stopGrapple()
     {
+        collision_transform = null;
+
         grapling = false;
         Destroy(springjoint);
         Destroy(rope);
