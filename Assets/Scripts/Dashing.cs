@@ -10,7 +10,7 @@ public class Dashing : MonoBehaviour
     private Rigidbody rb;
     private PlayerMovement pm;
     private float startNumberOfDashes;
-    [Tooltip("Añadir en inspecto")]
+    [Tooltip("A?adir en inspecto")]
     public PlayerCamera playerCameraScript;
 
     [Header("Dashing variables")]
@@ -35,8 +35,6 @@ public class Dashing : MonoBehaviour
     [Header("Inputs")]
     public KeyCode dashKey = KeyCode.LeftShift;
 
-    Vector3 oldVelocity;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,7 +44,7 @@ public class Dashing : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(dashKey))
+        if(Input.GetKeyDown(dashKey) && pm.numberOfDashes > 0)
         {
             StartDash();
         }
@@ -102,12 +100,11 @@ public class Dashing : MonoBehaviour
         Invoke(nameof(ResetDash), dashDuration);
     }
 
-    // A veces la fuerza se añade antes que se le aplique la del dash
+    // A veces la fuerza se a?ade antes que se le aplique la del dash
     private void DelayedDashForce()
     {
         if(resetVelocity)
         {
-            oldVelocity = rb.velocity;
             rb.velocity = Vector3.zero;
         }
         rb.velocity = rb.velocity / 2;
@@ -115,11 +112,8 @@ public class Dashing : MonoBehaviour
     }
     private void ResetDash()
     {
-        if (resetVelocity)
-            rb.velocity = oldVelocity;
         pm.isDashing = false;
         pm.maxYSpeed = 0;
-        pm.numberOfDashes = startNumberOfDashes;
         playerCameraScript.DoFov(cameraStartFov);
     }
 
