@@ -5,13 +5,15 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public Spawner spawner;
-    public 
-
+    public GameObject canvas;
 
     // Start is called before the first frame update
     void Start()
     {
-       //GameManager.Instance.set
+        if (spawner == null) Debug.LogError("Falta el spawner");
+        if (canvas == null) Debug.LogError("Falta el canvas");
+        //GameManager.Instance.set
+        if (Player.instance == null) { spawner.Spawn(Spawner.types.player); }
     }
 
     // Update is called once per frame
