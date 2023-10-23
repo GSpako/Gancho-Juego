@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [Header("Parameters")]
     public LayerMask deathLayer;
+    public AudioSource audioSource;
 
     private bool isDying;
 
@@ -39,9 +40,18 @@ public class Player : MonoBehaviour
             else
                 camera = Camera.main.gameObject.GetComponent<PlayerCamera>();
         }
+
+        if(audioSource == null)
+        {
+            audioSource = gameObject.GetComponent<AudioSource>();
+        }
     }
 
     public void kill() {
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
         Spawner.instance.Spawn(Spawner.types.player);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         PlayerCamera.instance.doTilt(new float[]{-20,20}[Random.Range(0,2)]);
@@ -58,6 +68,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 9 && !isDying) { kill(); isDying = true; }
+        if (collision.gameObject.layer == 9 && !isDying)
+        {
+            kill(); isDying = true;
+            
+            
+        }
     }
 }

@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 709158459108861314}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,7 +256,8 @@ MonoBehaviour:
   wallRunForce: 40
   wallRunSpeed: 9
   wallCheckDistance: 0.8
-  minJumpHeight: 3
+  wallRunExitTime: 0
+  wallRunDelay: 0.25
   isWallRunning: 0
   wallJumpUpForce: 0.65
   wallJumpSideForce: 0.5
@@ -311,10 +312,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcdca6846fec7b478faa873dd2ca1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grapling: 0
   grappleGunTip: {fileID: 0}
+  pauseMenuScript: {fileID: 0}
   grappleLength: 100
   ropewidth: 0.01
   ropecolor: {r: 1, g: 1, b: 1, a: 1}
+  enganchables:
+    serializedVersion: 2
+    m_Bits: 0
   grappleB1: 323
   grappleB2: 324
 --- !u!114 &709158459108861314
