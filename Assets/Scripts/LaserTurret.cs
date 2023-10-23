@@ -40,7 +40,7 @@ public class LaserTurret : MonoBehaviour
         chargeDurationWait = new WaitForSeconds(chargeDuration);
         shootingCooldownWait = new WaitForSeconds(shootingCooldown);
 
-        if (player == null)
+        if (Player.instance == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }

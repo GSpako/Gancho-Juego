@@ -718,13 +718,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301834107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.299999, y: 5, z: 67.3}
+  m_LocalScale: {x: 5.1096244, y: 1.8087159, z: 3.156238}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 577122532}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &336277640 stripped
 GameObject:
@@ -774,7 +774,6 @@ Transform:
   - {fileID: 483301077}
   - {fileID: 865246763}
   - {fileID: 2065380720}
-  - {fileID: 577122532}
   - {fileID: 1658922959}
   - {fileID: 545138828}
   m_Father: {fileID: 0}
@@ -1325,12 +1324,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491007997}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.81, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 50.315792, y: 5, z: 67.3}
+  m_LocalScale: {x: 5.1096244, y: 1.8087159, z: 3.156238}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 577122532}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &496216744
 GameObject:
@@ -1611,7 +1610,7 @@ GameObject:
   - component: {fileID: 577122533}
   - component: {fileID: 577122536}
   m_Layer: 6
-  m_Name: Plataforma Movible
+  m_Name: Plataforma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1625,14 +1624,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577122531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.2, y: 0.873, z: 25.5}
+  m_LocalPosition: {x: 5.299999, y: 0.873, z: 67.3}
   m_LocalScale: {x: 5.1096244, y: 1.8087159, z: 3.156238}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 301834108}
-  - {fileID: 491007998}
-  m_Father: {fileID: 338043528}
-  m_RootOrder: -1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &577122533
 BoxCollider:
@@ -1719,11 +1716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntoA: {fileID: 301834108}
   puntoB: {fileID: 491007998}
-  velocidad: 5
-  tiempoDesaparece: 2
-  tiempoReaparece: 1
-  esPlataformaDesaparece: 0
-  desaparecePlataforma: 0
+  velocidad: 0.2
 --- !u!1 &588450370
 GameObject:
   m_ObjectHideFlags: 0
