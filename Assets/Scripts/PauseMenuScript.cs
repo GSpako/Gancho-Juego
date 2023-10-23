@@ -13,6 +13,7 @@ public class PauseMenuScript : MonoBehaviour
     public bool isGamePaused = false;
 
     [Header("Referencias")]
+    [SerializeField] BulletTime bT;
     public GameObject pauseMenuUI;
     public TextMeshProUGUI sensibilidadText;
     public TextMeshProUGUI volumenText;
@@ -32,11 +33,7 @@ public class PauseMenuScript : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePauseMenu();
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }*/
+
     }
 
 
@@ -60,6 +57,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void ContinueGame()
     {
+        bT.bloquearMenus = false;
         pauseMenuUI.SetActive(false);
         isGamePaused = false;
         
@@ -73,6 +71,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void PauseGame()
     {
+        bT.bloquearMenus = true;
         pauseMenuUI.SetActive(true);
         isGamePaused = true;
         continuarButton.Select();

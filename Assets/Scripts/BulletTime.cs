@@ -13,9 +13,11 @@ public class BulletTime : MonoBehaviour
     private float rate;
     private bool slowMode = false;
     private bool bloquear = false;
+    public bool bloquearMenus = false;
 
     void Start()
     {
+        bloquearMenus = false;
         slowmoCharge = CanvasReferences.instance.sloMo;
         sliderObject = slowmoCharge.gameObject;
         slowmoCharge.value = slowmoCharge.maxValue;
@@ -49,7 +51,7 @@ public class BulletTime : MonoBehaviour
 
         if(bloquear) {return;}
 
-        if (Input.GetKeyDown(KeyCode.E) && slowmoCharge.value > slowmoCharge.minValue) {
+        if (Input.GetKeyDown(KeyCode.E) && slowmoCharge.value > slowmoCharge.minValue && !bloquearMenus) {
 
             slowMode = !slowMode;
 
