@@ -33,11 +33,7 @@ public class PauseMenuScript : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePauseMenu();
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }*/
+
     }
 
 

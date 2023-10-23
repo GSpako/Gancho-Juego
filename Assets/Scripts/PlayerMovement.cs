@@ -316,42 +316,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (OnSlope() && !exitingSlope)
         {
-            // Sin esto el personaje va mas rapido en la rampa
-            if(rb.velocity.magnitude > movementSpeed)
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // limitar la velocidad si es necesario y tal
+            if (flatVelocity.magnitude > movementSpeed)
             {
-                //Nota de adri?n esto capea la velocidad m?xima //TODO Podemos reponerlo en el futuro si da problemas quitarlo
-
-                //rb.velocity = rb.velocity.normalized * movementSpeed;
-                
-            } 
-            else
-            {
-                Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-                // limitar la velocidad si es necesario y tal
-                if (flatVelocity.magnitude > movementSpeed)
-                {
-                    Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
-                    //rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
-
-                }
-
-                // limitar velocidad horizontal
-                //float maxAirSpeed = movementSpeed * 20f;
-                //rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxAirSpeed, maxAirSpeed), rb.velocity.y, Mathf.Clamp(rb.velocity.z, -maxAirSpeed, maxAirSpeed));
-            }
-
-            // Para no dashear mirando hacia arriba tanto
-            if(maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
-            {
-                //rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
+                Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
             }
         }
     }
-
-
-   
-
 
     private void PlayerJump()
     {
@@ -359,8 +332,6 @@ public class PlayerMovement : MonoBehaviour
 
         // asegurar que la y es 0, para siempre saltar igual
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-
-        //rb.AddForce(transfofrm.up * jumpForce, ForceMode.Impulse);
     }
 
     private void ResetPlayerJump()
@@ -391,7 +362,6 @@ public class PlayerMovement : MonoBehaviour
         // Sprinting
         else if (grounded && Input.GetKey(sprintKey) && !GetComponent<GrappleHook>().grapling)
         {
-            //Debug.Log("Sprinting");
             movState = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
 
@@ -413,8 +383,6 @@ public class PlayerMovement : MonoBehaviour
         // Walking 
         else if (grounded)
         {
-
-            //Debug.Log("Walking");
             movState = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
 
@@ -544,7 +512,6 @@ public class PlayerMovement : MonoBehaviour
         isSliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
-        //rb.AddForce(Vector3.down * downForce, ForceMode.Force);
 
         playerCamera.DoFov(cameraSlideFov);
 
@@ -563,17 +530,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // Si no esta sliding en rampa normalmente o en el aire
-        if (!OnSlope() || rb.velocity.y > -0.1f)
-        {
-            //rb.AddForce(inputDirection.normalized, ForceMode.Force);
-            //slideTimer -= Time.deltaTime;
-        } else
-        {
-            //rb.AddForce(GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
-            // aqui no timer, asi slideas siempre en rampas
-        }
-
         if (slideTimer <= 0)
         {
             StopSlide();
@@ -588,8 +544,6 @@ public class PlayerMovement : MonoBehaviour
     {
         wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
-        Debug.DrawRay(transform.position, orientation.right, Color.green);
-        Debug.DrawRay(transform.position, -orientation.right, Color.red);
     }
 
     private void StartWallRun()
@@ -651,119 +605,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(playerCamera.transform.forward * 200, ForceMode.Force);
         rb.velocity = new Vector3(rb.velocity.x, 5f, rb.velocity.z);
-
-        //Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-        //Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
-
-        //if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
-        //    wallForward = -wallForward;
-
-        //rb.AddForce(wallForward * 12, ForceMode.Force);
     }
-    // WALL RUNNING
-
-    /*
-    private void CheckForWall()
-    {
-       wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-       wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
-    }
-
-    private bool AboveGround()
-    {
-        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
-    }
-
-
-    private void StartWallRun()
-    {
-        isWallRunning = true;
-        wallRunTimer = maxWallRunTimer;
-        rb.velocity = new Vector3(rb.velocity.y, 0f, rb.velocity.z);
-
-        // Efectos de la camara
-        playerCamera.DoFov(cameraFov);
-        if(wallLeft)
-        {
-            playerCamera.doTilt(-cameraTilt);
-        } 
-        else if(wallRight)
-        {
-            playerCamera.doTilt(cameraTilt);
-        }
-    }
-
-
-    private void StopWallRun()
-    {
-        isWallRunning = false;
-        rb.useGravity = true;
-
-        playerCamera.DoFov(cameraStartFov);
-        playerCamera.doTilt(0f);
-
-    }
-
-    private void WallRunningMovement()
-    {
-        rb.useGravity = false; // no gravedad que si no se cae el man
-
-        // Para ir en el forward de la pared siempre, sera Vector entre Arriba y Normal de la pared = wallForward
-        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
-
-        
-        // Sin esto solo funciona por una direccion y por el otro lado salo disparado de la pared xd
-        if((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude) 
-        {
-            wallForward = -wallForward;
-        }
-
-        // A?adir fuerza en la direccion de la pared
-        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
-        
-
-
-        // Esta parte es para que suba paredes en diagonal
-        if(upwardsRunning)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
-        }
-
-        if (downwardsRunning)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
-        }
-
-        // Para pegarlo a la pared bien, segun si Pulsa A o D
-        if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0)) 
-        {
-            rb.AddForce(-wallNormal * 50, ForceMode.Force);
-        }
- 
-        /**
-        // Hacer mas floja la gravedad
-        if(useGravity)
-        {
-            rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
-        }
-        
-    }*/
-    /*
-    private void WallJump()
-    {
-        
-        exitingWall = true;
-        exitWallTimer = exitWallTime;
-        
-
-        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-
-        Vector3 forceToAplly = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
-
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.useGravity = true;
-        rb.AddForce(forceToAplly, ForceMode.Impulse);
-    }*/
 
 }
