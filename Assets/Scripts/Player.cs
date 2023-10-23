@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        
         if (instance == null) {
             Debug.LogWarning("Nuevo Jugador");
             instance = this;
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        TimerSystem.instance.StartTimer();
+
         if (camera == null)
         {
             if (PlayerCamera.instance != null)
@@ -71,8 +74,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 9 && !isDying)
         {
             kill(); isDying = true;
-            
-            
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.)
     }
 }

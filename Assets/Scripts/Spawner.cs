@@ -13,6 +13,8 @@ public class Spawner : MonoBehaviour
     [Header("Parameters")]
     public float respawnTime;
 
+    Camera notPlayerCamera;
+
     public enum types { 
         player
     }
@@ -25,6 +27,11 @@ public class Spawner : MonoBehaviour
             Destroy(this);
             Debug.LogWarning(this + " ha sido borrado pues ya había una instancia de Spawner");
         }
+    }
+
+    private void Start()
+    {
+        notPlayerCamera = GetComponentInChildren<Camera>(); 
     }
 
     public void Spawn(types t) {
@@ -43,8 +50,11 @@ public class Spawner : MonoBehaviour
         Instantiate(player,transform.position,transform.rotation);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        
+        if (Player.instance != null && notPlayerCamera.enabled)
+            notPlayerCamera.enabled = false;    
+        else if (Player.instance == null && !notPlayerCamera.enabled)  
+            notPlayerCamera.enabled = true;
     }
 }
