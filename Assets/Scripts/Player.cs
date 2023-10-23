@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.)
+        if (other.CompareTag("Exit"))
+            TimerSystem.instance.ExitLevel();
     }
 }

@@ -27,9 +27,6 @@ public class TimerSystem : MonoBehaviour
 
         StartTimer();
     }
-    private void Update()
-    {
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -47,5 +44,10 @@ public class TimerSystem : MonoBehaviour
     public void StartTimer() { 
         timerRunning = true;
         startTime = Time.time;
+    }
+
+    public void ExitLevel() {
+        Debug.Log("Has escapado!");
+        timerRunning = false;
     }
 }
