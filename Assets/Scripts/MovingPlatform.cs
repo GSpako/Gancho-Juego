@@ -1,19 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class Plataforma : MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
+    [Header("Referencias")]
     public Transform puntoA;
     public Transform puntoB;
+    [Header("Variables")]
     public float velocidad = 2f;
-
-    // Variables específicas para la plataforma que desaparece y aparece.
-    public float tiempoDesaparece = 2f;
-    public float tiempoReaparece = 1f;
-
-    // Variable para determinar si la plataforma es mala y desaparece.
-    public bool esPlataformaDesaparece = false;
-    public bool desaparecePlataforma = false;
 
     private void Start()
     {
@@ -34,26 +28,4 @@ public class Plataforma : MonoBehaviour
         Gizmos.DrawLine(puntoA.position, puntoB.position);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (desaparecePlataforma && esPlataformaDesaparece && collision.gameObject.CompareTag("Player"))
-        {
-            StartCoroutine(DesaparecerYReaparecer());
-        }
-    }
-
-    private IEnumerator DesaparecerYReaparecer()
-    {
-        // Desaparecer la plataforma.
-        GetComponent<Renderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
-
-        yield return new WaitForSeconds(tiempoDesaparece);
-
-        // Reaparecer la plataforma.
-        GetComponent<Renderer>().enabled = true;
-        GetComponent<Collider>().enabled = true;
-
-        yield return new WaitForSeconds(tiempoReaparece);
-    }
 }
