@@ -285,17 +285,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4152897038806905741, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a1ceb6211bb810548a4c5456a07def25, type: 3}
-    - target: {fileID: -4152897038806905741, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: -4152897038806905741, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 63dedbc44f57ba84e91d2224472f15b0, type: 2}
     - target: {fileID: 2277399964483662248, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -343,18 +335,6 @@ PrefabInstance:
     - target: {fileID: 3062441090331311058, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_Name
       value: Player 1 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3062441090331311058, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389726166711828096, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8045160774331522836, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -489,9 +469,9 @@ GameObject:
   - component: {fileID: 1624472304}
   - component: {fileID: 1624472303}
   - component: {fileID: 1624472302}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Exit
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
