@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        TimerSystem.instance.StartTimer();
+        if (TimerSystem.instance != null)
+            TimerSystem.instance.StartTimer();
 
         if (camera == null)
         {
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Exit"))
+        if (other.CompareTag("Exit") && TimerSystem.instance != null)
             TimerSystem.instance.ExitLevel();
     }
 }
