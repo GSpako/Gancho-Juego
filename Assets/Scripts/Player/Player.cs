@@ -56,13 +56,13 @@ public class Player : MonoBehaviour
         {
             audioSource.Play();
         }
-        Spawner.instance.Spawn(Spawner.types.player);
+        GameManager.Instance.LevelManager.spawner.Spawn(Spawner.types.player);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         PlayerCamera.instance.doTilt(new float[]{-20,20}[Random.Range(0,2)]);
         PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
         GetComponent<PlayerMovement>().enabled = false;
         camera.enabled = false;
-        Destroy(gameObject,Spawner.instance.respawnTime*0.9f);
+        Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime *0.9f);
     }
     // Update is called once per frame
     void Update()

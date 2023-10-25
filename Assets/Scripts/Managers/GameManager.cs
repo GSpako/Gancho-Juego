@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public LevelManager LevelManager;   
+
     [Header("Estado de juego")]
     public GameState gameState;
 
