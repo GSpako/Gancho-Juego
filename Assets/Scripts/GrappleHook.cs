@@ -94,6 +94,13 @@ public class GrappleHook : MonoBehaviour
             rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
             rope.material.SetColor("_Color",ropecolor);
             rope.endColor = ropecolor;
+
+
+            if(hit.collider.CompareTag("Turret"))
+            {
+                LaserTurret.isStunned = true;
+                //Debug.Log("Stuneada grapple");
+            }
         }
         else Debug.Log("Demasiado lejos!");
     }

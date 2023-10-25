@@ -19,12 +19,21 @@ public class LaserTurret : MonoBehaviour
     private bool canShoot = true;
     private LineRenderer laserLine;
 
+
+    [Header("Aturdimiento")]
+    public float turretStunTime = 3f;
+    public ParticleSystem stunParticles;
+    public AudioSource stunSound;
+    public AudioSource recoverStunSound;
+    public static bool isStunned = false;
+
     private Vector3 lastPlayerPosition; // Nueva variable para almacenar la última posición del jugador
 
     private void Start()
     {
         laserLine = gameObject.AddComponent<LineRenderer>();
         ConfigureLineRenderer(laserLine, Color.red);
+        stunSound = gameObject.AddComponent<AudioSource>();
 
         if (player == null)
         {
@@ -36,10 +45,14 @@ public class LaserTurret : MonoBehaviour
 
     private void Update()
     {
+        StunTurret();
+
         if (playerDetected)
         {
             RotateTowardsPlayer();
         }
+
+
     }
 
     private void ConfigureLineRenderer(LineRenderer lineRenderer, Color color)
@@ -64,7 +77,7 @@ public class LaserTurret : MonoBehaviour
                     lastPlayerPosition = collider.transform.position;
                     playerDetected = true;
 
-                    // Delay para que no sea la torreta destructora de players 3000
+                    // Delay para que no sea la torreta la destructora de players 3000
                     yield return new WaitForSeconds(playerPositionDelay); 
                     yield return StartCoroutine(ShootLaser());
 
@@ -117,7 +130,7 @@ public class LaserTurret : MonoBehaviour
 
     private void RotateTowardsPlayer()
     {
-        if (Player.instance != null)
+        if (Player.instance != null && !isStunned)
         {
             Vector3 directionToPlayer = Player.instance.transform.position - transform.position;
             Quaternion rotationToPlayer = Quaternion.LookRotation(directionToPlayer);
@@ -129,5 +142,42 @@ public class LaserTurret : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
+
+    // Stunear a la torreta :o
+
+    private IEnumerator RecoverFromStun()
+    {
+        yield return new WaitForSeconds(turretStunTime);
+
+        // Reiniciar la rotación y el escaneo
+        isStunned = false;
+        recoverStunSound.Play();
+        StartCoroutine(ScanForPlayer());
+    }
+
+    public void StunTurret()
+    {
+        if (isStunned)
+        {
+            Debug.Log("Stuneada LaserTurret");
+            // Detener la rotación y el escaneo
+            StopAllCoroutines();
+
+            if (stunParticles != null)
+            {
+                stunParticles.Play();
+            }
+
+            if (stunSound != null)
+            {
+                stunSound.Play();
+            }
+
+            // Esperar el tiempo de aturdimiento
+            StartCoroutine(RecoverFromStun());
+            isStunned = false;
+        }
     }
 }
