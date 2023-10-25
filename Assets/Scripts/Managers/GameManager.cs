@@ -35,14 +35,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameState = GameState.level;    
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.level)
         {
             pauseMenuScript.TogglePauseMenu();
             gameState = GameState.menu;

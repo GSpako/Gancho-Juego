@@ -99,14 +99,6 @@ public class PlayerMovement : MonoBehaviour
     public float cameraSprintFov = 90f;
     public float cameraTilt = 5f;
 
-
-
-    /**
-    [Header("Gravedad")]
-    public bool useGravity;
-    public float gravityCounterForce;
-    */
-
     private bool upwardsRunning;
     private bool downwardsRunning;
     private float wallClimbSpeed = 3f;
@@ -114,8 +106,6 @@ public class PlayerMovement : MonoBehaviour
     // variables para el momentum
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
-
-
 
     [Header("UI")]
     public TextMeshProUGUI speedText;
@@ -127,6 +117,10 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput, verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+
+
+    private MovementState lastState;
+    private bool keepMomentum;
 
     public MovementState movState;
     public enum MovementState
@@ -217,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangeUi()
     {
-        speedText.text = "Speed: " + movementSpeed.ToString("F2");
+        speedText.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
         movStateText.text = movState.ToString();
     }
 
@@ -232,7 +226,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(jumpKey) && readyToJump && grounded) 
         {
-            //Debug.Log("Espacio");
             readyToJump = false;
             PlayerJump();
 
@@ -244,9 +237,6 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude <= walkSpeed  && !GetComponent<GrappleHook>().grapling)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            
-            // Para acercar al player al suelo y que no este flotando, al cambiarle la escala
-            //rb.AddForce(Vector3.down * crouchForce, ForceMode.Force);
         }
 
         if(Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
@@ -265,7 +255,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 StopWallRun();
                 WallJump();
-
             }
         }
         else
@@ -340,13 +329,10 @@ public class PlayerMovement : MonoBehaviour
         exitingSlope = false;
     }
 
-    private MovementState lastState;
-    private bool keepMomentum;
 
 
     private void MovementStateHandler()
-    {
-        
+    { 
         // Si en la pared 
         if(isWallRunning)
         {
@@ -415,7 +401,8 @@ public class PlayerMovement : MonoBehaviour
         {
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());
-        } else
+        } 
+        else
         {
             movementSpeed = desiredMoveSpeed;
         }
@@ -478,18 +465,14 @@ public class PlayerMovement : MonoBehaviour
         movementSpeed = desiredMoveSpeed;
         speedChangeFactor = 1f; // dash
         keepMomentum = false;
-
     }
 
     public bool OnSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
-
             // angulo de la rampa, sabiendolo con el Raycast
             float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
-
-            
 
             return slopeAngle < maxSlopeAngle && slopeAngle != 0;
         }
