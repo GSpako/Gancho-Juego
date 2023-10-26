@@ -5,12 +5,14 @@ using UnityEngine.Audio;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using static GameManager;
 
 public class PauseMenuScript : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public PlayerCamera playerCamera;
     public bool isGamePaused = false;
+    public static bool isGamePausedStatic;
 
     [Header("Referencias")]
     [SerializeField] BulletTime bT;
@@ -33,7 +35,7 @@ public class PauseMenuScript : MonoBehaviour
 
     private void Update()
     {
-
+        PauseMenuScript.isGamePausedStatic = isGamePaused;
     }
 
 
@@ -66,7 +68,7 @@ public class PauseMenuScript : MonoBehaviour
 
         Time.timeScale = 1f;
 
-
+        GameManager.Instance.gameState = GameState.level;
     }
 
     public void PauseGame()

@@ -215,12 +215,12 @@ public class PlayerMovement : MonoBehaviour
         movStateText.text = movState.ToString();
     }
 
-
+    /**
     private void OnGUI()
     {
         GUI.Label(new Rect(20, 50, 200, 40), "Speed: " + rb.velocity.magnitude.ToString("F2"));
         GUI.Label(new Rect(20, 70, 200, 40), "MovState: " + movState.ToString());
-    }
+    }*/
 
 
     private void MyInput()

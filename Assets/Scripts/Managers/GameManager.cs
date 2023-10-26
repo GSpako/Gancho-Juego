@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     
 
-    public enum GameState { 
-        menu,
+    public enum GameState {
+        menu, 
+        PauseMenu,
         level,
         cinematic
     }
@@ -43,12 +44,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.level)
         {
             pauseMenuScript.TogglePauseMenu();
-            gameState = GameState.menu;
-        } 
+            pauseMenuScript.GetComponent<PauseMenuScript>().enabled = true;    
+            gameState = GameState.PauseMenu;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.PauseMenu)
+        {
+            pauseMenuScript.TogglePauseMenu();
+            gameState = GameState.level;
+        }
     }
 
 }
