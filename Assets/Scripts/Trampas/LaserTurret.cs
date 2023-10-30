@@ -63,9 +63,9 @@ public class LaserTurret : MonoBehaviour
     {
         lineRenderer.startWidth = startWidth;
         lineRenderer.endWidth = endWidth;
-        lineRenderer.material.EnableKeyword("_EMISSION");
-        lineRenderer.material.SetColor("_EmissionColor", Color.blue * emissionBrightness); 
         lineRenderer.material = new Material(Shader.Find("Standard"));
+        lineRenderer.material.EnableKeyword("_EMISSION");
+        lineRenderer.material.SetColor("_EmissionColor", Color.red * emissionBrightness); 
         lineRenderer.material.color = color;
         lineRenderer.enabled = false;
     }
