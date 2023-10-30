@@ -68,8 +68,16 @@ public class GameManager : MonoBehaviour
             //Aquí haremos algo pues el jugador se ha pasado el nivel satisfactoriamente
         }
         DOTween.KillAll();
-        SceneManager.LoadScene(levels[++currentLevel%levels.Length]);
+
+        StartCoroutine(delay());
     }   
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(levels[++currentLevel % levels.Length]);
+
+    }
 
 
 

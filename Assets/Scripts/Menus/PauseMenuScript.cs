@@ -27,6 +27,14 @@ public class PauseMenuScript : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        GameManager.Instance.pauseMenuScript = this;
+        if (bT == null) { 
+            bT = GameObject.FindObjectOfType<BulletTime>();
+        }
+    }
+
     public void QuitGame()
     {
         Debug.Log("Sali del juego :(");
@@ -60,6 +68,7 @@ public class PauseMenuScript : MonoBehaviour
     public void ContinueGame()
     {
         bT.bloquearMenus = false;
+        //pauseMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
         isGamePaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -72,8 +81,15 @@ public class PauseMenuScript : MonoBehaviour
 
     public void PauseGame()
     {
+        if (bT == null)
+            bT = GameObject.FindObjectOfType<BulletTime>();
+        
         bT.bloquearMenus = true;
-        pauseMenuUI.SetActive(true);
+
+        pauseMenuUI.SetActive (true);
+
+        //pauseMenuUI.SetActive(true);
+        
         isGamePaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
