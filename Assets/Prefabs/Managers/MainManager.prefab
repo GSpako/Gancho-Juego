@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ea77e0607036f4189c6ea83d8bd1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 0
+  LevelManager: {fileID: 0}
+  gameState: 2
+  pauseMenuScript: {fileID: 0}
   player: {fileID: 0}
-  spawner: {fileID: 0}
-  Canvas: {fileID: 0}

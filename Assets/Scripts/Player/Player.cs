@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        CanvasBehaviour.instance.Log("Empezamos");
+
         if (TimerSystem.instance != null)
             TimerSystem.instance.StartTimer();
 

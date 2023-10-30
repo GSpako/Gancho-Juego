@@ -11,6 +11,8 @@ public class TimerSystem : MonoBehaviour
     float startTime;
     public bool timerRunning;
 
+    [SerializeField] float time;
+
     private void Awake()
     {
         if (instance == null)
@@ -39,6 +41,9 @@ public class TimerSystem : MonoBehaviour
             Player.instance.kill();
             timerRunning = false;   
         }
+        if (timerRunning) {
+            time = Time.time - startTime;
+        }
     }
 
     public void StartTimer() { 
@@ -47,6 +52,7 @@ public class TimerSystem : MonoBehaviour
     }
 
     public void ExitLevel() {
+        CanvasBehaviour.instance.Log("Has escapado! (en " + time + " segundos)");
         Debug.Log("Has escapado!");
         timerRunning = false;
     }

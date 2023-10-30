@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -649,7 +649,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8797352065474820730, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4460567289628568395, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
