@@ -55,5 +55,7 @@ public class TimerSystem : MonoBehaviour
         CanvasBehaviour.instance.Log("Has escapado! (en " + time + " segundos)");
         Debug.Log("Has escapado!");
         timerRunning = false;
+
+        GameManager.Instance.EndLevel(true);
     }
 }

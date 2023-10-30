@@ -14,12 +14,17 @@ public class CanvasBehaviour : MonoBehaviour
     [SerializeField] TMPro.TMP_FontAsset fontStyle;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(this);
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.LevelManager.canvas = gameObject;
     }
 
     // Update is called once per frame
