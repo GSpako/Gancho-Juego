@@ -1,9 +1,11 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Loading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class GameManager : MonoBehaviour
     [Header("Referencias")]
     public PauseMenuScript pauseMenuScript;
     public GameObject player;
+
+    [SerializeField] private int currentLevel = 0;
+    [SerializeField] private string[] levels;
     
 
     public enum GameState {
@@ -56,5 +61,16 @@ public class GameManager : MonoBehaviour
             gameState = GameState.level;
         }
     }
+
+    //Se llama desde TimerSystem
+    public void EndLevel(bool win/*if player won the game else: menu exit*/) {
+        if (win) { 
+            //Aquí haremos algo pues el jugador se ha pasado el nivel satisfactoriamente
+        }
+        DOTween.KillAll();
+        SceneManager.LoadScene(levels[++currentLevel%levels.Length]);
+    }   
+
+
 
 }

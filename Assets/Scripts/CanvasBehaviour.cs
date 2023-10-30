@@ -14,12 +14,17 @@ public class CanvasBehaviour : MonoBehaviour
     [SerializeField] TMPro.TMP_FontAsset fontStyle;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(this);
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.LevelManager.canvas = gameObject;
     }
 
     // Update is called once per frame
@@ -42,6 +47,7 @@ public class CanvasBehaviour : MonoBehaviour
         go.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         go.GetComponent<RectTransform>().DOLocalMove(new Vector2(0, 200), messageTime*0.9f, false);
         go.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 600f) ;
+        go.GetComponent<TextMeshProUGUI>().raycastTarget = false;   
         Destroy(go,messageTime);
     }
 }
