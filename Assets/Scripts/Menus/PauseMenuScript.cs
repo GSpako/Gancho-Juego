@@ -62,7 +62,6 @@ public class PauseMenuScript : MonoBehaviour
         bT.bloquearMenus = false;
         pauseMenuUI.SetActive(false);
         isGamePaused = false;
-        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -76,7 +75,6 @@ public class PauseMenuScript : MonoBehaviour
         bT.bloquearMenus = true;
         pauseMenuUI.SetActive(true);
         isGamePaused = true;
-        continuarButton.Select();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
