@@ -91,12 +91,10 @@ public class PauseMenuScript : MonoBehaviour
         if (isGamePaused)
         {
             ContinueGame();
-
         }
         else
         {
             PauseGame();
-
         }
     }
 }
