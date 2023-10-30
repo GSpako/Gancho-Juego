@@ -47,6 +47,7 @@ public class CanvasBehaviour : MonoBehaviour
         go.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         go.GetComponent<RectTransform>().DOLocalMove(new Vector2(0, 200), messageTime*0.9f, false);
         go.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 600f) ;
+        go.GetComponent<TextMeshProUGUI>().raycastTarget = false;   
         Destroy(go,messageTime);
     }
 }

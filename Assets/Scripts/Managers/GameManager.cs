@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Loading;
@@ -66,8 +67,9 @@ public class GameManager : MonoBehaviour
         if (win) { 
             //Aquí haremos algo pues el jugador se ha pasado el nivel satisfactoriamente
         }
+        DOTween.KillAll();
         SceneManager.LoadScene(levels[++currentLevel%levels.Length]);
-    }
+    }   
 
 
 
