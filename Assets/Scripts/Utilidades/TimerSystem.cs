@@ -10,7 +10,7 @@ public class TimerSystem : MonoBehaviour
     [SerializeField] BulletTime bT;
     float startTime;
     public bool timerRunning;
-
+    [SerializeField] bool not_Active;
     [SerializeField] float time;
 
     private void Awake()
@@ -33,7 +33,7 @@ public class TimerSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Time.time > (totalTime + startTime) && timerRunning)
+        if (Time.time > (totalTime + startTime) && timerRunning && !not_Active)
         {
             bT.bloquearMenus = true;
 
@@ -41,7 +41,7 @@ public class TimerSystem : MonoBehaviour
             Player.instance.kill();
             timerRunning = false;   
         }
-        if (timerRunning) {
+        if (timerRunning && !not_Active) {
             time = Time.time - startTime;
         }
     }
