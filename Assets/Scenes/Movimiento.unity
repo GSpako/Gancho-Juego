@@ -835,7 +835,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.3
+  m_fontSize: 35
   m_fontSizeBase: 84
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1630,9 +1630,12 @@ MonoBehaviour:
   detectionRadius: 12.5
   rotationSpeed: 35
   shootingCooldown: 1
-  laserSpeed: 10
-  laserMaxLength: 40
+  laserSpeed: 0.0001
+  laserMaxLength: 12.4
   playerPositionDelay: 1
+  startWidth: 1.2
+  endWidth: 1.2
+  emissionBrightness: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295

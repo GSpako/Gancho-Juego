@@ -7,13 +7,17 @@ public class LaserTurret : MonoBehaviour
     private Player player;
     public Transform boca; // El punto de origen del láser
 
-    [Header("Variables")]
+    [Header("Variables Torreta")]
     public float detectionRadius = 10f;
     public float rotationSpeed = 5f;
     public float shootingCooldown = 4f;
+    [Header("Variables Laser")]
     public float laserSpeed = 2f;
     public float laserMaxLength = 20f;
     public float playerPositionDelay = 1f;
+    [SerializeField] private float startWidth = 1f;
+    [SerializeField] private float endWidth = 1f;
+    [SerializeField] private float emissionBrightness = 10f;
     public LayerMask playerLayer; 
     private bool playerDetected = false;
     private bool canShoot = true;
@@ -57,8 +61,10 @@ public class LaserTurret : MonoBehaviour
 
     private void ConfigureLineRenderer(LineRenderer lineRenderer, Color color)
     {
-        lineRenderer.startWidth = 0.5f;
-        lineRenderer.endWidth = 0.5f;
+        lineRenderer.startWidth = startWidth;
+        lineRenderer.endWidth = endWidth;
+        lineRenderer.material.EnableKeyword("_EMISSION");
+        lineRenderer.material.SetColor("_EmissionColor", Color.blue * emissionBrightness); 
         lineRenderer.material = new Material(Shader.Find("Standard"));
         lineRenderer.material.color = color;
         lineRenderer.enabled = false;
