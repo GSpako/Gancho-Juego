@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -122,7 +122,7 @@ MonoBehaviour:
   numberOfDashes: 1
   maxYSpeed: 0
   isDashing: 0
-  jumpForce: 10
+  jumpForce: 15
   jumpCooldown: 0.25
   airMultiplier: 0.1
   crouchSpeed: 3.5
@@ -156,8 +156,8 @@ MonoBehaviour:
   wallRunExitTime: 0
   wallRunDelay: 0.25
   isWallRunning: 0
-  wallJumpUpForce: 0.65
-  wallJumpSideForce: 0.5
+  wallJumpUpForce: 10
+  wallJumpSideForce: 400
   exitWallTime: 0.2
   maxWallRunTimer: 2
   playerCamera: {fileID: 6556596865195063743}
@@ -248,7 +248,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 63dedbc44f57ba84e91d2224472f15b0, type: 2}
   m_audioClip: {fileID: 8300000, guid: a1ceb6211bb810548a4c5456a07def25, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

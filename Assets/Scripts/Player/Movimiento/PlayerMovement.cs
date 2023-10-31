@@ -81,10 +81,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallRunning;
 
     [Header("Wall Jump")]
-    [Range(0f, 1f)]
-    public float wallJumpUpForce = 0.65f;
-    [Range(0f, 1f)]
-    public float wallJumpSideForce = 0.6f;
+    public float wallJumpUpForce = 10;
+    public float wallJumpSideForce = 400f;
     public float exitWallTime = 0.2f;
     private bool exitingWall;
     private float exitWallTimer;
@@ -593,8 +591,8 @@ public class PlayerMovement : MonoBehaviour
         wallRunExitTime = Time.time;
         rb.velocity = rb.velocity*3 / 4;
 
-        rb.AddForce(playerCamera.transform.forward * 200, ForceMode.Force);
-        rb.velocity = new Vector3(rb.velocity.x, 5f, rb.velocity.z);
+        rb.AddForce(playerCamera.transform.forward * wallJumpSideForce, ForceMode.Force);
+        rb.velocity = new Vector3(rb.velocity.x, wallJumpUpForce, rb.velocity.z);
     }
 
 }
