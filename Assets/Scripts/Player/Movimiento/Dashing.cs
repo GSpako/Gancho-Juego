@@ -57,7 +57,9 @@ public class Dashing : MonoBehaviour
 
     private void StartDash()
     {
-        if(dashCooldownTimer > 0)
+        Transform forwardT;
+
+        if (dashCooldownTimer > 0)
         {
             return;
         }
@@ -69,8 +71,6 @@ public class Dashing : MonoBehaviour
         pm.currentDashes--;
         pm.maxYSpeed = maxDashYSpeed;
         playerCameraScript.DoFov(cameraDashFov);
-
-        Transform forwardT;
 
         // si usar el Forward de la camara o el del orientation (jugador)
         if(useCameraForward)

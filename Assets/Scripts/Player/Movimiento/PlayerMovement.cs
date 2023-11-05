@@ -14,10 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerObj;
 
     [Header("Dash")]
-    public float dashSpeed = 10f;
-    public float dashSpeedChangeFactor = 50f;
-    public float maxDashes = 1f;
-    public float currentDashes = 1f;
+    public float dashSpeed;
+    public float dashSpeedChangeFactor;
+    public float maxDashes;
+    public float currentDashes;
     [Tooltip("Se inicializa en Dashing.cs")]
     public float maxYSpeed;
 
