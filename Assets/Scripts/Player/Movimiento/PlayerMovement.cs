@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash")]
     public float dashSpeed = 10f;
     public float dashSpeedChangeFactor = 50f;
-    public float maxNumberOfDashes = 1f;
-    public float numberOfDashes = 1f;
+    public float maxDashes = 1f;
+    public float currentDashes = 1f;
     [Tooltip("Se inicializa en Dashing.cs")]
     public float maxYSpeed;
 
@@ -56,12 +56,13 @@ public class PlayerMovement : MonoBehaviour
     private bool exitingSlope;
 
     [Header("Sliding variables")]
+    private bool cieling;
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
     public float slideYScale;
     private float slideStartYScale;
-    private bool isSliding;
+    public bool isSliding;
     public float downForce = 5f;
     public float slideSpeed;
     public float speedIncreaseMultiplier = 1.5f;
@@ -72,8 +73,8 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunForce = 200f;
     public float wallRunSpeed = 8.5f;
     public float wallCheckDistance = 0.5f;
-    public float wallRunExitTime;
     public float wallRunDelay = .25f;
+    private float wallRunExitTime;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
     private bool wallRight;
@@ -82,12 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall Jump")]
     public float wallJumpUpForce = 10;
-    public float wallJumpSideForce = 400f;
-    public float exitWallTime = 0.2f;
-    private bool exitingWall;
-    private float exitWallTimer;
+    public float wallJumpSideForce = 10;
     public float maxWallRunTimer = 3f;
-    private float wallRunTimer;
+    private Vector3 wallJumpDir;
 
     [Header("Camara efectos")]
     public PlayerCamera playerCamera;
@@ -153,9 +151,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // checkear si esta en el suelo :O
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + extraRayDistance, whatIsGround);
-
-
+        float dist = playerHeight * 0.5f + extraRayDistance;
+        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
+        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
 
         MyInput();
         CheckForWall();
@@ -179,13 +177,16 @@ public class PlayerMovement : MonoBehaviour
         {
             StartSlide();            
         }
-        if (Input.GetKeyUp(slideKey) && isSliding)
+        if ((Input.GetKeyUp(slideKey) || !Input.GetKey(slideKey)) && isSliding)
         {
-            StopSlide();
+            if (!cieling)
+            {
+                StopSlide();
+            }
         }
-        if (grounded)
+        if (grounded || isWallRunning)
         {
-            numberOfDashes = maxNumberOfDashes;
+            currentDashes = maxDashes;
         }
 
         //Debug.Log(rb.velocity + " " + OnSlope().ToString());
@@ -196,12 +197,12 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
         //ChangeUi();
 
-        if (isSliding == true)
+        if (isSliding || cieling)
         {
             SlidingMovement();
         }
 
-        if(isWallRunning == true) {
+        if(isWallRunning) {
             WallRunningMovement();
         }
     }
@@ -393,7 +394,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Si esta en el aire puede dashear
-            if (isDashing && numberOfDashes != 0)
+            if (isDashing && currentDashes != 0)
             {
                 movState = MovementState.dashing;
                 desiredMoveSpeed = dashSpeed;
@@ -550,9 +551,15 @@ public class PlayerMovement : MonoBehaviour
 
         // Efecto inclinacion de la camara
         if (wallLeft)
+        {
             playerCamera.doTilt(-cameraTilt);
+            wallJumpDir = orientation.right;
+        }
         else if (wallRight)
+        {
             playerCamera.doTilt(cameraTilt);
+            wallJumpDir = -orientation.right;
+        }
     }
 
     private void StopWallRun()
@@ -590,8 +597,9 @@ public class PlayerMovement : MonoBehaviour
     {
         wallRunExitTime = Time.time;
         rb.velocity = rb.velocity*3 / 4;
-
-        rb.AddForce(playerCamera.transform.forward * wallJumpSideForce, ForceMode.Force);
+       
+        rb.AddForce(wallJumpDir * wallJumpSideForce, ForceMode.Force);
+        //impulso vertical del wallJump
         rb.velocity = new Vector3(rb.velocity.x, wallJumpUpForce, rb.velocity.z);
     }
 

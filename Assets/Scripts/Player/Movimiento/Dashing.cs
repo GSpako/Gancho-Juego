@@ -9,7 +9,7 @@ public class Dashing : MonoBehaviour
     public Transform playerCamera;
     private Rigidbody rb;
     private PlayerMovement pm;
-    private float startNumberOfDashes;
+    private float startcurrentDashes;
     [Tooltip("A?adir en inspecto")]
     public PlayerCamera playerCameraScript;
 
@@ -39,12 +39,12 @@ public class Dashing : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
-        startNumberOfDashes = pm.numberOfDashes;
+        startcurrentDashes = pm.currentDashes;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(dashKey) && pm.numberOfDashes > 0 && !pm.grounded)
+        if(Input.GetKeyDown(dashKey) && pm.currentDashes > 0 && !pm.grounded && !pm.isWallRunning && !pm.isSliding)
         {
             StartDash();
         }
@@ -57,20 +57,16 @@ public class Dashing : MonoBehaviour
 
     private void StartDash()
     {
-
         if(dashCooldownTimer > 0)
         {
-            return; // si puede devuelve la funcion
+            return;
         }
-        else
-        {
-            // empezar el timer
-            dashCooldownTimer = dashCooldown;
-        }
-
-
+        
+        // empezar el timer
+        dashCooldownTimer = dashCooldown;
+        
         pm.isDashing = true;
-        pm.numberOfDashes--;
+        pm.currentDashes--;
         pm.maxYSpeed = maxDashYSpeed;
         playerCameraScript.DoFov(cameraDashFov);
 

@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -113,16 +113,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   walkSpeed: 7
-  sprintSpeed: 13
-  groundDrag: 6
+  sprintSpeed: 14
+  groundDrag: 5.5
   playerObj: {fileID: 5878530308385110374}
   dashSpeed: 10
   dashSpeedChangeFactor: 50
-  maxNumberOfDashes: 1
-  numberOfDashes: 1
+  maxDashes: 2
+  currentDashes: 0
   maxYSpeed: 0
   isDashing: 0
-  jumpForce: 15
+  jumpForce: 18
   jumpCooldown: 0.25
   airMultiplier: 0.1
   crouchSpeed: 3.5
@@ -140,9 +140,10 @@ MonoBehaviour:
   grounded: 0
   extraRayDistance: 0.23
   maxSlopeAngle: 41
-  maxSlideTime: 2
+  maxSlideTime: 20
   slideForce: 400
   slideYScale: 0.5
+  isSliding: 0
   downForce: 5
   slideSpeed: 20
   speedIncreaseMultiplier: 1.5
@@ -152,19 +153,17 @@ MonoBehaviour:
     m_Bits: 128
   wallRunForce: 40
   wallRunSpeed: 9
-  wallCheckDistance: 0.8
-  wallRunExitTime: 0
+  wallCheckDistance: 0.6
   wallRunDelay: 0.25
   isWallRunning: 0
   wallJumpUpForce: 10
   wallJumpSideForce: 400
-  exitWallTime: 0.2
   maxWallRunTimer: 2
   playerCamera: {fileID: 6556596865195063743}
   cameraStartFov: 80
   cameraFov: 90
-  cameraSlideFov: 100
-  cameraSprintFov: 90
+  cameraSlideFov: 110
+  cameraSprintFov: 100
   cameraTilt: 5
   speedText: {fileID: 0}
   movStateText: {fileID: 0}
@@ -188,7 +187,7 @@ MonoBehaviour:
   playerCameraScript: {fileID: 6556596865195063743}
   dashForce: 20
   dashUpwardForce: 2.5
-  dashDuration: 0.25
+  dashDuration: 0.75
   maxDashYSpeed: 5
   useCameraForward: 1
   allowAllDirections: 1
