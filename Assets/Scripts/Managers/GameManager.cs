@@ -67,17 +67,22 @@ public class GameManager : MonoBehaviour
         if (win) { 
             //Aquí haremos algo pues el jugador se ha pasado el nivel satisfactoriamente
         }
-        DOTween.KillAll();
 
         StartCoroutine(delay());
-    }   
+    }
+    //Cambiar de nivel (actualmente simplemente el siguiente en la lista de niveles)
+    public void ChangeLevel() {
+        DOTween.KillAll();
+        SceneManager.LoadScene(levels[++currentLevel % levels.Length]);
+    }
 
     IEnumerator delay()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(levels[++currentLevel % levels.Length]);
-
+        ChangeLevel();
     }
+
+
 
 
 
