@@ -8,9 +8,7 @@ public class PositionMessage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("alguien entraaa");
         if (other.CompareTag("Player")) {
-            print("es un player...");
             CanvasBehaviour.instance.Log(mensaje,Color.cyan);
         }
     }
