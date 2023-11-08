@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465791, g: 0.4964133, b: 0.57481784, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -767,10 +767,10 @@ RectTransform:
   m_Father: {fileID: 5341573863436417110}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.40600586, y: 0}
-  m_SizeDelta: {x: -380.75, y: -311.86984}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -19.065079}
+  m_SizeDelta: {x: 219.25, y: 38.130157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &345783963
 MonoBehaviour:
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.9
+  m_fontSize: 35.15
   m_fontSizeBase: 84
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11133,7 +11133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5137554457570104904, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5193759217303015877, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11203,6 +11203,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8095812959653950033, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_fontSize
+      value: 35.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8229389461963069242, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_fontSize
       value: 45.35
@@ -11210,6 +11214,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3613978387113949974, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+    - {fileID: 5109954772560066922, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5193759217303015877, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       insertIndex: 0
