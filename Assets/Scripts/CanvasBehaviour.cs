@@ -24,6 +24,12 @@ public class CanvasBehaviour : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForEndOfFrame();
         GameManager.Instance.LevelManager.canvas = gameObject;
     }
 
