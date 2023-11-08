@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     //Cambiar de nivel (actualmente simplemente el siguiente en la lista de niveles)
     public void ChangeLevel() {
         DOTween.KillAll();
+        Debug.Log(currentLevel+ " a " +currentLevel+1 % levels.Length);
         SceneManager.LoadScene(levels[++currentLevel % levels.Length]);
     }
 

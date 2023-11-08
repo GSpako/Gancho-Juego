@@ -48,3 +48,7 @@ MonoBehaviour:
   gameState: 2
   pauseMenuScript: {fileID: 0}
   player: {fileID: 0}
+  currentLevel: 0
+  levels:
+  - Level1
+  - Movimiento
