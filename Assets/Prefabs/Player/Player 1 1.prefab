@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -151,10 +151,11 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 128
-  wallRunForce: 40
+  wallRunForce: 30
   wallRunSpeed: 9
-  wallCheckDistance: 0.6
+  wallCheckDistance: 0.3
   wallRunDelay: 0.25
+  muroAtraccion: 20
   isWallRunning: 0
   wallJumpUpForce: 10
   wallJumpSideForce: 400
