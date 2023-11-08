@@ -51,20 +51,26 @@ public class Player : MonoBehaviour
         {
             audioSource = gameObject.GetComponent<AudioSource>();
         }
+
     }
 
-    public void kill() {
-        if (audioSource != null)
+    public void kill()
+    {
+        if (!isDying)
         {
-            audioSource.Play();
+            isDying = true;
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
+            GameManager.Instance.LevelManager.spawner.Spawn(Spawner.types.player);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            PlayerCamera.instance.doTilt(new float[] { -20, 20 }[Random.Range(0, 2)]);
+            PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
+            GetComponent<PlayerMovement>().enabled = false;
+            camera.enabled = false;
+            Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime * 0.9f);
         }
-        GameManager.Instance.LevelManager.spawner.Spawn(Spawner.types.player);
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        PlayerCamera.instance.doTilt(new float[]{-20,20}[Random.Range(0,2)]);
-        PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
-        GetComponent<PlayerMovement>().enabled = false;
-        camera.enabled = false;
-        Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime *0.9f);
     }
     // Update is called once per frame
     void Update()
@@ -76,13 +82,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == 9 && !isDying)
         {
-            kill(); isDying = true;
+            kill();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Exit") && TimerSystem.instance != null) {
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             other.enabled = false;
             TimerSystem.instance.ExitLevel();
         }

@@ -10,13 +10,15 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.gameState = gs;
-        GameManager.Instance.LevelManager = this;
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.gameState = gs;
+        GameManager.Instance.LevelManager = this;
+
         if (spawner == null) Debug.LogError("Falta el spawner");
         if (canvas == null) Debug.LogError("Falta el canvas");
         //GameManager.Instance.set
