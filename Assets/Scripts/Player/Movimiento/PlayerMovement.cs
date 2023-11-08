@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunSpeed = 8.5f;
     public float wallCheckDistance = 0.5f;
     public float wallRunDelay = .25f;
+    public float muroAtraccion;
     private float wallRunExitTime;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
@@ -590,7 +591,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
 
         //Atraer al muro
-        rb.AddForce(-wallNormal * 5, ForceMode.Force);
+        rb.AddForce(-wallNormal * muroAtraccion, ForceMode.Force);
     }
 
     private void WallJump()
