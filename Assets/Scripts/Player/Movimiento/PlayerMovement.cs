@@ -421,19 +421,22 @@ public class PlayerMovement : MonoBehaviour
             keepMomentum = true;
         }
 
+        //He quitado esto :)
         // Si queremos momentum en tipo de movimiento, dentro del if, sino fuera
+        /*
         if(desiredMoveSpeedHasChanged)
         {   
             if(keepMomentum)
             {
                 StopAllCoroutines();
-                StartCoroutine(SmoothlyLerpMoveSpeed());
+                //Creo que este no sirve? TODO
+                //StartCoroutine(SmoothlyLerpMoveSpeed());
             } else
             {
                 StopAllCoroutines();
                 movementSpeed = desiredMoveSpeed;
             }
-        }
+        }*/
 
         // Guardar los anteriores
         lastDesiredMoveSpeed = desiredMoveSpeed;
@@ -449,6 +452,8 @@ public class PlayerMovement : MonoBehaviour
         float startValue = movementSpeed;
 
         float boostFactor = speedChangeFactor; // dash 
+
+        //Revisar esto por el posible lag?
 
         while (time < difference)
         {
