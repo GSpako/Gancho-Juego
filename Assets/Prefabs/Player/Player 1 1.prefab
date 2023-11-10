@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -124,7 +124,7 @@ MonoBehaviour:
   isDashing: 0
   jumpForce: 18
   jumpCooldown: 0.25
-  airMultiplier: 0.1
+  airMultiplier: 0.05
   crouchSpeed: 3.5
   crouchYScale: 0.5
   jumpKey: 32
@@ -166,6 +166,7 @@ MonoBehaviour:
   cameraSlideFov: 110
   cameraSprintFov: 100
   cameraTilt: 5
+  gp: {fileID: 6294391959765864908}
   speedText: {fileID: 0}
   movStateText: {fileID: 0}
   orientation: {fileID: 922799581603630265}

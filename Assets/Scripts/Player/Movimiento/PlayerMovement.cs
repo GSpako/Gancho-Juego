@@ -104,7 +104,8 @@ public class PlayerMovement : MonoBehaviour
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
 
-    [Header("UI")]
+    [Header("Referenca")]
+    public GrappleHook gp;
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI movStateText;
 
@@ -295,7 +296,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
         }
-        else if(!grounded)  // si esta en el aire * airMultiplier
+        else if(!grounded && gp.grapling)  // si esta en el aire * airMultiplier
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
         }
