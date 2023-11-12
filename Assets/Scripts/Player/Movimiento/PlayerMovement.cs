@@ -104,8 +104,8 @@ public class PlayerMovement : MonoBehaviour
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
 
-    [Header("Referenca")]
-    public GrappleHook gp;
+    [Header("Referencias")]
+    [SerializeField] private GrappleHook gp;
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI movStateText;
 
@@ -149,6 +149,8 @@ public class PlayerMovement : MonoBehaviour
         if (playerCamera == null) {
             playerCamera = Player.camera;
         }
+
+        gp = GetComponent<GrappleHook>();   
     }
     private void Update()
     {
@@ -284,9 +286,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (movState != MovementState.sliding)
                 rb.AddForce(GetSlopeMoveDirection(moveDirection) * movementSpeed * 20f, ForceMode.Force);
-            
+
             // Para que no este pegado a la rampa
-            else 
+            else
             {
                 rb.AddForce(Vector3.down * 300f);
             }
@@ -296,9 +298,12 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
         }
-        else if(!grounded && gp.grapling)  // si esta en el aire * airMultiplier
+        else if (!grounded && gp.grapling)  // si esta en el aire * airMultiplier
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+        else if (!grounded) {
+            rb.AddForce(moveDirection.normalized * movementSpeed);
         }
         // Para que no caiga sino se mueve, se le quita la gravedad al rigibody
         if (!isWallRunning)
