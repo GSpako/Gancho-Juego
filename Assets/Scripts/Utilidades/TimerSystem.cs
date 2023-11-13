@@ -10,7 +10,7 @@ public class TimerSystem : MonoBehaviour
     [SerializeField] BulletTime bT;
     float startTime;
     public bool timerRunning;
-    [SerializeField] bool not_Active;
+    public bool not_Active;
     [SerializeField] float time;
 
     private void Awake()
@@ -57,5 +57,17 @@ public class TimerSystem : MonoBehaviour
         timerRunning = false;
 
         GameManager.Instance.EndLevel(true);
+    }
+
+    public float getTime() { 
+        return Time.time - startTime;
+    }
+
+    public float getRemainingTime() {
+        return totalTime + startTime - Time.time;
+    }
+
+    public float getMaxTime() {
+        return totalTime;
     }
 }
