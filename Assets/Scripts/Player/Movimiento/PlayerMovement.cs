@@ -359,7 +359,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
-
+        
+        /*
         if(lastState == MovementState.dashing)
         {
             keepMomentum = true;
@@ -367,7 +368,7 @@ public class PlayerMovement : MonoBehaviour
 
         //He quitado esto :)
         // Si queremos momentum en tipo de movimiento, dentro del if, sino fuera
-        /*
+        
         if(desiredMoveSpeedHasChanged)
         {   
             if(keepMomentum)
