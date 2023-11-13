@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     private bool cieling;
     public float maxSlideTime;
     public float slideForce;
+    private float slideTimer;
     public float slideYScale;
     private float slideStartYScale;
     public bool isSliding;
@@ -115,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
+
     private MovementState lastState;
     private bool keepMomentum;
 
@@ -150,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        DoAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
+        doAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
 
         MyInput();
         SpeedControl();
@@ -160,6 +162,9 @@ public class PlayerMovement : MonoBehaviour
         if (movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching)
         {
             rb.drag = groundDrag;
+        }
+        else if (grounded) {
+            rb.drag = 0f;
         }
         else
         {
@@ -182,22 +187,57 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
-        resetCounters();
         //ChangeUi();
+        resetCounters();
+
+
+        if (isSliding || cieling)
+        {
+            SlidingMovement();
+        }
+
+        if(isWallRunning) {
+            WallRunningMovement();
+        }
     }
 
-    //Este metodo cambia la hitbox del personaje al agacharse
-    private void ChangeTransform()
+    //RESETEAR SALTOS Y DASHES SI APROPIADO
+    void resetCounters()
     {
-        if (Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude <= walkSpeed && !GetComponent<GrappleHook>().grapling)
+        if (grounded)
         {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            currentDashes = maxDashes;
+            exitingSlope = false;
+            readyToJump = true;
         }
-        if (Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
+        if (isWallRunning)
         {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            currentDashes = maxDashes;
         }
     }
+
+    void doAllRaycasts() 
+    {
+        float dist = playerHeight * 0.5f + extraRayDistance;
+        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
+    }
+
+    private void ChangeUi()
+    {
+        speedText.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
+        movStateText.text = movState.ToString();
+    }
+
+    /**
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(20, 50, 200, 40), "Speed: " + rb.velocity.magnitude.ToString("F2"));
+        GUI.Label(new Rect(20, 70, 200, 40), "MovState: " + movState.ToString());
+    }*/
+
 
     private void MyInput()
     {
@@ -206,13 +246,24 @@ public class PlayerMovement : MonoBehaviour
         upwardsRunning = Input.GetKey(upwardsRunKey);
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
-        ChangeTransform();
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if(Input.GetKey(jumpKey) && readyToJump && grounded) 
         {
             readyToJump = false;
-            Jump();
+            PlayerJump();
         }
+
+        // empezar a agacharse
+        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude <= walkSpeed  && !GetComponent<GrappleHook>().grapling)
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+        }
+
+        if(Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        }
+
         // Wallrunning - 1 (Si toca y no esta en el suelo)
         if ((wallLeft || wallRight) && verticalInput > 0 && !grounded && Time.time > wallRunExitTime + wallRunDelay)
         {
@@ -264,16 +315,6 @@ public class PlayerMovement : MonoBehaviour
         else if (!grounded) {
             rb.AddForce(moveDirection.normalized * movementSpeed);
         }
-
-        if (isSliding || cieling) //hacer Slide, si hay techo y esta agachado mantener slide
-        {
-            SlidingMovement();
-        }
-        if (isWallRunning) //hacer Wallrun
-        {
-            WallRunningMovement();
-        }
-
         // Para que no caiga sino se mueve, se le quita la gravedad al rigibody
         if (!isWallRunning)
         {
@@ -281,8 +322,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void SpeedControl()
     {
+
         if (OnSlope() && !exitingSlope)
         {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -293,6 +336,14 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
             }
         }
+    }
+
+    private void PlayerJump()
+    {
+        exitingSlope = true;
+
+        // asegurar que la y es 0, para siempre saltar igual
+        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
     }
 
     private void MovementStateHandler()
@@ -306,7 +357,6 @@ public class PlayerMovement : MonoBehaviour
         // si separados, Run y Crouch a la vez
         else if (Input.GetKey(crouchKey) && rb.velocity.magnitude <= walkSpeed && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
         {
-
             movState = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
         } 
@@ -319,7 +369,7 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.DoFov(cameraSprintFov);
         }
         // Sliding else if (isSliding) 
-        else if (Input.GetKey(slideKey) && (movState != MovementState.crouching || GetComponent<GrappleHook>().grapling))
+        else if (Input.GetKey(slideKey) && (slideTimer > 0 && movState != MovementState.crouching || GetComponent<GrappleHook>().grapling))
         {
             movState = MovementState.sliding;
 
@@ -357,7 +407,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 movState = MovementState.dashing;
                 desiredMoveSpeed = dashSpeed;
-                //speedChangeFactor = dashSpeedChangeFactor;
+                speedChangeFactor = dashSpeedChangeFactor;
             }
         }
 
@@ -365,7 +415,7 @@ public class PlayerMovement : MonoBehaviour
         if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && movementSpeed != 0)
         {
             StopAllCoroutines();
-            //StartCoroutine(SmoothlyLerpMoveSpeed());
+            StartCoroutine(SmoothlyLerpMoveSpeed());
         } 
         else
         {
@@ -401,6 +451,42 @@ public class PlayerMovement : MonoBehaviour
         lastState = movState;
     }
 
+    // Para que la velocidad se vaya interpolando, y poder acumular velocidad (conservar momentum)
+    private float speedChangeFactor; // dash
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - movementSpeed);
+        float startValue = movementSpeed;
+
+        float boostFactor = speedChangeFactor; // dash 
+
+        //Revisar esto por el posible lag?
+
+        while (time < difference)
+        {
+            movementSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            if (OnSlope())
+            {
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
+            } else {
+                time += Time.deltaTime * speedIncreaseMultiplier;
+            }
+
+            time += Time.deltaTime * boostFactor; // dash
+            
+            yield return null;
+        }
+
+        movementSpeed = desiredMoveSpeed;
+        speedChangeFactor = 1f; // dash
+        keepMomentum = false;
+    }
+
     public bool OnSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
@@ -410,6 +496,7 @@ public class PlayerMovement : MonoBehaviour
 
             return slopeAngle < maxSlopeAngle && slopeAngle != 0;
         }
+
         // si no golpea nada
         return false;
     }
@@ -419,47 +506,9 @@ public class PlayerMovement : MonoBehaviour
         // aqui se calcula el angulo sobre el que esta la Rampa y el jugador, para aplicarle fuerza en la direccion de la rampa
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
-    // ############################################
-    // ############### MISCELANEO #################
-    // ############################################
 
-    void DoAllRaycasts()
-    {
-        float dist = playerHeight * 0.5f + extraRayDistance;
-        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
-        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
-        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
-    }
 
-    //RESETEAR SALTOS Y DASHES SI APROPIADO
-    void resetCounters()
-    {
-        if (grounded)
-        {
-            currentDashes = maxDashes;
-            exitingSlope = false;
-            readyToJump = true;
-        }
-        if (isWallRunning)
-        {
-            currentDashes = maxDashes;
-        }
-    }
-
-    // ############################################
-    // #############      JUMP     ################
-    // ############################################
-
-    private void Jump()
-    {
-        exitingSlope = true;
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-    }
-
-    // ############################################
-    // ############     SLIDING    ################
-    // ############################################
+    // SLIDING
 
     private void StartSlide()
     {
@@ -468,21 +517,27 @@ public class PlayerMovement : MonoBehaviour
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
 
         playerCamera.DoFov(cameraSlideFov);
-    }
 
-    private void SlidingMovement()
-    {
-        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        slideTimer = maxSlideTime;
     }
 
     private void StopSlide()
     {
         isSliding = false;
+        playerCamera.DoFov(cameraStartFov);
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideStartYScale, playerObj.localScale.z);
+    }
 
-        playerCamera.DoFov(cameraStartFov);
-    }   
+    private void SlidingMovement()
+    {
+        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if (slideTimer <= 0)
+        {
+            StopSlide();
+        }
+    }
 
     // ############################################
     // ############  WALL RUNNING  ################
@@ -556,56 +611,4 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, wallJumpUpForce, rb.velocity.z);
     }
 
-    // ############################################
-    // QUARENTENA DE CODIGO
-
-    /*
-    // Para que la velocidad se vaya interpolando, y poder acumular velocidad (conservar momentum)
-    private float speedChangeFactor; // dash
-    private IEnumerator SmoothlyLerpMoveSpeed()
-    {
-        float time = 0;
-        float difference = Mathf.Abs(desiredMoveSpeed - movementSpeed);
-        float startValue = movementSpeed;
-
-        float boostFactor = speedChangeFactor; // dash 
-
-        //Revisar esto por el posible lag?
-
-        while (time < difference)
-        {
-            movementSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
-
-            if (OnSlope())
-            {
-                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
-                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
-
-                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
-            } else {
-                time += Time.deltaTime * speedIncreaseMultiplier;
-            }
-
-            time += Time.deltaTime * boostFactor; // dash
-            
-            yield return null;
-        }
-
-        movementSpeed = desiredMoveSpeed;
-        speedChangeFactor = 1f; // dash
-        keepMomentum = false;
-    }*/
-    /*
-    private void ChangeUi()
-    {
-        speedText.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
-        movStateText.text = movState.ToString();
-    }
-    */
-    /*
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(20, 50, 200, 40), "Speed: " + rb.velocity.magnitude.ToString("F2"));
-        GUI.Label(new Rect(20, 70, 200, 40), "MovState: " + movState.ToString());
-    }*/
 }
