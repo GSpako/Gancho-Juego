@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
                 audioSource.Play();
             }
             GameManager.Instance.LevelManager.spawner.Spawn(Spawner.types.player);
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerCamera.instance.doTilt(new float[] { -20, 20 }[Random.Range(0, 2)]);
             PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
             GetComponent<PlayerMovement>().enabled = false;
