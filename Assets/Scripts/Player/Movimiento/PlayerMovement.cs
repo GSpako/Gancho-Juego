@@ -152,9 +152,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        doAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
+        // checkear si esta en el suelo :O
+        float dist = playerHeight * 0.5f + extraRayDistance;
+        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
+        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
 
         MyInput();
+        CheckForWall();
         SpeedControl();
         MovementStateHandler();
 
@@ -182,14 +186,13 @@ public class PlayerMovement : MonoBehaviour
                 StopSlide();
             }
         }
+        resetCounters();
     }
 
     void FixedUpdate()
     {
         MovePlayer();
         //ChangeUi();
-        resetCounters();
-
 
         if (isSliding || cieling)
         {
@@ -216,14 +219,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void doAllRaycasts() 
-    {
-        float dist = playerHeight * 0.5f + extraRayDistance;
-        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
-        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
-        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
-    }
 
     private void ChangeUi()
     {
@@ -542,6 +537,12 @@ public class PlayerMovement : MonoBehaviour
     // ############################################
     // ############  WALL RUNNING  ################
     // ############################################
+
+    private void CheckForWall()
+    {
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
+    }
 
     private void StartWallRun()
     {
