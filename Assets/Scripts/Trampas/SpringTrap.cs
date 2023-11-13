@@ -38,6 +38,7 @@ public class SpringTrap : MonoBehaviour
 
     private void LanzarJugador()
     {
+        PlayerAudioManager.instance.PlayMuelleSound();
         Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
     }
 
@@ -48,6 +49,7 @@ public class SpringTrap : MonoBehaviour
 
     private void LanzarMatarJugador()
     {
+        PlayerAudioManager.instance.PlayMuelleSound();
         Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto * 50f, ForceMode.Impulse);
     }
 

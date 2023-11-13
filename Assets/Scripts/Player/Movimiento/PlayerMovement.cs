@@ -6,6 +6,9 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Singleton")]
+    public static PlayerMovement instance;
+
     [Header("Movimiento")]
     public float movementSpeed = 7f;
     public float walkSpeed = 5f;
@@ -132,6 +135,19 @@ public class PlayerMovement : MonoBehaviour
         dashing
     }
 
+    private void Awake()
+    {
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(instance.gameObject);
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -239,6 +255,7 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
             PlayerJump();
 
+            PlayerAudioManager.instance.PlayJumpSound();
             // para poder saltar manteniendo el Espacio
             Invoke(nameof(ResetPlayerJump), jumpCooldown);
         }
@@ -351,6 +368,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movState = MovementState.wallrunning;
             desiredMoveSpeed = wallRunSpeed;
+            PlayerAudioManager.instance.PlayWallRunSound();
         }
         // si separados, Run y Crouch a la vez
         else if (Input.GetKey(crouchKey) && rb.velocity.magnitude <= walkSpeed && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
