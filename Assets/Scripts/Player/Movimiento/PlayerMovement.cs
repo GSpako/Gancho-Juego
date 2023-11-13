@@ -134,24 +134,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        if (playerCamera == null) { playerCamera = Player.camera; }
+
+        gp = GetComponent<GrappleHook>();
         rb = GetComponent<Rigidbody>();
+
         rb.freezeRotation = true;
         readyToJump = true;
+        isSliding = false;
 
         startYScale = transform.localScale.y;
         slideStartYScale = transform.localScale.y;
 
-        isSliding = false;
-
         speedText = CanvasReferences.instance.speedText;
         movStateText = CanvasReferences.instance.movStateText;
-
-        if (playerCamera == null) {
-            playerCamera = Player.camera;
-        }
-
-        gp = GetComponent<GrappleHook>();   
     }
+
     private void Update()
     {
         // checkear si esta en el suelo :O
@@ -188,14 +186,9 @@ public class PlayerMovement : MonoBehaviour
                 StopSlide();
             }
         }
-        if (grounded || isWallRunning)
-        {
-            currentDashes = maxDashes;
-        }
-
-        //Debug.Log(rb.velocity + " " + OnSlope().ToString());
-
+        resetCounters();
     }
+
     void FixedUpdate()
     {
         MovePlayer();
@@ -208,6 +201,21 @@ public class PlayerMovement : MonoBehaviour
 
         if(isWallRunning) {
             WallRunningMovement();
+        }
+    }
+
+    //RESETEAR SALTOS Y DASHES SI APROPIADO
+    void resetCounters()
+    {
+        if (grounded)
+        {
+            currentDashes = maxDashes;
+            exitingSlope = false;
+            readyToJump = true;
+        }
+        if (isWallRunning)
+        {
+            currentDashes = maxDashes;
         }
     }
 
@@ -238,9 +246,6 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = false;
             PlayerJump();
-
-            // para poder saltar manteniendo el Espacio
-            Invoke(nameof(ResetPlayerJump), jumpCooldown);
         }
 
         // empezar a agacharse
@@ -335,14 +340,6 @@ public class PlayerMovement : MonoBehaviour
         // asegurar que la y es 0, para siempre saltar igual
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
     }
-
-    private void ResetPlayerJump()
-    {
-        readyToJump = true;
-        exitingSlope = false;
-    }
-
-
 
     private void MovementStateHandler()
     { 
