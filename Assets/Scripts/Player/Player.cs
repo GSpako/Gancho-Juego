@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
 
     [Header("Parameters")]
     public LayerMask deathLayer;
-    public AudioSource audioSource;
 
     private bool isDying;
 
@@ -47,11 +46,6 @@ public class Player : MonoBehaviour
                 camera = Camera.main.gameObject.GetComponent<PlayerCamera>();
         }
 
-        if(audioSource == null)
-        {
-            audioSource = gameObject.GetComponent<AudioSource>();
-        }
-
     }
 
     public void kill()
@@ -59,10 +53,9 @@ public class Player : MonoBehaviour
         if (!isDying)
         {
             isDying = true;
-            if (audioSource != null)
-            {
-                audioSource.Play();
-            }
+
+            PlayerAudioManager.instance.PlayDeathSound();
+
             GameManager.Instance.LevelManager.spawner.Spawn(Spawner.types.player);
             //GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerCamera.instance.doTilt(new float[] { -20, 20 }[Random.Range(0, 2)]);

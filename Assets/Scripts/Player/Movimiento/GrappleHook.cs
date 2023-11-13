@@ -42,6 +42,7 @@ public class GrappleHook : MonoBehaviour
             if (Input.GetKeyDown(grappleB1))
             {
                 throwGrapple();
+                PlayerAudioManager.instance.PlayHookSound();
             }
             if (Input.GetKeyUp(grappleB1))
             {
@@ -96,7 +97,8 @@ public class GrappleHook : MonoBehaviour
             rope.endColor = ropecolor;
 
 
-            if(hit.collider.CompareTag("Turret"))
+
+            if (hit.collider.CompareTag("Turret"))
             {
                 LaserTurret.isStunned = true;
                 //Debug.Log("Stuneada grapple");

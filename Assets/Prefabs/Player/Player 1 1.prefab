@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6294391959765864908}
   - component: {fileID: 5389726166711828096}
   - component: {fileID: -4152897038806905741}
+  - component: {fileID: 4138446620707353875}
   m_Layer: 0
   m_Name: Player 1 1
   m_TagString: Player
@@ -236,7 +237,6 @@ MonoBehaviour:
   deathLayer:
     serializedVersion: 2
     m_Bits: 512
-  audioSource: {fileID: 0}
 --- !u!82 &-4152897038806905741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 63dedbc44f57ba84e91d2224472f15b0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1f9998aff18afea40bdf9dcd589d6d2d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
@@ -333,6 +333,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4138446620707353875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062441090331311058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a8bd848c8dd6194fa121c3c0ae2d887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSound: {fileID: 8300000, guid: adbed4c68780cfa45b36ea9a26c729b6, type: 3}
+  wallRunSound: {fileID: 8300000, guid: 46af0dcaa6ae87348b3e421c2d91748b, type: 3}
+  deathSound: {fileID: 8300000, guid: 34299069c96eab84f8bde3f96100b76c, type: 3}
+  hookSound: {fileID: 8300000, guid: b4955765d75668d4ba8463782af95f26, type: 3}
+  dashSound: {fileID: 8300000, guid: 96f8e36d3ecc8814aa1a2ea056740c6b, type: 3}
+  muelleSound: {fileID: 8300000, guid: 1dd7a6bd2753fca4fb31814000c4edf2, type: 3}
 --- !u!1 &4507303482286716152
 GameObject:
   m_ObjectHideFlags: 0
