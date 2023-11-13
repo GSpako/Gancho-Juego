@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
     public float jumpCooldown = 0.25f;
     public float airMultiplier = 0.4f;
+    bool readyToJump;
 
     [Header("Agacharse")]
     public float crouchSpeed = 3.5f;
@@ -137,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         rb.freezeRotation = true;
+        readyToJump = true;
         isSliding = false;
 
         startYScale = transform.localScale.y;
@@ -180,17 +182,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
-        resetDash();
+        resetCounters();
         //ChangeUi();
-
-        if (isSliding || cieling)
-        {
-            SlidingMovement();
-        }
-        if (isWallRunning)
-        {
-            WallRunningMovement();
-        }
     }
 
     //Este metodo cambia la hitbox del personaje al agacharse
@@ -215,10 +208,10 @@ public class PlayerMovement : MonoBehaviour
 
         ChangeTransform();
 
-        if (Input.GetKey(jumpKey) && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
+            readyToJump = false;
             Jump();
-            exitingSlope = false;
         }
         // Wallrunning - 1 (Si toca y no esta en el suelo)
         if ((wallLeft || wallRight) && verticalInput > 0 && !grounded && Time.time > wallRunExitTime + wallRunDelay)
@@ -270,6 +263,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (!grounded) {
             rb.AddForce(moveDirection.normalized * movementSpeed);
+        }
+
+        if (isSliding || cieling) //hacer Slide, si hay techo y esta agachado mantener slide
+        {
+            SlidingMovement();
+        }
+        if (isWallRunning) //hacer Wallrun
+        {
+            WallRunningMovement();
         }
 
         // Para que no caiga sino se mueve, se le quita la gravedad al rigibody
@@ -417,9 +419,15 @@ public class PlayerMovement : MonoBehaviour
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
     }
 
-    void resetDash() //RESETEAR DASHES SI APROPIADO
+    void resetCounters() //RESETEAR SALTOS Y DASHES SI APROPIADO
     {
-        if (grounded || isWallRunning)
+        if (grounded)
+        {
+            currentDashes = maxDashes;
+            exitingSlope = false;
+            readyToJump = true;
+        }
+        if (isWallRunning)
         {
             currentDashes = maxDashes;
         }
