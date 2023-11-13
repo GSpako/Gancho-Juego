@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         DoAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
 
         MyInput();
-        SpeedControl();
+        //SpeedControl();
         MovementStateHandler();
 
         // aplicarle drag si esta en el suelo
@@ -278,20 +278,6 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallRunning)
         {
             rb.useGravity = !OnSlope();
-        }
-    }
-
-    private void SpeedControl()
-    {
-        if (OnSlope() && !exitingSlope)
-        {
-            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-            // limitar la velocidad si es necesario y tal
-            if (flatVelocity.magnitude > movementSpeed)
-            {
-                Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
-            }
         }
     }
 
@@ -432,8 +418,7 @@ public class PlayerMovement : MonoBehaviour
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
     }
 
-    //RESETEAR SALTOS Y DASHES SI APROPIADO
-    void resetCounters()
+    void resetCounters() //RESETEAR SALTOS Y DASHES SI APROPIADO
     {
         if (grounded)
         {
@@ -558,6 +543,21 @@ public class PlayerMovement : MonoBehaviour
 
     // ############################################
     // QUARENTENA DE CODIGO
+
+    /*
+    private void SpeedControl()
+    {
+        if (OnSlope() && !exitingSlope)
+        {
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // limitar la velocidad si es necesario y tal
+            if (flatVelocity.magnitude > movementSpeed)
+            {
+                Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
+            }
+        }
+    }*/
 
     /*
     // Para que la velocidad se vaya interpolando, y poder acumular velocidad (conservar momentum)
