@@ -16,6 +16,9 @@ public class DoorClosing : MonoBehaviour
     [Space]
     [SerializeField] Vector3 initPos;
     [SerializeField] Vector3 endPos;
+    [Space]
+    [Header("Retraso inicio cerrado")]
+    [SerializeField] float parametroEspera = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +33,7 @@ public class DoorClosing : MonoBehaviour
             float actualTime = TimerSystem.instance.getTime();
             float max = TimerSystem.instance.getMaxTime();
             float percentage = actualTime / max;
-            float specialLerp = Mathf.Exp(-10*(1-percentage));
+            float specialLerp = Mathf.Exp(-parametroEspera*(1-percentage));
             door.transform.localPosition = Vector3.Lerp(initPos, endPos, specialLerp);
             door.transform.localScale = Vector3.Lerp(initSize, endSize, specialLerp);
         }

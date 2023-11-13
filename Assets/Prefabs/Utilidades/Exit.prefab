@@ -52,6 +52,7 @@ MonoBehaviour:
   endSize: {x: 12, y: 11, z: 1.25}
   initPos: {x: 0, y: 5.5, z: 0}
   endPos: {x: 0, y: 0.5, z: 0}
+  parametroEspera: 10
 --- !u!1 &8197753774105732803
 GameObject:
   m_ObjectHideFlags: 0
