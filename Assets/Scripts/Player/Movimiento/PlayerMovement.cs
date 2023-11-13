@@ -433,6 +433,12 @@ public class PlayerMovement : MonoBehaviour
     {
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        Invoke(nameof(ResetPlayerJump), jumpCooldown);
+    }
+
+    private void ResetPlayerJump()
+    {
+        exitingSlope = false;
     }
 
     // ############################################
