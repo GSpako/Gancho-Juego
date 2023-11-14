@@ -37,7 +37,7 @@ public class GrappleHook : MonoBehaviour
     }
     private void Update()
     {
-        if(!pauseMenuScript.isGamePaused)
+        if(!GameManager.Instance.pauseMenuScript.isGamePaused)
         {
             if (Input.GetKeyDown(grappleB1))
             {
@@ -50,11 +50,13 @@ public class GrappleHook : MonoBehaviour
             }
             if (rope != null)
             {
+                
                 rope.SetPosition(0, grappleGunTip.transform.position);
             }
         }
 
         if (collision_transform != null && rope != null && springjoint != null) {
+            
             Vector3 newPos = collPos + collision_transform.position - collision_transform_initPosition;
             rope.SetPosition(1, newPos);
             springjoint.connectedAnchor = newPos;

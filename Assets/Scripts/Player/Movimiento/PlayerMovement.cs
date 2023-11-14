@@ -254,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = false;
             PlayerJump();
-
+            // Efecto de sonido
             PlayerAudioManager.instance.PlayJumpSound();
             // para poder saltar manteniendo el Espacio
             Invoke(nameof(ResetPlayerJump), jumpCooldown);
@@ -368,7 +368,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movState = MovementState.wallrunning;
             desiredMoveSpeed = wallRunSpeed;
-            PlayerAudioManager.instance.PlayWallRunSound();
+           
         }
         // si separados, Run y Crouch a la vez
         else if (Input.GetKey(crouchKey) && rb.velocity.magnitude <= walkSpeed && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
@@ -579,6 +579,9 @@ public class PlayerMovement : MonoBehaviour
         // Efectos de Fov de camara
         playerCamera.DoFov(cameraFov);
 
+        // Efecto de sonido
+        PlayerAudioManager.instance.PlayWallRunSound();
+
         // Efecto inclinacion de la camara
         if (wallLeft)
         {
@@ -603,6 +606,9 @@ public class PlayerMovement : MonoBehaviour
         //Quitar efectos de camara
         playerCamera.DoFov(cameraStartFov);
         playerCamera.doTilt(0f);
+        
+        // Efecto de sonido
+        PlayerAudioManager.instance.StopWallRunSound();
 
     }
 
@@ -631,6 +637,9 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(wallJumpDir * wallJumpSideForce, ForceMode.Force);
         //impulso vertical del wallJump
         rb.velocity = new Vector3(rb.velocity.x, wallJumpUpForce, rb.velocity.z);
+
+        // Efecto de sonido
+        PlayerAudioManager.instance.PlayJumpSound();
     }
 
 }
