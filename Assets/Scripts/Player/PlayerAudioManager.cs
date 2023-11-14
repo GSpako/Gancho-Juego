@@ -12,9 +12,20 @@ public class PlayerAudioManager : MonoBehaviour
     public AudioClip hookSound;
     public AudioClip dashSound;
     public AudioClip muelleSound;
+    public AudioClip winLevelSound;
+
+
+    [Header("Música de Fondo")]
+    public AudioClip level1Music;
+    public AudioClip level2Music;
+    public AudioClip level3Music;
+    public AudioClip movimientoMusic;
+    public AudioClip menuMusic;
+
 
     private AudioSource audioSource;        // El sonido que se usara
     private AudioSource currentSoundSource; // Almacena la referencia al AudioSource del sonido actualmente en reproducción
+    private AudioSource currentMusicSource;
 
     private void Awake()
     {
@@ -59,19 +70,22 @@ public class PlayerAudioManager : MonoBehaviour
         PlaySoundPitcheado(hookSound, 0.4f, 0.6f, 1f);
     }
 
-    public void PlayMuelleSound()
+    public void PlayMuelleSound() // boing !!!
     {
         PlaySoundPitcheado(muelleSound, 0.5f, 0.8f, 1f);
     }
 
-
+    // Para el WallRun, que sonaria todo el rato si sigue en la pared, y si cae se acaba :(
     public void StopWallRunSound()
     {
         StopWallRunLoopedSound();
     }
 
 
-
+    public void PlayWinLevel()
+    {
+        PlaySound(winLevelSound, 0.6f);
+    }
 
 
 
@@ -157,6 +171,62 @@ public class PlayerAudioManager : MonoBehaviour
         {
             currentSoundSource.loop = false;
             StopLoopedSound(); // Detener el sonido en bucle
+        }
+    }
+
+
+
+    // MUSICA UGHHHH
+    // MUSICA OHHHHH
+
+
+    // LLamar al PlayLevelMusic(1, 2, 3.....) segun el nivel y como lo tengamos puesto
+    // Esto lo puse en GameManager, no se funciona aun xd
+    public void PlayLevelMusic(int level, float volumen)
+    {
+        StopCurrentLevelMusic(); // Se para la musica antes de empezar otra
+        AudioClip levelMusic = GetLevelMusic(level); // Con la funcion GetLevelMusic() para ver que nivel
+
+        if (levelMusic != null)
+        {
+            audioSource.clip = levelMusic;
+            audioSource.loop = true;
+            audioSource.volume = volumen;
+            audioSource.Play();
+
+            currentMusicSource = audioSource; 
+        }
+    }
+
+    // Detiene la música de fondo del nivel actual
+    public void StopCurrentLevelMusic()
+    {
+        if (currentMusicSource != null)
+        {
+            currentMusicSource.loop = false;
+            currentMusicSource.Stop();
+            currentMusicSource = null;
+        }
+    }
+
+    // Obtiene el clip de música correspondiente al nivel
+    private AudioClip GetLevelMusic(int level)
+    {
+        // Añadir mas casos al switch segun los niveles
+        switch (level)
+        {
+            case 1:
+                return level1Music;
+            case 2:
+                return level2Music;
+            case 3: 
+                return level3Music;
+            case 4:
+                return movimientoMusic;
+            case 5:
+                return menuMusic;
+            default:
+                return null; 
         }
     }
 }

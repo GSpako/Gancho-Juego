@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int currentLevel = 0;
     [SerializeField] private string[] levels;
-    
+    [SerializeField] private string sceneName;
+    [SerializeField] public bool musicPlayedForCurrentLevel = false; // Para que solo se reproduzca una vez en el nivel actual
+
+
 
     public enum GameState {
         menu, 
@@ -60,12 +63,15 @@ public class GameManager : MonoBehaviour
             pauseMenuScript.TogglePauseMenu();
             gameState = GameState.level;
         }
+
+        PlayMusic();
     }
 
     //Se llama desde TimerSystem
     public void EndLevel(bool win/*if player won the game else: menu exit*/) {
-        if (win) { 
+        if (win) {
             //Aquí haremos algo pues el jugador se ha pasado el nivel satisfactoriamente
+            PlayerAudioManager.instance.PlayWinLevel();
         }
 
         StartCoroutine(delay());
@@ -77,6 +83,7 @@ public class GameManager : MonoBehaviour
         currentLevel = (currentLevel + 1) % levels.Length;
         Debug.Log("vamos al nivel " + currentLevel + " de los [0.."+(levels.Length-1)+"]");
         SceneManager.LoadScene(levels[currentLevel]);
+        musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
     }
 
     IEnumerator delay()
@@ -85,8 +92,39 @@ public class GameManager : MonoBehaviour
         ChangeLevel();
     }
 
+    // Gestionar la musica segun el nivel en el que se esta
+    public void PlayMusic()
+    {
+        if (!musicPlayedForCurrentLevel)
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+            switch (sceneName)
+            {
+                case "Level1":
+                    PlayerAudioManager.instance.PlayLevelMusic(1, 0.3f);
+                    Debug.Log("Musica nivel 1 OK");
+                    break;
+                case "Level2":
+                    PlayerAudioManager.instance.PlayLevelMusic(2, 0.3f);
+                    Debug.Log("Musica nivel 2 OK");
+                    break;
+                case "Level3":
+                    PlayerAudioManager.instance.PlayLevelMusic(3, 0.3f);
+                    Debug.Log("Musica nivel 3 OK");
+                    break;
+                case "Movimiento":
+                    PlayerAudioManager.instance.PlayLevelMusic(4, 0.3f);
+                    Debug.Log("Musica movimiento OK");
+                    break;
+                case "Menu":
+                    PlayerAudioManager.instance.PlayLevelMusic(5, 0.3f);
+                    Debug.Log("Musica menu OK");
+                    break;
+                default:
+                    break;
+            }
 
-
-
-
+            musicPlayedForCurrentLevel = true; // Ya se reprodujo la musica de este nivel
+        }
+    }
 }

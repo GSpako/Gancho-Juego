@@ -10,6 +10,10 @@ public class MainMenuScript : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Empezar a que suene la musica asignada al nivel 1
+        PlayerAudioManager.instance.PlayLevelMusic(SceneManager.GetActiveScene().buildIndex + 1, 0.3f);
+        GameManager.Instance.musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
+
     }
 
     public void QuitGame()
