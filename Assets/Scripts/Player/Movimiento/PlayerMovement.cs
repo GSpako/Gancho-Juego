@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sliding variables")]
     private bool cieling;
-    public float maxSlideTime;
     public float slideForce;
     public float slideYScale;
     private float slideStartYScale;
@@ -117,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
     private bool keepMomentum;
 
     private MovementState lastState;
-    public MovementState movState;
     public MovementState moveState;
     public enum MovementState
     {
@@ -128,10 +126,6 @@ public class PlayerMovement : MonoBehaviour
         sprinting,
         crouching,
         mov
-
-            ,
-        air,
-        walking
     }
 
     private void StateHandler()
@@ -168,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
     private void movement()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
+        rb.AddForce(moveDirection.normalized * movementSpeed, ForceMode.Force);
         switch (moveState)
         {
             case MovementState.dashing:
@@ -187,17 +181,21 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case MovementState.sprinting:
-
+                rb.AddForce(moveDirection.normalized * sprintSpeed, ForceMode.Force);
                 break;
 
             case MovementState.crouching:
                 break;
 
             case MovementState.mov:
-                if (!grounded && gp.grapling)  // si esta en el aire con el gancho
-                    rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
-                else //Caso base
-                    rb.AddForce(moveDirection.normalized * movementSpeed, ForceMode.Force);
+                if (!grounded && gp.grapling) // si esta en el aire con el gancho
+                {
+                    rb.AddForce(moveDirection.normalized * walkSpeed * 10f * airMultiplier, ForceMode.Force);
+                }
+                else
+                { //Caso base
+                    rb.AddForce(moveDirection.normalized * walkSpeed, ForceMode.Force);
+                }
                 break;
         }
     }
@@ -206,29 +204,6 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        upwardsRunning = Input.GetKey(upwardsRunKey);
-        downwardsRunning = Input.GetKey(downwardsRunKey);
-
-        ChangeTransform();
-
-        // Wallrunning - 1 (Si toca y no esta en el suelo)
-        if ((wallLeft || wallRight) && verticalInput > 0 && !grounded && Time.time > wallRunExitTime + wallRunDelay)
-        {
-            if (!isWallRunning)
-            {
-                StartWallRun();
-            }
-            if (Input.GetKey(jumpKey))
-            {
-                StopWallRun();
-                WallJump();
-            }
-        }
-        else
-        {
-            StopWallRun();
-        }
-
     }
 
     void Start()
@@ -250,127 +225,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
         DoRaycasts(); // hacer raycasts para el suelo, techo, y paredes
-
         StateHandler();
-
+        Debug.Log(moveState);
         MyInput();
         movement();
+        //SpeedControl();
 
         // aplicarle drag si esta en el suelo
-        if (movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching)
-        {
+        if (grounded)
             rb.drag = groundDrag;
-        }
         else
-        {
             rb.drag = 0;
-        }
-
-        if (Input.GetKeyDown(slideKey)) //&& (horizontalInput != 0 || verticalInput != 0)) //&& !isSliding)
-        {
-            StartSlide();
-        }
-        if ((Input.GetKeyUp(slideKey) || !Input.GetKey(slideKey)) && isSliding)
-        {
-            if (!cieling)
-            {
-                StopSlide();
-            }
-        }
     }
 
     void FixedUpdate()
     {
-        //StateHandler();
-    }
-
-    private void MovePlayer()
-    {
-        // por temas de gravedas y rampas, fix algo xd
-        if (movState == MovementState.dashing) { return; }
-
-        // calcular direccion de movimiento
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        if (OnSlope() && !exitingSlope && grounded)
-        {
-            if (movState != MovementState.sliding)
-                rb.AddForce(GetSlopeMoveDirection(moveDirection) * movementSpeed * 20f, ForceMode.Force);
-
-            // Para que no este pegado a la rampa
-            else
-            {
-                rb.AddForce(Vector3.down * 300f);
-            }
-        }
-        // en el suelo
-        else if (grounded && movState != MovementState.sliding)
-        {
-            rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
-        }
-        else if (!grounded && gp.grapling)  // si esta en el aire * airMultiplier
-        {
-            rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
-        }
-        else if (!grounded)
-        {
-            rb.AddForce(moveDirection.normalized * movementSpeed);
-        }
-
-        // Para que no caiga sino se mueve, se le quita la gravedad al rigibody
-        if (!isWallRunning)
-        {
-            rb.useGravity = !OnSlope();
-        }
-    }
-
-    private void MovementStateHandler()
-    {
-        // Si en la pared 
-        if (isWallRunning)
-        {
-            movState = MovementState.wallrunning;
-            desiredMoveSpeed = wallRunSpeed;
-        }
-        // si separados, Run y Crouch a la vez
-        else if (Input.GetKey(crouchKey) && rb.velocity.magnitude <= walkSpeed && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
-        {
-
-            movState = MovementState.crouching;
-            desiredMoveSpeed = crouchSpeed;
-        }
-        // Sprinting
-        else if (grounded && Input.GetKey(sprintKey) && !GetComponent<GrappleHook>().grapling)
-        {
-            movState = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-
-            playerCamera.DoFov(cameraSprintFov);
-        }
-        // Sliding else if (isSliding) 
-        else if (Input.GetKey(slideKey) && (movState != MovementState.crouching || GetComponent<GrappleHook>().grapling))
-        {
-            movState = MovementState.sliding;
-
-            if (OnSlope() && rb.velocity.y < 0.1f)
-            {
-                desiredMoveSpeed = slideSpeed;
-            }
-            else
-            {
-                desiredMoveSpeed = sprintSpeed;
-            }
-        }
-        // Walking 
-        else if (grounded)
-        {
-            movState = MovementState.walking;
-            desiredMoveSpeed = walkSpeed;
-
-            playerCamera.DoFov(cameraStartFov);
-        }
+        MyInput();
+        movement();
     }
 
     public bool OnSlope()
@@ -386,11 +258,11 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private Vector3 GetSlopeMoveDirection(Vector3 direction)
+    private Vector3 GetSlopeMoveDirection(Vector3 direction)// aqui se calcula el angulo sobre el que esta la Rampa y el jugador, para aplicarle fuerza en la direccion de la rampa
     {
-        // aqui se calcula el angulo sobre el que esta la Rampa y el jugador, para aplicarle fuerza en la direccion de la rampa
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
+
     // ############################################
     // ############### MISCELANEO #################
     // ############################################
@@ -411,9 +283,21 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
         }
-        if (Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
+        if (Input.GetKeyUp(crouchKey) || (!grounded && moveState == MovementState.crouching))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        }
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > movementSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * movementSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
 
@@ -431,7 +315,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     // ############################################
@@ -443,8 +329,6 @@ public class PlayerMovement : MonoBehaviour
         isSliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
-
-        playerCamera.DoFov(cameraSlideFov);
     }
 
     private void SlidingMovement()
@@ -457,8 +341,6 @@ public class PlayerMovement : MonoBehaviour
         isSliding = false;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideStartYScale, playerObj.localScale.z);
-
-        playerCamera.DoFov(cameraStartFov);
     }
 
     // ############################################
@@ -475,9 +357,6 @@ public class PlayerMovement : MonoBehaviour
         //Quitar la gravedad y el movimiento vertical
         rb.useGravity = false;
         rb.velocity = new Vector3(rb.velocity.y, 0f, rb.velocity.z);
-
-        // Efectos de Fov de camara
-        playerCamera.DoFov(cameraFov);
 
         // Efecto inclinacion de la camara
         if (wallLeft)
@@ -501,7 +380,6 @@ public class PlayerMovement : MonoBehaviour
         rb.useGravity = true;
 
         //Quitar efectos de camara
-        playerCamera.DoFov(cameraStartFov);
         playerCamera.doTilt(0f);
 
     }
@@ -591,13 +469,13 @@ public class PlayerMovement : MonoBehaviour
     private void ChangeUi()
     {
         speedText.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
-        movStateText.text = movState.ToString();
+        movStateText.text = moveState.ToString();
     }
     */
     /*
     private void OnGUI()
     {
         GUI.Label(new Rect(20, 50, 200, 40), "Speed: " + rb.velocity.magnitude.ToString("F2"));
-        GUI.Label(new Rect(20, 70, 200, 40), "MovState: " + movState.ToString());
+        GUI.Label(new Rect(20, 70, 200, 40), "moveState: " + moveState.ToString());
     }*/
 }
