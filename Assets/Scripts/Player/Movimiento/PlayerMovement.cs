@@ -114,20 +114,80 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
-    private MovementState lastState;
     private bool keepMomentum;
 
+    private MovementState lastState;
     public MovementState movState;
+    public MovementState moveState;
     public enum MovementState
     {
-        walking,
-        sprinting,
-        crouching,
-        air,
+        dashing,
+        jumping,
         sliding,
         wallrunning,
-        dashing
+        sprinting,
+        crouching,
+        mov
+
+            ,
+        air,
+        walking
     }
+
+    private void StateHandler()
+    {
+        lastState = moveState;
+
+        if (Input.GetKey(jumpKey) && grounded)
+        {
+            moveState = MovementState.jumping;
+        }
+        else if (Input.GetKey(slideKey) && rb.velocity.magnitude > walkSpeed)
+        {
+            moveState = MovementState.sliding;
+        }
+        else if ((wallLeft || wallRight) && verticalInput > 0 && !grounded && Time.time > wallRunExitTime + wallRunDelay)
+        {
+            moveState = MovementState.wallrunning;
+        }
+        else if (Input.GetKey(slideKey))
+        {
+            moveState = MovementState.crouching;
+        }
+        else if (grounded && Input.GetKey(sprintKey))
+        {
+            moveState = MovementState.sprinting;
+        }
+        else
+        {
+            moveState = MovementState.mov;
+        }
+
+    }
+
+    private void movement()
+    {
+        switch (moveState)
+        {
+            case MovementState.dashing:
+                break;
+            case MovementState.jumping:
+                Jump();
+                break;
+            case MovementState.sliding:
+                break;
+            case MovementState.wallrunning:
+                break;
+            case MovementState.sprinting:
+                break;
+            case MovementState.crouching:
+                break;
+            case MovementState.mov:
+                break;
+
+        }
+    }
+
 
     void Start()
     {
@@ -148,6 +208,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        StateHandler();
+        Debug.Log(moveState);
         DoAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
 
         MyInput();
