@@ -6,9 +6,6 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Singleton")]
-    public static PlayerMovement instance;
-
     [Header("Movimiento")]
     public float movementSpeed = 7f;
     public float walkSpeed = 5f;
@@ -30,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
     public float jumpCooldown = 0.25f;
     public float airMultiplier = 0.4f;
-    bool readyToJump;
 
     [Header("Agacharse")]
     public float crouchSpeed = 3.5f;
@@ -62,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
     private bool cieling;
     public float maxSlideTime;
     public float slideForce;
-    private float slideTimer;
     public float slideYScale;
     private float slideStartYScale;
     public bool isSliding;
@@ -119,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
-
     private MovementState lastState;
     private bool keepMomentum;
 
@@ -135,58 +129,35 @@ public class PlayerMovement : MonoBehaviour
         dashing
     }
 
-    private void Awake()
-    {
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(instance.gameObject);
-        }
-    }
-
     void Start()
     {
+        if (playerCamera == null) { playerCamera = Player.camera; }
+
+        gp = GetComponent<GrappleHook>();
         rb = GetComponent<Rigidbody>();
+
         rb.freezeRotation = true;
-        readyToJump = true;
+        isSliding = false;
 
         startYScale = transform.localScale.y;
         slideStartYScale = transform.localScale.y;
 
-        isSliding = false;
-
         speedText = CanvasReferences.instance.speedText;
         movStateText = CanvasReferences.instance.movStateText;
-
-        if (playerCamera == null) {
-            playerCamera = Player.camera;
-        }
-
-        gp = GetComponent<GrappleHook>();   
     }
+
     private void Update()
     {
-        // checkear si esta en el suelo :O
-        float dist = playerHeight * 0.5f + extraRayDistance;
-        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
-        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
+        DoAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
 
         MyInput();
-        CheckForWall();
-        SpeedControl();
+        //SpeedControl();
         MovementStateHandler();
 
         // aplicarle drag si esta en el suelo
         if (movState == MovementState.walking || movState == MovementState.sprinting || movState == MovementState.crouching)
         {
             rb.drag = groundDrag;
-        }
-        else if (grounded) {
-            rb.drag = 0f;
         }
         else
         {
@@ -195,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(slideKey)) //&& (horizontalInput != 0 || verticalInput != 0)) //&& !isSliding)
         {
-            StartSlide();            
+            StartSlide();
         }
         if ((Input.GetKeyUp(slideKey) || !Input.GetKey(slideKey)) && isSliding)
         {
@@ -204,43 +175,36 @@ public class PlayerMovement : MonoBehaviour
                 StopSlide();
             }
         }
-        if (grounded || isWallRunning)
-        {
-            currentDashes = maxDashes;
-        }
-
-        //Debug.Log(rb.velocity + " " + OnSlope().ToString());
-
     }
+
     void FixedUpdate()
     {
         MovePlayer();
+        resetDash();
         //ChangeUi();
 
         if (isSliding || cieling)
         {
             SlidingMovement();
         }
-
-        if(isWallRunning) {
+        if (isWallRunning)
+        {
             WallRunningMovement();
         }
     }
 
-
-    private void ChangeUi()
+    //Este metodo cambia la hitbox del personaje al agacharse
+    private void ChangeTransform()
     {
-        speedText.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
-        movStateText.text = movState.ToString();
+        if (Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude <= walkSpeed && !GetComponent<GrappleHook>().grapling)
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+        }
+        if (Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        }
     }
-
-    /**
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(20, 50, 200, 40), "Speed: " + rb.velocity.magnitude.ToString("F2"));
-        GUI.Label(new Rect(20, 70, 200, 40), "MovState: " + movState.ToString());
-    }*/
-
 
     private void MyInput()
     {
@@ -249,28 +213,13 @@ public class PlayerMovement : MonoBehaviour
         upwardsRunning = Input.GetKey(upwardsRunKey);
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
+        ChangeTransform();
 
-        if(Input.GetKey(jumpKey) && readyToJump && grounded) 
+        if (Input.GetKey(jumpKey) && grounded)
         {
-            readyToJump = false;
-            PlayerJump();
-            // Efecto de sonido
-            PlayerAudioManager.instance.PlayJumpSound();
-            // para poder saltar manteniendo el Espacio
-            Invoke(nameof(ResetPlayerJump), jumpCooldown);
+            Jump();
+            exitingSlope = false;
         }
-
-        // empezar a agacharse
-        if(Input.GetKeyDown(crouchKey) && grounded && rb.velocity.magnitude <= walkSpeed  && !GetComponent<GrappleHook>().grapling)
-        {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-        }
-
-        if(Input.GetKeyUp(crouchKey) || (!grounded && movState == MovementState.crouching))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
-        }
-
         // Wallrunning - 1 (Si toca y no esta en el suelo)
         if ((wallLeft || wallRight) && verticalInput > 0 && !grounded && Time.time > wallRunExitTime + wallRunDelay)
         {
@@ -294,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // por temas de gravedas y rampas, fix algo xd
-        if(movState == MovementState.dashing) { return; }
+        if (movState == MovementState.dashing) { return; }
 
         // calcular direccion de movimiento
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -319,9 +268,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
         }
-        else if (!grounded) {
+        else if (!grounded)
+        {
             rb.AddForce(moveDirection.normalized * movementSpeed);
         }
+
         // Para que no caiga sino se mueve, se le quita la gravedad al rigibody
         if (!isWallRunning)
         {
@@ -329,53 +280,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-    private void SpeedControl()
-    {
-
-        if (OnSlope() && !exitingSlope)
-        {
-            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-            // limitar la velocidad si es necesario y tal
-            if (flatVelocity.magnitude > movementSpeed)
-            {
-                Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
-            }
-        }
-    }
-
-    private void PlayerJump()
-    {
-        exitingSlope = true;
-
-        // asegurar que la y es 0, para siempre saltar igual
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-    }
-
-    private void ResetPlayerJump()
-    {
-        readyToJump = true;
-        exitingSlope = false;
-    }
-
-
-
     private void MovementStateHandler()
-    { 
+    {
         // Si en la pared 
-        if(isWallRunning)
+        if (isWallRunning)
         {
             movState = MovementState.wallrunning;
             desiredMoveSpeed = wallRunSpeed;
-           
         }
         // si separados, Run y Crouch a la vez
         else if (Input.GetKey(crouchKey) && rb.velocity.magnitude <= walkSpeed && grounded && !OnSlope() && !GetComponent<GrappleHook>().grapling)
         {
+
             movState = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
-        } 
+        }
         // Sprinting
         else if (grounded && Input.GetKey(sprintKey) && !GetComponent<GrappleHook>().grapling)
         {
@@ -385,14 +304,15 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.DoFov(cameraSprintFov);
         }
         // Sliding else if (isSliding) 
-        else if (Input.GetKey(slideKey) && (slideTimer > 0 && movState != MovementState.crouching || GetComponent<GrappleHook>().grapling))
+        else if (Input.GetKey(slideKey) && (movState != MovementState.crouching || GetComponent<GrappleHook>().grapling))
         {
             movState = MovementState.sliding;
 
-            if(OnSlope() && rb.velocity.y < 0.1f)
+            if (OnSlope() && rb.velocity.y < 0.1f)
             {
                 desiredMoveSpeed = slideSpeed;
-            } else
+            }
+            else
             {
                 desiredMoveSpeed = sprintSpeed;
             }
@@ -406,14 +326,15 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.DoFov(cameraStartFov);
         }
         // Air
-        else 
+        else
         {
             movState = MovementState.air;
 
-            if(desiredMoveSpeed < sprintSpeed)
+            if (desiredMoveSpeed < sprintSpeed)
             {
                 desiredMoveSpeed = walkSpeed;
-            } else
+            }
+            else
             {
                 desiredMoveSpeed = sprintSpeed;
             }
@@ -423,16 +344,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 movState = MovementState.dashing;
                 desiredMoveSpeed = dashSpeed;
-                speedChangeFactor = dashSpeedChangeFactor;
+                //speedChangeFactor = dashSpeedChangeFactor;
             }
         }
 
         // Por si cambia mucho, 4f seria la diferencia, y ahi deberia ser lento el cambio
-        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && movementSpeed != 0)
+        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && movementSpeed != 0)
         {
             StopAllCoroutines();
-            StartCoroutine(SmoothlyLerpMoveSpeed());
-        } 
+            //StartCoroutine(SmoothlyLerpMoveSpeed());
+        }
         else
         {
             movementSpeed = desiredMoveSpeed;
@@ -440,6 +361,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
 
+        /*
         if(lastState == MovementState.dashing)
         {
             keepMomentum = true;
@@ -447,7 +369,7 @@ public class PlayerMovement : MonoBehaviour
 
         //He quitado esto :)
         // Si queremos momentum en tipo de movimiento, dentro del if, sino fuera
-        /*
+        
         if(desiredMoveSpeedHasChanged)
         {   
             if(keepMomentum)
@@ -467,6 +389,173 @@ public class PlayerMovement : MonoBehaviour
         lastState = movState;
     }
 
+    public bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            // angulo de la rampa, sabiendolo con el Raycast
+            float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+
+            return slopeAngle < maxSlopeAngle && slopeAngle != 0;
+        }
+        // si no golpea nada
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection(Vector3 direction)
+    {
+        // aqui se calcula el angulo sobre el que esta la Rampa y el jugador, para aplicarle fuerza en la direccion de la rampa
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+    // ############################################
+    // ############### MISCELANEO #################
+    // ############################################
+
+    void DoAllRaycasts()
+    {
+        float dist = playerHeight * 0.5f + extraRayDistance;
+        cieling = Physics.Raycast(transform.position, Vector3.up, dist, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, dist, whatIsGround);
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
+    }
+
+    void resetDash() //RESETEAR DASHES SI APROPIADO
+    {
+        if (grounded || isWallRunning)
+        {
+            currentDashes = maxDashes;
+        }
+    }
+
+    // ############################################
+    // #############      JUMP     ################
+    // ############################################
+
+    private void Jump()
+    {
+        exitingSlope = true;
+        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+    }
+
+    // ############################################
+    // ############     SLIDING    ################
+    // ############################################
+
+    private void StartSlide()
+    {
+        isSliding = true;
+
+        playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
+
+        playerCamera.DoFov(cameraSlideFov);
+    }
+
+    private void SlidingMovement()
+    {
+        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+    }
+
+    private void StopSlide()
+    {
+        isSliding = false;
+
+        playerObj.localScale = new Vector3(playerObj.localScale.x, slideStartYScale, playerObj.localScale.z);
+
+        playerCamera.DoFov(cameraStartFov);
+    }
+
+    // ############################################
+    // ############  WALL RUNNING  ################
+    // ############################################
+
+    private void StartWallRun()
+    {
+        wallCheckDistance = 3f;
+
+        //Empezar wallrun
+        isWallRunning = true;
+
+        //Quitar la gravedad y el movimiento vertical
+        rb.useGravity = false;
+        rb.velocity = new Vector3(rb.velocity.y, 0f, rb.velocity.z);
+
+        // Efectos de Fov de camara
+        playerCamera.DoFov(cameraFov);
+
+        // Efecto inclinacion de la camara
+        if (wallLeft)
+        {
+            playerCamera.doTilt(-cameraTilt);
+            wallJumpDir = orientation.right;
+        }
+        else if (wallRight)
+        {
+            playerCamera.doTilt(cameraTilt);
+            wallJumpDir = -orientation.right;
+        }
+    }
+
+    private void StopWallRun()
+    {
+        wallCheckDistance = 1f;
+
+        //Terminar wallrun y reactivar gravedad
+        isWallRunning = false;
+        rb.useGravity = true;
+
+        //Quitar efectos de camara
+        playerCamera.DoFov(cameraStartFov);
+        playerCamera.doTilt(0f);
+
+    }
+
+    private void WallRunningMovement()
+    {
+        // Para ir en el forward de la pared siempre, sera Vector entre Arriba y Normal de la pared = wallForward
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
+        // Sin esto solo funciona por una direccion y por el otro lado salo disparado de la pared xd
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
+
+        //Moverse hacia adelante
+        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+
+        //Atraer al muro
+        rb.AddForce(-wallNormal * muroAtraccion, ForceMode.Force);
+    }
+
+    private void WallJump()
+    {
+        wallRunExitTime = Time.time;
+        rb.velocity = rb.velocity * 3 / 4;
+
+        rb.AddForce(wallJumpDir * wallJumpSideForce, ForceMode.Force);
+        //impulso vertical del wallJump
+        rb.velocity = new Vector3(rb.velocity.x, wallJumpUpForce, rb.velocity.z);
+    }
+
+    // ############################################
+    // QUARENTENA DE CODIGO
+
+    /*
+    private void SpeedControl()
+    {
+        if (OnSlope() && !exitingSlope)
+        {
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // limitar la velocidad si es necesario y tal
+            if (flatVelocity.magnitude > movementSpeed)
+            {
+                Vector3 limitedVelocity = flatVelocity.normalized * movementSpeed;
+            }
+        }
+    }*/
+
+    /*
     // Para que la velocidad se vaya interpolando, y poder acumular velocidad (conservar momentum)
     private float speedChangeFactor; // dash
     private IEnumerator SmoothlyLerpMoveSpeed()
@@ -501,145 +590,18 @@ public class PlayerMovement : MonoBehaviour
         movementSpeed = desiredMoveSpeed;
         speedChangeFactor = 1f; // dash
         keepMomentum = false;
-    }
-
-    public bool OnSlope()
+    }*/
+    /*
+    private void ChangeUi()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
-        {
-            // angulo de la rampa, sabiendolo con el Raycast
-            float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
-
-            return slopeAngle < maxSlopeAngle && slopeAngle != 0;
-        }
-
-        // si no golpea nada
-        return false;
+        speedText.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
+        movStateText.text = movState.ToString();
     }
-
-    private Vector3 GetSlopeMoveDirection(Vector3 direction)
+    */
+    /*
+    private void OnGUI()
     {
-        // aqui se calcula el angulo sobre el que esta la Rampa y el jugador, para aplicarle fuerza en la direccion de la rampa
-        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
-    }
-
-
-    // SLIDING
-
-    private void StartSlide()
-    {
-        isSliding = true;
-
-        playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
-
-        playerCamera.DoFov(cameraSlideFov);
-
-        slideTimer = maxSlideTime;
-    }
-
-    private void StopSlide()
-    {
-        isSliding = false;
-        playerCamera.DoFov(cameraStartFov);
-
-        playerObj.localScale = new Vector3(playerObj.localScale.x, slideStartYScale, playerObj.localScale.z);
-    }
-
-    private void SlidingMovement()
-    {
-        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        if (slideTimer <= 0)
-        {
-            StopSlide();
-        }
-    }
-
-    // ############################################
-    // ############  WALL RUNNING  ################
-    // ############################################
-
-    private void CheckForWall()
-    {
-        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
-    }
-
-    private void StartWallRun()
-    {
-        wallCheckDistance = 3f;
-
-        //Empezar wallrun
-        isWallRunning = true;
-
-        //Quitar la gravedad y el movimiento vertical
-        rb.useGravity = false;
-        rb.velocity = new Vector3(rb.velocity.y, 0f, rb.velocity.z);
-
-        // Efectos de Fov de camara
-        playerCamera.DoFov(cameraFov);
-
-        // Efecto de sonido
-        PlayerAudioManager.instance.PlayWallRunSound();
-
-        // Efecto inclinacion de la camara
-        if (wallLeft)
-        {
-            playerCamera.doTilt(-cameraTilt);
-            wallJumpDir = orientation.right;
-        }
-        else if (wallRight)
-        {
-            playerCamera.doTilt(cameraTilt);
-            wallJumpDir = -orientation.right;
-        }
-    }
-
-    private void StopWallRun()
-    {
-        wallCheckDistance = 1f;
-
-        //Terminar wallrun y reactivar gravedad
-        isWallRunning = false;
-        rb.useGravity = true;
-
-        //Quitar efectos de camara
-        playerCamera.DoFov(cameraStartFov);
-        playerCamera.doTilt(0f);
-        
-        // Efecto de sonido
-        PlayerAudioManager.instance.StopWallRunSound();
-
-    }
-
-    private void WallRunningMovement()
-    {
-        // Para ir en el forward de la pared siempre, sera Vector entre Arriba y Normal de la pared = wallForward
-        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
-
-        // Sin esto solo funciona por una direccion y por el otro lado salo disparado de la pared xd
-        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
-            wallForward = -wallForward;
-
-        //Moverse hacia adelante
-        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
-
-        //Atraer al muro
-        rb.AddForce(-wallNormal * muroAtraccion, ForceMode.Force);
-    }
-
-    private void WallJump()
-    {
-        wallRunExitTime = Time.time;
-        rb.velocity = rb.velocity*3 / 4;
-       
-        rb.AddForce(wallJumpDir * wallJumpSideForce, ForceMode.Force);
-        //impulso vertical del wallJump
-        rb.velocity = new Vector3(rb.velocity.x, wallJumpUpForce, rb.velocity.z);
-
-        // Efecto de sonido
-        PlayerAudioManager.instance.PlayJumpSound();
-    }
-
+        GUI.Label(new Rect(20, 50, 200, 40), "Speed: " + rb.velocity.magnitude.ToString("F2"));
+        GUI.Label(new Rect(20, 70, 200, 40), "MovState: " + movState.ToString());
+    }*/
 }
