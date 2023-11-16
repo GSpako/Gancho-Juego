@@ -21,4 +21,8 @@ public class MainMenuScript : MonoBehaviour
         Debug.Log("Adios :(");
         Application.Quit();
     }
+
+    public void SelectLevel() { 
+        
+    }
 }

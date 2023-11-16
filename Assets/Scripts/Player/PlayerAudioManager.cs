@@ -190,7 +190,7 @@ public class PlayerAudioManager : MonoBehaviour
         if (levelMusic != null)
         {
             audioSource.clip = levelMusic;
-            audioSource.loop = true;
+            //audioSource.loop = true;
             audioSource.volume = volumen;
             audioSource.Play();
 
