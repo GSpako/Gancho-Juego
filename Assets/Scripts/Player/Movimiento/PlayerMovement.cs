@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         StateHandler();
-        Debug.Log(moveState);
+        //Debug.Log(moveState);
         DoAllRaycasts(); // hacer raycasts para el suelo, techo, y paredes
 
         MyInput();
