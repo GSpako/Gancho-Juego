@@ -60,6 +60,7 @@ public class PauseMenuScript : MonoBehaviour
         if (PlayerCamera.instance != null)
         {
             PlayerCamera.instance.sensibilityX = sensibilidad;
+            PlayerCamera.instance.sensibilityY = sensibilidad * 0.6f;
             sensibilidadText.text = (sensibilidad / 100.0f).ToString("F2");
         }
     }
