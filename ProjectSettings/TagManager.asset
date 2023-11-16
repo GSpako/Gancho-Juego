@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Exit
   - Turret
+  - Reticula
   layers:
   - Default
   - TransparentFX

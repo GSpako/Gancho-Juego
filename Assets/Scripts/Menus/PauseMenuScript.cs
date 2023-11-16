@@ -21,6 +21,7 @@ public class PauseMenuScript : MonoBehaviour
     public TextMeshProUGUI sensibilidadText;
     public TextMeshProUGUI volumenText;
     public Button continuarButton;
+    [SerializeField] GameObject reticula;
 
 
     private void Awake()
@@ -39,6 +40,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void VolverAlMenu()
     {
+        reticula.SetActive(true);
         bT.bloquearMenus = false;
         pauseMenuUI.SetActive(false);
         isGamePaused = false;
@@ -84,6 +86,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void ContinueGame()
     {
+        reticula.SetActive(true);
         bT.bloquearMenus = false;
         //pauseMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
@@ -98,9 +101,11 @@ public class PauseMenuScript : MonoBehaviour
 
     public void PauseGame()
     {
+        reticula.SetActive(false);
+
         if (bT == null)
             bT = GameObject.FindObjectOfType<BulletTime>();
-        
+
         bT.bloquearMenus = true;
 
         pauseMenuUI.SetActive (true);

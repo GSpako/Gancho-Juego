@@ -298,6 +298,7 @@ MonoBehaviour:
   sensibilidadText: {fileID: 2059509310336540913}
   volumenText: {fileID: 3939063685884808968}
   continuarButton: {fileID: 6698616714686755227}
+  reticula: {fileID: 7988853466115644336}
 --- !u!1 &2288314406686566830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1261,7 @@ GameObject:
   - component: {fileID: 3567476979949101596}
   m_Layer: 5
   m_Name: "Ret\xEDcula"
-  m_TagString: Untagged
+  m_TagString: Reticula
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
