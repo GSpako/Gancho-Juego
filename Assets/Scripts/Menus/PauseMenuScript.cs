@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEngine.SceneManagement;
 using static GameManager;
 
 public class PauseMenuScript : MonoBehaviour
@@ -33,6 +34,21 @@ public class PauseMenuScript : MonoBehaviour
         if (bT == null) { 
             bT = GameObject.FindObjectOfType<BulletTime>();
         }
+    }
+
+
+    public void VolverAlMenu()
+    {
+        bT.bloquearMenus = false;
+        pauseMenuUI.SetActive(false);
+        isGamePaused = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 1f;
+
+        GameManager.Instance.gameState = GameState.menu;
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
