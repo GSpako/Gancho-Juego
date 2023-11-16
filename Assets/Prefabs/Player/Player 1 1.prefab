@@ -71,7 +71,7 @@ Transform:
   - {fileID: 9213889588340758789}
   - {fileID: 3725017197624086583}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -219,7 +219,7 @@ MonoBehaviour:
   ropecolor: {r: 1, g: 1, b: 1, a: 1}
   enganchables:
     serializedVersion: 2
-    m_Bits: 960
+    m_Bits: 2039
   grappleB1: 323
   grappleB2: 324
 --- !u!114 &5389726166711828096

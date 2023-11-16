@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     [SerializeField] private int currentLevel = 0;
-    [SerializeField] private string[] levels;
+    public string[] levels;
     [SerializeField] private string sceneName;
     [SerializeField] public bool musicPlayedForCurrentLevel = false; // Para que solo se reproduzca una vez en el nivel actual
 

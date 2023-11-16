@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -707,18 +707,6 @@ PrefabInstance:
       propertyPath: pauseMenuScript
       value: 
       objectReference: {fileID: 5341573863436417109}
-    - target: {fileID: 1226840400455442057, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
-      propertyPath: levels.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1226840400455442057, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
-      propertyPath: levels.Array.data[0]
-      value: Level1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1226840400455442057, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
-      propertyPath: levels.Array.data[1]
-      value: Movimiento
-      objectReference: {fileID: 0}
     - target: {fileID: 3759809018685056247, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
       propertyPath: m_RootOrder
       value: 2
