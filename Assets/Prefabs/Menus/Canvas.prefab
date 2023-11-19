@@ -1758,6 +1758,10 @@ PrefabInstance:
       propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6336795382213546076, guid: 83923d597c7a736429ee15677500955f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7110837756075674967}
     - target: {fileID: 6537923763216973730, guid: 83923d597c7a736429ee15677500955f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

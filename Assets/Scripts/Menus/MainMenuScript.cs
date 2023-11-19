@@ -9,11 +9,10 @@ public class MainMenuScript : MonoBehaviour
     // Se cambia el Index en File -> BuildSettings -> Se arrasta escena
     public void PlayGame()
     {
-        SceneManager.LoadScene(GameManager.Instance.levels[0]/*SceneManager.GetActiveScene().buildIndex + 1*/);
-        // Empezar a que suene la musica asignada al nivel 1
-        PlayerAudioManager.instance.PlayLevelMusic(SceneManager.GetActiveScene().buildIndex + 1, 0.3f);
+        // DESCOMENTAR ESTA ES LA WENA LA DE ABAJO LA USE PARA PROBAR SI PASA DE NIVEL QUE DA ERROR EESTA AHORA
+        // SceneManager.LoadScene(GameManager.Instance.levels[0]/*SceneManager.GetActiveScene().buildIndex + 1*/);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameManager.Instance.musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
-
     }
 
     public void QuitGame()

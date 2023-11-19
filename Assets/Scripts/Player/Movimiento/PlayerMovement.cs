@@ -434,6 +434,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        // Efecto de sonido del salto
+        PlayerAudioManager.instance.PlayJumpSound();
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
     }
@@ -483,6 +485,9 @@ public class PlayerMovement : MonoBehaviour
         // Efectos de Fov de camara
         playerCamera.DoFov(cameraFov);
 
+        // Efecto de sonido del WallRun
+        PlayerAudioManager.instance.PlayWallRunSound();
+
         // Efecto inclinacion de la camara
         if (wallLeft)
         {
@@ -508,6 +513,8 @@ public class PlayerMovement : MonoBehaviour
         playerCamera.DoFov(cameraStartFov);
         playerCamera.doTilt(0f);
 
+        // Quitar Efecto de sonido del WallRun
+        PlayerAudioManager.instance.StopWallRunSound();
     }
 
     private void WallRunningMovement()

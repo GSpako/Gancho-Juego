@@ -42,11 +42,12 @@ public class GameManager : MonoBehaviour
             Destroy(this);
 
         DontDestroyOnLoad(Instance);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
     void Start()
     {
-        gameState = GameState.level;    
+        gameState = GameState.level;
     }
 
     // Update is called once per frame
@@ -64,7 +65,8 @@ public class GameManager : MonoBehaviour
             gameState = GameState.level;
         }
 
-        PlayMusic();
+        //PlayMusic();
+
     }
 
     //Se llama desde TimerSystem
@@ -97,34 +99,48 @@ public class GameManager : MonoBehaviour
     {
         if (!musicPlayedForCurrentLevel)
         {
-            sceneName = SceneManager.GetActiveScene().name;
+            //sceneName = SceneManager.GetActiveScene().name;
             switch (sceneName)
             {
                 case "Level1":
-                    PlayerAudioManager.instance.PlayLevelMusic(1, 0.3f);
+                    PlayerAudioManager.instance.PlayLevelMusic(1, 0.10f);
                     Debug.Log("Musica nivel 1 OK");
                     break;
                 case "Level2":
-                    PlayerAudioManager.instance.PlayLevelMusic(2, 0.3f);
+                    PlayerAudioManager.instance.PlayLevelMusic(2, 0.10f);
                     Debug.Log("Musica nivel 2 OK");
                     break;
                 case "Level3":
-                    PlayerAudioManager.instance.PlayLevelMusic(3, 0.3f);
+                    PlayerAudioManager.instance.PlayLevelMusic(3, 0.10f);
                     Debug.Log("Musica nivel 3 OK");
                     break;
                 case "Movimiento":
-                    PlayerAudioManager.instance.PlayLevelMusic(4, 0.3f);
+                    PlayerAudioManager.instance.PlayLevelMusic(4, 0.10f);
                     Debug.Log("Musica movimiento OK");
                     break;
                 case "Menu":
-                    PlayerAudioManager.instance.PlayLevelMusic(5, 0.3f);
+                    PlayerAudioManager.instance.PlayLevelMusic(5, 0.10f);
                     Debug.Log("Musica menu OK");
+                    break;
+                case "LevelBaseAntonio":
+                    PlayerAudioManager.instance.PlayLevelMusic(6, 0.10f);
+                    Debug.Log("Musica Antonio OK");
                     break;
                 default:
                     break;
             }
 
-            musicPlayedForCurrentLevel = true; // Ya se reprodujo la musica de este nivel
+            musicPlayedForCurrentLevel = true;
         }
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Actualizar el nombre de la escena en el GameManager
+        sceneName = scene.name;
+        Debug.Log(sceneName);
+
+        PlayMusic();
+    }
+
 }

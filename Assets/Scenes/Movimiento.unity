@@ -16251,30 +16251,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6698616714686755227, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1290684397377166022}
-    - target: {fileID: 6698616714686755227, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ContinueGame
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
---- !u!114 &1290684397377166022 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7110837756075674967, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-  m_PrefabInstance: {fileID: 1290684397377166019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620940935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d99c1927c83bde40827f2d78cf09e2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4265002908801598865
 PrefabInstance:
   m_ObjectHideFlags: 0

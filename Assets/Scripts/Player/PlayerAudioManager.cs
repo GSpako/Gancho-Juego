@@ -21,11 +21,14 @@ public class PlayerAudioManager : MonoBehaviour
     public AudioClip level3Music;
     public AudioClip movimientoMusic;
     public AudioClip menuMusic;
+    public AudioClip levelBase1Antonio;
 
 
-    private AudioSource audioSource;        // El sonido que se usara
+    [Header("Audio Sources")]
+    public AudioSource audioSource;         // El sonido que se usara
+    public AudioSource audioSourceMusic;    // Este playea la musica
     private AudioSource currentSoundSource; // Almacena la referencia al AudioSource del sonido actualmente en reproducción
-    private AudioSource currentMusicSource;
+
 
     private void Awake()
     {
@@ -38,7 +41,9 @@ public class PlayerAudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        audioSource = GetComponent<AudioSource>();
+        DontDestroyOnLoad(instance);
+
+        audioSource = GetComponents<AudioSource>()[0];
     }
 
     // PLAY SOUND
@@ -187,25 +192,23 @@ public class PlayerAudioManager : MonoBehaviour
         StopCurrentLevelMusic(); // Se para la musica antes de empezar otra
         AudioClip levelMusic = GetLevelMusic(level); // Con la funcion GetLevelMusic() para ver que nivel
 
-        if (levelMusic != null)
+        if (levelMusic != null && audioSourceMusic != null)
         {
-            audioSource.clip = levelMusic;
+            audioSourceMusic.clip = levelMusic;
             //audioSource.loop = true;
-            audioSource.volume = volumen;
-            audioSource.Play();
-
-            currentMusicSource = audioSource; 
+            audioSourceMusic.volume = volumen;
+            audioSourceMusic.Play();; 
         }
     }
 
     // Detiene la música de fondo del nivel actual
     public void StopCurrentLevelMusic()
     {
-        if (currentMusicSource != null)
+        if (audioSourceMusic != null)
         {
-            currentMusicSource.loop = false;
-            currentMusicSource.Stop();
-            currentMusicSource = null;
+            //audioSourceMusic.loop = false;
+            audioSourceMusic.Stop();
+           
         }
     }
 
@@ -225,6 +228,8 @@ public class PlayerAudioManager : MonoBehaviour
                 return movimientoMusic;
             case 5:
                 return menuMusic;
+            case 6:
+                return levelBase1Antonio;
             default:
                 return null; 
         }
