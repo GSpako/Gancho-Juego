@@ -739,6 +739,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
+      propertyPath: muelleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fe0a31725eb0699479c90da96348b09d, type: 3}
+    - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
       propertyPath: audioSourceMusic
       value: 
       objectReference: {fileID: 3566508889830257791}

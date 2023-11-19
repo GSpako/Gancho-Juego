@@ -41,7 +41,7 @@ public class PlayerAudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(instance);
+        //DontDestroyOnLoad(instance);
 
         audioSource = GetComponents<AudioSource>()[0];
     }
