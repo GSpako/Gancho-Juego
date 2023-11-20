@@ -29,13 +29,13 @@ public class Oscilator : MonoBehaviour
             movimiento = angle * Mathf.Cos((Time.time - startDelay) * speed);
         }
 
-        if (ejeX && pos) { xP = movimiento; } else { xP = transform.localPosition.x; }
-        if (ejeY && pos) { yP = movimiento; } else { yP = transform.localPosition.y; }
-        if (ejeZ && pos) { zP = movimiento; } else { zP = transform.localPosition.z; }
+        if (ejeX && pos) { xP = movimiento + transform.localPosition.x; } else { xP = transform.localPosition.x; }
+        if (ejeY && pos) { yP = movimiento + transform.localPosition.y; } else { yP = transform.localPosition.y; }
+        if (ejeZ && pos) { zP = movimiento + transform.localPosition.z; } else { zP = transform.localPosition.z; }
 
-        if (ejeX && rot) { xR = movimiento; } else { xR = transform.localRotation.x; }
-        if (ejeY && rot) { yR = movimiento; } else { yR = transform.localRotation.y; }
-        if (ejeZ && rot) { zR = movimiento; } else { zR = transform.localRotation.z; }
+        if (ejeX && rot) { xR = movimiento + transform.localRotation.x; } else { xR = transform.localRotation.x; }
+        if (ejeY && rot) { yR = movimiento + transform.localRotation.y; } else { yR = transform.localRotation.y; }
+        if (ejeZ && rot) { zR = movimiento + transform.localRotation.z; } else { zR = transform.localRotation.z; }
 
 
         if (Time.time > startDelay)
