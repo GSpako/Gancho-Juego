@@ -41,8 +41,6 @@ public class PlayerAudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //DontDestroyOnLoad(instance);
-
         audioSource = GetComponents<AudioSource>()[0];
     }
 
@@ -53,12 +51,6 @@ public class PlayerAudioManager : MonoBehaviour
     {
         PlaySoundPitcheado(jumpSound, 0.4f, 0.8f, 1.2f);
     }
-
-    public void PlayWallRunSound()
-    {
-        PlaySoundLooped(wallRunSound, 0.5f);
-    }
-
 
     public void PlayDeathSound()
     {
@@ -80,12 +72,17 @@ public class PlayerAudioManager : MonoBehaviour
         PlaySoundPitcheado(muelleSound, 0.5f, 0.8f, 1f);
     }
 
+
+    public void PlayWallRunSound()
+    {
+        PlaySoundLooped(wallRunSound, 0.8f);
+    }
+
     // Para el WallRun, que sonaria todo el rato si sigue en la pared, y si cae se acaba :(
     public void StopWallRunSound()
     {
         StopWallRunLoopedSound();
     }
-
 
     public void PlayWinLevel()
     {
