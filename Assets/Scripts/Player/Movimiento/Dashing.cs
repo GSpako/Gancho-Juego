@@ -71,6 +71,9 @@ public class Dashing : MonoBehaviour
         pm.currentDashes--;
         pm.maxYSpeed = maxDashYSpeed;
         playerCameraScript.DoFov(cameraDashFov);
+        //Efecto de sonido de dash
+        PlayerAudioManager.instance.PlayDashSound();
+
 
         // si usar el Forward de la camara o el del orientation (jugador)
         if(useCameraForward)
