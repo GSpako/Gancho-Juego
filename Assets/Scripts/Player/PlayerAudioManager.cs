@@ -64,7 +64,7 @@ public class PlayerAudioManager : MonoBehaviour
 
     public void PlayHookSound()
     {
-        PlaySoundPitcheado(hookSound, 0.4f, 0.6f, 1f);
+        PlaySoundPitcheado(hookSound, 0.3f, 0.6f, 1f);
     }
 
     public void PlayMuelleSound() // boing !!!
@@ -193,7 +193,7 @@ public class PlayerAudioManager : MonoBehaviour
         {
             MusicClipManager.instance.SaveCurrentMusicClip(levelMusic);
             audioSourceMusic.clip = levelMusic;
-            audioSourceMusic.loop = true;
+            //audioSourceMusic.loop = true;
             audioSourceMusic.volume = volumen;
             audioSourceMusic.Play();
         }
@@ -204,14 +204,14 @@ public class PlayerAudioManager : MonoBehaviour
     {
         if (audioSourceMusic != null)
         {
-            audioSourceMusic.loop = false;
+            //audioSourceMusic.loop = false;
             audioSourceMusic.Stop();
         }
     }
 
     public void AsegurarMusicAudioSource(int level, float volumen)
     {
-            Debug.Log("AsegurarMusicAudioSource");
+            //Debug.Log("AsegurarMusicAudioSource");
             audioSourceMusic.clip = GetLevelMusic(level);
     }
 
