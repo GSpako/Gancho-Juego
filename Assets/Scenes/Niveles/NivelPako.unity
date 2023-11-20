@@ -143,6 +143,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 886040284}
     m_Modifications:
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: rot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: angle
       value: 40
       objectReference: {fileID: 0}
@@ -525,6 +529,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1750471431}
     m_Modifications:
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: rot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: angle
       value: 40
       objectReference: {fileID: 0}
@@ -794,6 +802,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1750471431}
     m_Modifications:
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: rot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: angle
       value: 40
       objectReference: {fileID: 0}
@@ -887,6 +899,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1750471431}
     m_Modifications:
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: rot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: angle
       value: 40
@@ -1082,6 +1098,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 886040284}
     m_Modifications:
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: rot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: angle
       value: 40
@@ -1506,7 +1526,7 @@ PrefabInstance:
       objectReference: {fileID: 1475034951}
     - target: {fileID: 5671669799477640578, guid: 1764cf921dd96d74c8f3e75b34e913ad, type: 3}
       propertyPath: totalTime
-      value: 999999
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7039681965217082550, guid: 1764cf921dd96d74c8f3e75b34e913ad, type: 3}
       propertyPath: m_RootOrder

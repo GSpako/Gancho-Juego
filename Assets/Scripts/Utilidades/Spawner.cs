@@ -25,7 +25,8 @@ public class Spawner : MonoBehaviour
     public void Spawn(types t) {
         switch (t) {
             case types.player:
-                Invoke("rezPlayer", respawnTime); 
+                Invoke("rezPlayer", respawnTime);
+                CambiarColorSala.instance.RestaurarColorInicial();
                 break;
         }
     }
