@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -187,7 +187,7 @@ MonoBehaviour:
   orientation: {fileID: 8897026813322220567}
   playerCamera: {fileID: 922799581603630265}
   playerCameraScript: {fileID: 6556596865195063743}
-  dashForce: 20
+  dashForce: 40
   dashUpwardForce: 2.5
   dashDuration: 0.75
   maxDashYSpeed: 5
