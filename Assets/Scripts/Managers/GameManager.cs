@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
                     break;
                 case "NivelPako":
                     PlayerAudioManager.instance.PlayLevelMusic(7, 0.10f);
-                    Debug.Log("Musica Antonio OK");
+                    Debug.Log("Musica Pako OK");
                     break;
                 default:
                     break;
