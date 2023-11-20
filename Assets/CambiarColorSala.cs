@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CambiarColorSala : MonoBehaviour
@@ -9,8 +10,10 @@ public class CambiarColorSala : MonoBehaviour
 
     [Header("Referencias")]
     public Material materialACambiarElColor;
-    public Color colorStart;
-    public Color colorEnd;
+    [Header("Variables uwu")]
+    private Color colorInicial; // Para almacenar el color inicial
+    public Color colorStart;    // Color inicial
+    public Color colorEnd;      // Color final del material
 
     private void Awake()
     {
@@ -22,11 +25,21 @@ public class CambiarColorSala : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        colorInicial = materialACambiarElColor.color;
     }
 
     private void Update()
     {
-        float lerp = Mathf.PingPong(Time.time, TimerSystem.instance.getMaxTime()) / TimerSystem.instance.getMaxTime();
-        materialACambiarElColor.color = Color.Lerp(colorStart, colorEnd, lerp);
+        float actualTime = TimerSystem.instance.getRemainingTime();
+        float max = TimerSystem.instance.getMaxTime();
+        float percentage = actualTime / max;
+        materialACambiarElColor.color = Color.Lerp(colorStart, colorEnd, 1 - percentage);
+    }
+
+    // Función para restaurar el color inicial del material :O
+    public void RestaurarColorInicial()
+    {
+        materialACambiarElColor.color = colorInicial;
     }
 }
