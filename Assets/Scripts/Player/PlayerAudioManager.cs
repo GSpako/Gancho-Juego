@@ -193,7 +193,7 @@ public class PlayerAudioManager : MonoBehaviour
         {
             MusicClipManager.instance.SaveCurrentMusicClip(levelMusic);
             audioSourceMusic.clip = levelMusic;
-            //audioSourceMusic.loop = true;
+            audioSourceMusic.loop = true;
             audioSourceMusic.volume = volumen;
             audioSourceMusic.Play();
         }
@@ -204,7 +204,7 @@ public class PlayerAudioManager : MonoBehaviour
     {
         if (audioSourceMusic != null)
         {
-            //audioSourceMusic.loop = false;
+            audioSourceMusic.loop = false;
             audioSourceMusic.Stop();
         }
     }
