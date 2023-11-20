@@ -120,8 +120,12 @@ public class GameManager : MonoBehaviour
                     PlayerAudioManager.instance.PlayLevelMusic(5, 0.10f);
                     Debug.Log("Musica menu OK");
                     break;
-                case "LevelBaseAntonio":
+                case "LevelAntonio":
                     PlayerAudioManager.instance.PlayLevelMusic(6, 0.10f);
+                    Debug.Log("Musica Antonio OK");
+                    break;
+                case "NivelPako":
+                    PlayerAudioManager.instance.PlayLevelMusic(7, 0.10f);
                     Debug.Log("Musica Antonio OK");
                     break;
                 default:

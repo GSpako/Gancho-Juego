@@ -21,7 +21,8 @@ public class PlayerAudioManager : MonoBehaviour
     public AudioClip level3Music;
     public AudioClip movimientoMusic;
     public AudioClip menuMusic;
-    public AudioClip levelBase1Antonio;
+    public AudioClip levelAntonio;
+    public AudioClip NivelPako;
 
 
     [Header("Audio Sources")]
@@ -193,7 +194,7 @@ public class PlayerAudioManager : MonoBehaviour
         {
             MusicClipManager.instance.SaveCurrentMusicClip(levelMusic);
             audioSourceMusic.clip = levelMusic;
-            //audioSourceMusic.loop = true;
+            audioSourceMusic.loop = true;
             audioSourceMusic.volume = volumen;
             audioSourceMusic.Play();
         }
@@ -204,7 +205,7 @@ public class PlayerAudioManager : MonoBehaviour
     {
         if (audioSourceMusic != null)
         {
-            //audioSourceMusic.loop = false;
+            audioSourceMusic.loop = false;
             audioSourceMusic.Stop();
         }
     }
@@ -241,7 +242,9 @@ public class PlayerAudioManager : MonoBehaviour
                 case 5:
                     return menuMusic;
                 case 6:
-                    return levelBase1Antonio;
+                    return levelAntonio;
+                case 7:
+                    return NivelPako;
                 default:
                     return null;
             }
