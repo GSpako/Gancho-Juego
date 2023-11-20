@@ -21854,6 +21854,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 4934606146802697702, guid: d2361904009aabd46ae7af88c2760d82, type: 3}
+      propertyPath: playerAudioManagerPrefab
+      value: 
+      objectReference: {fileID: 1452931295024640996, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
     - target: {fileID: 6644434810266454304, guid: d2361904009aabd46ae7af88c2760d82, type: 3}
       propertyPath: m_RootOrder
       value: -1

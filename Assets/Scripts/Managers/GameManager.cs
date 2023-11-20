@@ -64,9 +64,6 @@ public class GameManager : MonoBehaviour
             pauseMenuScript.TogglePauseMenu();
             gameState = GameState.level;
         }
-
-        //PlayMusic();
-
     }
 
     //Se llama desde TimerSystem
@@ -104,6 +101,7 @@ public class GameManager : MonoBehaviour
             {
                 case "Level1":
                     PlayerAudioManager.instance.PlayLevelMusic(1, 0.10f);
+                    // Asegurarme de que haya un hijo MusicaAudioSource con un AudioSource (pls)
                     Debug.Log("Musica nivel 1 OK");
                     break;
                 case "Level2":

@@ -27,7 +27,7 @@ public class PlayerAudioManager : MonoBehaviour
     [Header("Audio Sources")]
     public AudioSource audioSource;         // El sonido que se usara
     public AudioSource audioSourceMusic;    // Este playea la musica
-    private AudioSource currentSoundSource; // Almacena la referencia al AudioSource del sonido actualmente en reproducción
+    private AudioSource currentSoundSource; // Almacena la referencia al audioSource del sonido actualmente en reproducción
 
 
     private void Awake()
@@ -191,10 +191,11 @@ public class PlayerAudioManager : MonoBehaviour
 
         if (levelMusic != null && audioSourceMusic != null)
         {
+            MusicClipManager.instance.SaveCurrentMusicClip(levelMusic);
             audioSourceMusic.clip = levelMusic;
-            //audioSource.loop = true;
+            audioSourceMusic.loop = true;
             audioSourceMusic.volume = volumen;
-            audioSourceMusic.Play();; 
+            audioSourceMusic.Play();
         }
     }
 
@@ -203,32 +204,47 @@ public class PlayerAudioManager : MonoBehaviour
     {
         if (audioSourceMusic != null)
         {
-            //audioSourceMusic.loop = false;
+            audioSourceMusic.loop = false;
             audioSourceMusic.Stop();
-           
         }
+    }
+
+    public void AsegurarMusicAudioSource(int level, float volumen)
+    {
+            Debug.Log("AsegurarMusicAudioSource");
+            audioSourceMusic.clip = GetLevelMusic(level);
     }
 
     // Obtiene el clip de música correspondiente al nivel
     private AudioClip GetLevelMusic(int level)
     {
-        // Añadir mas casos al switch segun los niveles
-        switch (level)
+        // Intenta obtener el clip de MusicClipManager
+        AudioClip savedClip = MusicClipManager.instance.GetCurrentMusicClip();
+
+        if (savedClip != null)
         {
-            case 1:
-                return level1Music;
-            case 2:
-                return level2Music;
-            case 3: 
-                return level3Music;
-            case 4:
-                return movimientoMusic;
-            case 5:
-                return menuMusic;
-            case 6:
-                return levelBase1Antonio;
-            default:
-                return null; 
+            return savedClip;
+        }
+        else
+        {
+            // Añadir mas casos al switch segun los niveles
+            switch (level)
+            {
+                case 1:
+                    return level1Music;
+                case 2:
+                    return level2Music;
+                case 3:
+                    return level3Music;
+                case 4:
+                    return movimientoMusic;
+                case 5:
+                    return menuMusic;
+                case 6:
+                    return levelBase1Antonio;
+                default:
+                    return null;
+            }
         }
     }
 }
