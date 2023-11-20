@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialACambiarElColor: {fileID: 2100000, guid: 754c44393d70e0c44b8216afb83743dd, type: 2}
-  colorStart: {r: 0.58431375, g: 0.5686275, b: 0.5686275, a: 0}
+  colorStart: {r: 1, g: 1, b: 1, a: 0}
   colorEnd: {r: 1, g: 0, b: 0, a: 0}
+  parametroEspera: 10
