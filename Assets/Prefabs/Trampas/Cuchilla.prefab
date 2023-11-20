@@ -154,6 +154,12 @@ MonoBehaviour:
   startDelay: 1
   angle: 45
   speed: 2.5
+  pos: 0
+  rot: 1
+  inverse: 0
+  ejeX: 0
+  ejeY: 0
+  ejeZ: 1
 --- !u!1 &2289637549456302972
 GameObject:
   m_ObjectHideFlags: 0
