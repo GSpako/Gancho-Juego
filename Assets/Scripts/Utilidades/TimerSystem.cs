@@ -28,6 +28,7 @@ public class TimerSystem : MonoBehaviour
             bT = GameObject.FindObjectOfType<BulletTime>();
 
         StartTimer();
+        if (time == 0) time = 0.1f;
     }
 
     // Update is called once per frame

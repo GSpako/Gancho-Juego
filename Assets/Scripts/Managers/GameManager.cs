@@ -79,17 +79,16 @@ public class GameManager : MonoBehaviour
     public void ChangeLevel() {
         DOTween.KillAll();
 
-        musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
         currentLevel = (currentLevel + 1) % levels.Length;
         Debug.Log("vamos al nivel " + currentLevel + " de los [0.."+(levels.Length-1)+"]");
         SceneManager.LoadScene(levels[currentLevel]);
+        musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
     }
 
     public void SetLevel(int level)
     {
         DOTween.KillAll();
 
-        musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
         currentLevel = level;
         Debug.Log("vamos al nivel " + currentLevel);
         Debug.Log(levels.Length);
