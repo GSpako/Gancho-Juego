@@ -17,7 +17,18 @@ public class Oscilator : MonoBehaviour
     [SerializeField] bool ejeY = false;
     [SerializeField] bool ejeZ = false;
 
+    float startXP, startYP, startZP;
+    float startXR, startYR, startZR;
 
+    void start() {
+        startXP = transform.localPosition.x;
+        startYP = transform.localPosition.y;
+        startZP = transform.localPosition.z;
+
+        startXR = transform.localRotation.x;
+        startYR = transform.localRotation.y;
+        startZR = transform.localRotation.z;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,13 +40,13 @@ public class Oscilator : MonoBehaviour
             movimiento = angle * Mathf.Cos((Time.time - startDelay) * speed);
         }
 
-        if (ejeX && pos) { xP = movimiento + transform.localPosition.x; } else { xP = transform.localPosition.x; }
-        if (ejeY && pos) { yP = movimiento + transform.localPosition.y; } else { yP = transform.localPosition.y; }
-        if (ejeZ && pos) { zP = movimiento + transform.localPosition.z; } else { zP = transform.localPosition.z; }
+        if (ejeX && pos) { xP = movimiento + startXP; } else { xP = transform.localPosition.x; }
+        if (ejeY && pos) { yP = movimiento + startYP; } else { yP = transform.localPosition.y; }
+        if (ejeZ && pos) { zP = movimiento + startZP; } else { zP = transform.localPosition.z; }
 
-        if (ejeX && rot) { xR = movimiento + transform.localRotation.x; } else { xR = transform.localRotation.x; }
-        if (ejeY && rot) { yR = movimiento + transform.localRotation.y; } else { yR = transform.localRotation.y; }
-        if (ejeZ && rot) { zR = movimiento + transform.localRotation.z; } else { zR = transform.localRotation.z; }
+        if (ejeX && rot) { xR = movimiento + startXR; } else { xR = transform.localRotation.x; }
+        if (ejeY && rot) { yR = movimiento + startYR; } else { yR = transform.localRotation.y; }
+        if (ejeZ && rot) { zR = movimiento + startZR; } else { zR = transform.localRotation.z; }
 
 
         if (Time.time > startDelay)
