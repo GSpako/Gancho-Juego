@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(Instance);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +84,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("vamos al nivel " + currentLevel + " de los [0.."+(levels.Length-1)+"]");
         SceneManager.LoadScene(levels[currentLevel]);
         musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
+        PlayMusic();
+
     }
 
     public void SetLevel(int level)
@@ -94,6 +97,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(levels.Length);
         SceneManager.LoadScene(levels[currentLevel]);
         musicPlayedForCurrentLevel = false;
+        PlayMusic();
 
     }
 

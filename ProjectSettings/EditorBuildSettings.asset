@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Niveles/LevelAntonio.unity
     guid: f1fc0a034a609664983506fa9eefa1df
+  - enabled: 1
+    path: Assets/Scenes/Niveles/NivelPako 1.unity
+    guid: ee6c9c11f2f8ae743a40e4ecd9dd0250
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class LevelManager : MonoBehaviour
         //GameManager.Instance.set
         if (Player.instance == null) { spawner.Spawn(Spawner.types.player); }
     }
+
 
     // Update is called once per frame
     void Update()

@@ -2535,8 +2535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5dafb6ff62b41448aa9d8c389d59f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 0}
-  levelsParetCo: {fileID: 0}
+  buttonPrefab: {fileID: 5359481963381158169, guid: 24a009df12377ec48b77aae5585be58b, type: 3}
+  levelsParetCo: {fileID: 305007791}
 --- !u!1 &809734145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3726,7 +3726,6 @@ GameObject:
   - component: {fileID: 1428934294}
   - component: {fileID: 1428934293}
   - component: {fileID: 1428934292}
-  - component: {fileID: 1428934295}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -3823,20 +3822,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428934290}
   m_CullTransparentMesh: 1
---- !u!114 &1428934295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428934290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5dafb6ff62b41448aa9d8c389d59f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 5359481963381158169, guid: 24a009df12377ec48b77aae5585be58b, type: 3}
-  levelsParetCo: {fileID: 305007791}
 --- !u!1 &1518909700
 GameObject:
   m_ObjectHideFlags: 0
