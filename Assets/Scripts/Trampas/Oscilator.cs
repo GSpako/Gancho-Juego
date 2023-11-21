@@ -20,7 +20,7 @@ public class Oscilator : MonoBehaviour
     float startXP, startYP, startZP;
     float startXR, startYR, startZR;
 
-    void start() {
+    void Start() {
         startXP = transform.localPosition.x;
         startYP = transform.localPosition.y;
         startZP = transform.localPosition.z;
@@ -29,6 +29,7 @@ public class Oscilator : MonoBehaviour
         startYR = transform.localRotation.y;
         startZR = transform.localRotation.z;
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -48,15 +49,13 @@ public class Oscilator : MonoBehaviour
         if (ejeY && rot) { yR = movimiento + startYR; } else { yR = transform.localRotation.y; }
         if (ejeZ && rot) { zR = movimiento + startZR; } else { zR = transform.localRotation.z; }
 
-
-        if (Time.time > startDelay)
-            if (pos) {
-                transform.localPosition = new Vector3(xP, yP, zP);
-            }
-            if (rot)
-            {
-                transform.localRotation = Quaternion.Euler(xR, yR, zR);
-            }
+        if (pos) {
+            transform.localPosition = new Vector3(xP, yP, zP);
+        }
+        if (rot)
+        {
+            transform.localRotation = Quaternion.Euler(xR, yR, zR);
+        }
 
 
     }
