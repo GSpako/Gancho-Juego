@@ -18,12 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Niveles/LevelBase 1.unity
     guid: e871bdfef46c04d14b0c03470dd6edc3
   - enabled: 1
-    path: Assets/Scenes/Niveles/NivelPako.unity
+    path: Assets/Scenes/Niveles/Pako/Hacha/NivelPako.unity
     guid: 94b17dbaf27296d40a3359b606f13f14
   - enabled: 1
     path: Assets/Scenes/Niveles/LevelAntonio.unity
     guid: f1fc0a034a609664983506fa9eefa1df
   - enabled: 1
-    path: Assets/Scenes/Niveles/NivelPako 1.unity
+    path: Assets/Scenes/Niveles/Pako/Laser/NivelPako 1.unity
     guid: ee6c9c11f2f8ae743a40e4ecd9dd0250
   m_configObjects: {}
