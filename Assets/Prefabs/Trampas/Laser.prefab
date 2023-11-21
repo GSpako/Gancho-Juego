@@ -588,7 +588,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.125
+  m_Radius: 0.6
   m_Height: 100
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -638,5 +638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8e458bea482444b92fbe7a4688ce95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0.8
   startPoint: {fileID: 2065439809420773134}
   endPoint: {fileID: 2803391151808824149}
