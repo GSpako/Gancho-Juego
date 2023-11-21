@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Bits: 64
   grounded: 0
   extraRayDistance: 0.23
-  maxSlopeAngle: 41
+  maxSlopeAngle: 60
   maxSlideTime: 20
   slideForce: 400
   slideYScale: 0.5
