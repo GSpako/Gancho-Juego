@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
@@ -12,6 +13,8 @@ public class CanvasBehaviour : MonoBehaviour
     [SerializeField] float messageTime = 1;
     [SerializeField] Color defColorcolor = Color.white;
     [SerializeField] TMPro.TMP_FontAsset fontStyle;
+    [SerializeField] RectTransform mensajesRT;
+    [SerializeField] Sprite textImage;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,17 +46,30 @@ public class CanvasBehaviour : MonoBehaviour
         Log(msg, defColorcolor);
     }
     public void Log(string msg, Color c) { 
-        GameObject go = new GameObject("Mensaje",typeof(RectTransform));
+        GameObject img = new GameObject("MensajeImage", typeof(RectTransform));
+        img.AddComponent<Image>();
+        img.GetComponent<RectTransform>().SetParent(mensajesRT);
+        GameObject go = new GameObject("MensajeText", typeof(RectTransform));
+        RectTransform rt = go.GetComponent<RectTransform>();
+        img.GetComponent<Image>().DOFade(0, messageTime * 0.9f);
+
+        img.GetComponent<Image>().raycastTarget = false;
+        img.GetComponent<Image>().sprite = textImage;
+        img.GetComponent<RectTransform>().localScale = new Vector3(2, 1, 0);
+
+        rt.GetComponent<RectTransform>().SetParent(img.GetComponent<RectTransform>());
+
         go.AddComponent<TextMeshProUGUI>().text = msg;
         go.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-        go.GetComponent<TextMeshProUGUI>().DOFade(0, messageTime*0.9f);
+        go.GetComponent<TextMeshProUGUI>().DOFade(0, messageTime * 0.9f);
         go.GetComponent<TextMeshProUGUI>().font = fontStyle;
+        go.GetComponent<TextMeshProUGUI>().fontSize = 36;
         go.GetComponent<TextMeshProUGUI>().color = c;
-        go.GetComponent<RectTransform>().SetParent(GetComponent<RectTransform>());
-        go.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        go.GetComponent<RectTransform>().DOLocalMove(new Vector2(0, 200), messageTime*0.9f, false);
-        go.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 600f) ;
-        go.GetComponent<TextMeshProUGUI>().raycastTarget = false;   
-        Destroy(go,messageTime);
+        go.GetComponent<TextMeshProUGUI>().raycastTarget = false;
+
+        rt.DOShakeAnchorPos(messageTime*0.1f,strength:10, vibrato:50, randomness:10,snapping:false);
+        //rt.DOLocalMove(new Vector2(-200, 0), messageTime*0.9f, false);
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 600f) ;
+        Destroy(img,messageTime);
     }
 }
