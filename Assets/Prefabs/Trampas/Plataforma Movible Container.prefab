@@ -216,4 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntoA: {fileID: 2481703901706507377}
   puntoB: {fileID: 6727059834721934360}
-  velocidad: 0.2
+  velocidad: 0.02
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 1024
