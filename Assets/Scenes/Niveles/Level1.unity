@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5576,10 +5576,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 70.4
       objectReference: {fileID: 0}
-    - target: {fileID: 1784780280904358282, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: sloMo
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1882638238979500774, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_fontSize
       value: 20.4
@@ -5646,7 +5642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2285953595610719625, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -6.55
+      value: -6.549988
       objectReference: {fileID: 0}
     - target: {fileID: 2445078741779162595, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5852,14 +5848,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -103.7
       objectReference: {fileID: 0}
-    - target: {fileID: 5513695653630904956, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: sliderObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5513695653630904956, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: slowmoCharge
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5890086810388307557, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -9
@@ -5949,8 +5937,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5201962270717713835, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
