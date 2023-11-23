@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class laserScript : MonoBehaviour {
-	public float radius = 0.5f;
-	public int vertices = 3;
+    private const float radius = 2.25f;
+	private const int vertices = 8;
 	public Transform startPoint;
 	public Transform endPoint;
 	LineRenderer laserLine;
