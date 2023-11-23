@@ -427,7 +427,7 @@ public class PlayerMovement : MonoBehaviour
 
     void resetDash() //RESETEAR DASHES SI APROPIADO
     {
-        if (Time.time > lastDashM + dashCD && recharge)
+        if ((Time.time > lastDashM + dashCD && recharge) || (grounded || isWallRunning))
         {
             currentDashes = maxDashes;
             recharge = false;
