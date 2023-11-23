@@ -51,7 +51,7 @@ public class BulletTime : MonoBehaviour
 
         if(bloquear) {return;}
 
-        if (Input.GetKeyDown(KeyCode.E) && slowmoCharge.value > slowmoCharge.minValue && !bloquearMenus) {
+        if (Input.GetMouseButtonDown(1) && slowmoCharge.value > slowmoCharge.minValue && !bloquearMenus) {
 
             slowMode = !slowMode;
 
@@ -66,6 +66,8 @@ public class BulletTime : MonoBehaviour
         slowMode = true;
         rate = decreaserate;
         Time.timeScale = timeReductionRate;
+        PlayerCamera.instance.sensibilityX = PlayerCamera.instance.sensibilityX / timeReductionRate;
+        PlayerCamera.instance.sensibilityY = PlayerCamera.instance.sensibilityY / timeReductionRate;
     }
 
     void desactivarSlow() {
@@ -73,6 +75,9 @@ public class BulletTime : MonoBehaviour
         slowMode = false;
         rate = -refilrate;
         Time.timeScale = 1.0f;
+        PlayerCamera.instance.sensibilityX = PlayerCamera.instance.sensibilityX *  timeReductionRate;
+        PlayerCamera.instance.sensibilityY = PlayerCamera.instance.sensibilityY *  timeReductionRate;
+
     }
 
     private void OnDestroy()

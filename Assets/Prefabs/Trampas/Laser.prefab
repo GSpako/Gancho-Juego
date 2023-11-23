@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDelay: 0
   angle: 10
-  speed: 1
+  speed: 2
   pos: 0
   rot: 0
   inverse: 0
@@ -536,7 +536,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.4
+  m_Radius: 1
   m_Height: 80
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8e458bea482444b92fbe7a4688ce95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 2
   vertices: 8
   startPoint: {fileID: 2065439809420773134}
   endPoint: {fileID: 2803391151808824149}
