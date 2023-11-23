@@ -12,11 +12,13 @@ public class SpringTrap : MonoBehaviour
     [Header("Muelle malo >_<")]
     public bool esMuelleBueno = true;
     public float tiempoDeVidaMuelleMalo = 1f;
+    public Animator animator; // El animador de MuelleCuadradado el papito
 
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        animator = GetComponent<Animator>();
     }
 
 
@@ -38,6 +40,7 @@ public class SpringTrap : MonoBehaviour
 
     private void LanzarJugador()
     {
+        animator.SetBool("SaltoMuelle", true);
         PlayerAudioManager.instance.PlayMuelleSound();
         Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
     }
@@ -45,6 +48,7 @@ public class SpringTrap : MonoBehaviour
     private IEnumerator ActivarCooldown()
     {
         yield return new WaitForSeconds(cooldown);
+        animator.SetBool("SaltoMuelle", false);
     }
 
     private void LanzarMatarJugador()
