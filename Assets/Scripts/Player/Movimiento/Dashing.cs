@@ -63,7 +63,9 @@ public class Dashing : MonoBehaviour
         {
             return;
         }
-        
+
+        pm.lastDashM = Time.time;
+        pm.recharge = true;
         // empezar el timer
         dashCooldownTimer = dashCooldown;
         

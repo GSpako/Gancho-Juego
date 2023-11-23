@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerObj;
 
     [Header("Dash")]
+    public bool recharge;
+    public float lastDashM;
+    public float dashCD;
     public float dashSpeed;
     public float dashSpeedChangeFactor;
     public float maxDashes;
@@ -142,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
 
         startYScale = transform.localScale.y;
         slideStartYScale = transform.localScale.y;
+
+        lastDashM = -dashCD;
 
         speedText = CanvasReferences.instance.speedText;
         movStateText = CanvasReferences.instance.movStateText;
@@ -422,9 +427,10 @@ public class PlayerMovement : MonoBehaviour
 
     void resetDash() //RESETEAR DASHES SI APROPIADO
     {
-        if (grounded || isWallRunning)
+        if (Time.time > lastDashM + dashCD && recharge)
         {
             currentDashes = maxDashes;
+            recharge = false;
         }
     }
 
