@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
         currentLevel = (currentLevel + 1) % levels.Length;
         Debug.Log("vamos al nivel " + currentLevel + " de los [0.."+(levels.Length-1)+"]");
-        SceneManager.LoadScene(levels[currentLevel]);
+        SceneManager.LoadScene(levels[currentLevel], LoadSceneMode.Single);
         musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
         PlayMusic();
 
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         currentLevel = level;
         Debug.Log("vamos al nivel " + currentLevel);
         Debug.Log(levels.Length);
-        SceneManager.LoadScene(levels[currentLevel]);
+        SceneManager.LoadScene(levels[currentLevel], LoadSceneMode.Single);
         musicPlayedForCurrentLevel = false;
         PlayMusic();
 
@@ -145,6 +145,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Musica Pako OK");
                     break;
                 default:
+                    PlayerAudioManager.instance.PlayLevelMusic(1, 0.10f);
                     break;
             }
 

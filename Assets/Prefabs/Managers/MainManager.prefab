@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 6122241511995597492}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1226840400455442057
 MonoBehaviour:
@@ -56,6 +56,7 @@ MonoBehaviour:
   - NivelPako 1
   - LevelAntonio
   - Movimiento
+  - NivelPako 1
   sceneName: 
   musicPlayedForCurrentLevel: 0
 --- !u!1001 &4882823052183932061
@@ -114,6 +115,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2553536390824887136, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
       propertyPath: NivelPako
       value: 
@@ -126,6 +131,10 @@ PrefabInstance:
       propertyPath: levelAntonio
       value: 
       objectReference: {fileID: 8300000, guid: 945859608a3442a4193753c2721affac, type: 3}
+    - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
+      propertyPath: audioSourceMusic
+      value: 
+      objectReference: {fileID: 8192650997841160737}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -134,5 +143,10 @@ PrefabInstance:
 --- !u!4 &6122241511995597492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1672479806109183529, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
+  m_PrefabInstance: {fileID: 4882823052183932061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8192650997841160737 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3634793160465540796, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
   m_PrefabInstance: {fileID: 4882823052183932061}
   m_PrefabAsset: {fileID: 0}
