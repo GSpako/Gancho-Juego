@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         DOTween.KillAll();
 
         currentLevel = (currentLevel + 1) % levels.Length;
-        Debug.Log("vamos al nivel " + currentLevel + " de los [0.."+(levels.Length-1)+"]");
+        //Debug.Log("vamos al nivel " + currentLevel + " de los [0.."+(levels.Length-1)+"]");
         SceneManager.LoadScene(levels[currentLevel], LoadSceneMode.Single);
         musicPlayedForCurrentLevel = false; // cambiamos de nivel, y ya puede haber nueva musica
         PlayMusic();
@@ -93,8 +93,8 @@ public class GameManager : MonoBehaviour
         DOTween.KillAll();
 
         currentLevel = level;
-        Debug.Log("vamos al nivel " + currentLevel);
-        Debug.Log(levels.Length);
+        //Debug.Log("vamos al nivel " + currentLevel);
+        //Debug.Log(levels.Length);
         SceneManager.LoadScene(levels[currentLevel], LoadSceneMode.Single);
         musicPlayedForCurrentLevel = false;
         PlayMusic();
@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
                     break;
                 default:
                     PlayerAudioManager.instance.PlayLevelMusic(1, 0.10f);
+                    Debug.Log("Musica NIVEL NO OFICIAL OK");
                     break;
             }
 
