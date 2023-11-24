@@ -12,11 +12,13 @@ public class SpringTrap : MonoBehaviour
     [Header("Muelle malo >_<")]
     public bool esMuelleBueno = true;
     public float tiempoDeVidaMuelleMalo = 1f;
+    private Animator animatorPadre; // El animador de MuelleCuadradado el papito
 
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        animatorPadre = GetComponentInParent<Animator>();
     }
 
 
@@ -24,6 +26,8 @@ public class SpringTrap : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            animatorPadre.SetFloat("SaltoMuelles", 1.1f);
+            StartCoroutine(ResetearSaltoMuelles());
             if (esMuelleBueno)
             {
                 LanzarJugador();
@@ -57,5 +61,10 @@ public class SpringTrap : MonoBehaviour
     {
         yield return new WaitForSeconds(tiempoDeVidaMuelleMalo);
         Player.instance.kill();
+    }
+    private IEnumerator ResetearSaltoMuelles()
+    {
+        yield return new WaitForSeconds(1.0f); // Espera 1 segundo
+        animatorPadre.SetFloat("SaltoMuelles", 0.0f);
     }
 }
