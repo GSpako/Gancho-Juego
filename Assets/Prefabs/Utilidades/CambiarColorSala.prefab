@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9076373c111cd4cae341460fc3e78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialACambiarElColor: {fileID: 2100000, guid: 754c44393d70e0c44b8216afb83743dd, type: 2}
   colorStart: {r: 1, g: 1, b: 1, a: 0}
   colorEnd: {r: 1, g: 0, b: 0, a: 0}
-  parametroEspera: 10
+  nombreMaterialACambiar: ParedesSala
