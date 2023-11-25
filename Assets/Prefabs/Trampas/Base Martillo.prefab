@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5589458516403032382}
   - component: {fileID: 5232048229411696558}
   - component: {fileID: 2444658007082314595}
-  - component: {fileID: 3474369275292770334}
   m_Layer: 8
   m_Name: Cabeza Martillo (1)
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2425439041802463870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.112, z: -0.060001373}
-  m_LocalScale: {x: 1.2968026, y: 0.6333373, z: 0.95103943}
+  m_LocalScale: {x: 1.350591, y: 0.6333373, z: 0.95103943}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1526681775352261420}
@@ -104,23 +103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3474369275292770334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2425439041802463870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd79d9c1339bb4f42a8d1f2c2f1ea89d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiempoParaMatarJugador: 1
-  fuerzaDeLanzamiento: 200
-  axeTrap: {fileID: 8065723400036154512}
+  m_Size: {x: 0.5784295, y: 1, z: 1}
+  m_Center: {x: 0.024318017, y: 0, z: 0}
 --- !u!1 &3034667030869985237
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,8 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd79d9c1339bb4f42a8d1f2c2f1ea89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoParaMatarJugador: 1
-  fuerzaDeLanzamiento: 200
+  tiempoParaMatarJugador: 0.5
+  fuerzaDeLanzamiento: 150
   axeTrap: {fileID: 8065723400036154512}
 --- !u!1 &8191376131015822838
 GameObject:

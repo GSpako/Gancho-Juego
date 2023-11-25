@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5247911147323111449}
   - component: {fileID: 2351566087340558936}
   - component: {fileID: 8344419787958682862}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 311ef697af308ae44b306778d7df0b3f, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 311ef697af308ae44b306778d7df0b3f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,6 +242,10 @@ PrefabInstance:
     - target: {fileID: -2837933241680406781, guid: 311ef697af308ae44b306778d7df0b3f, type: 3}
       propertyPath: m_Name
       value: marco y collider
+      objectReference: {fileID: 0}
+    - target: {fileID: -2837933241680406781, guid: 311ef697af308ae44b306778d7df0b3f, type: 3}
+      propertyPath: m_TagString
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 311ef697af308ae44b306778d7df0b3f, type: 3}
       propertyPath: m_Name
@@ -292,8 +296,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.008415934, y: 0.03728913, z: 0.009531568}
-  m_Center: {x: 0.0000044902326, y: -0.019212333, z: -0.00023421251}
+  m_Size: {x: 0.008415934, y: 0.04679892, z: 0.009531568}
+  m_Center: {x: 0.000004490233, y: -0.014457426, z: -0.00023421252}
 --- !u!1 &8234980487560850566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 311ef697af308ae44b306778d7df0b3f, type: 3}
