@@ -178,7 +178,7 @@ RectTransform:
   - {fileID: 4302554318629483009}
   - {fileID: 218617661639810500}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -280,7 +280,7 @@ MonoBehaviour:
   defColorcolor: {r: 1, g: 0, b: 0, a: 1}
   fontStyle: {fileID: 11400000, guid: ec735e57631a66445828fd9a8f6f42d4, type: 2}
   mensajesRT: {fileID: 218617661639810500}
-  textImage: {fileID: 21300000, guid: ec90b2a8d111da04fae5b2d2963cc95d, type: 3}
+  textImage: {fileID: 21300000, guid: 99dfedc76c6ac4c44a8af1771e2964c4, type: 3}
 --- !u!114 &7110837756075674967
 MonoBehaviour:
   m_ObjectHideFlags: 0
