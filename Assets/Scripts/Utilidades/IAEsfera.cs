@@ -6,7 +6,7 @@ public class IAEsfera : MonoBehaviour
 {
     const float DeltaTOAI = 0.1f;
     float TOAI = 0.0f;
-    float vidaPersonaje = 100.0f;
+    //float vidaPersonaje = 100.0f;
     const float vidaPersonajeMaxima = 3.0f;
 
     bool inState;
@@ -50,7 +50,7 @@ public class IAEsfera : MonoBehaviour
                     if(inState == true)
                     {
                         inState = false;
-                        vidaPersonaje = vidaPersonajeMaxima;
+                        //vidaPersonaje = vidaPersonajeMaxima;
                     }
 
                     Wander();

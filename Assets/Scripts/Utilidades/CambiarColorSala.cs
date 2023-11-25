@@ -10,6 +10,8 @@ public class CambiarColorSala : MonoBehaviour
     [Header("Variables uwu")]
     public Color colorStart;    // Color inicial
     public Color colorEnd;      // Color final del material
+    [Tooltip("Poner el nombre del material que quieres cambiar, y aplicar ese material a varias cosas")]
+    public string nombreMaterialACambiar = "ParedesSala";
 
     private Dictionary<Renderer, Color> originalColors = new Dictionary<Renderer, Color>();
 
@@ -43,12 +45,12 @@ public class CambiarColorSala : MonoBehaviour
 
     private void EncontrarParedesSala()
     {
-        // Encontrar todos los Renderers con el material "ParedesSala"
+        // Encontrar todos los Renderers con el material "nombreMaterialACambiar"
         Renderer[] renderers = GameObject.FindObjectsOfType<Renderer>();
 
         foreach (var renderer in renderers)
         {
-            if (renderer.material.name.Contains("ParedesSala"))
+            if (renderer.material.name.Contains(nombreMaterialACambiar))
             {
                 // Almacenar el color original
                 originalColors[renderer] = renderer.material.color;

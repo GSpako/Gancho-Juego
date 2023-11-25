@@ -10355,15 +10355,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277399964483662248, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -391.31
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2277399964483662248, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.51
+      value: -21.37
       objectReference: {fileID: 0}
     - target: {fileID: 2277399964483662248, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 421
+      value: -20.98
       objectReference: {fileID: 0}
     - target: {fileID: 2277399964483662248, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21676,6 +21676,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6966152057902698493, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127739217470548975, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
+      propertyPath: camaraSeguridadFotoSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 99d08b2e884afc44285cd57b9181c92d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
