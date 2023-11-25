@@ -154,11 +154,11 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 128
-  wallRunForce: 30
-  wallRunSpeed: 9
+  wallRunForce: 40
+  wallRunSpeed: 8
   wallCheckDistance: 0.3
   wallRunDelay: 0.25
-  muroAtraccion: 20
+  muroAtraccion: 15
   isWallRunning: 0
   wallJumpUpForce: 10
   wallJumpSideForce: 400
@@ -190,10 +190,9 @@ MonoBehaviour:
   orientation: {fileID: 8897026813322220567}
   playerCamera: {fileID: 922799581603630265}
   playerCameraScript: {fileID: 6556596865195063743}
-  dashForce: 40
-  dashUpwardForce: 2.5
+  dashForce: 35
+  dashUpwardForce: 1
   dashDuration: 0.75
-  maxDashYSpeed: 5
   useCameraForward: 1
   allowAllDirections: 1
   disableGravity: 1

@@ -17,7 +17,6 @@ public class Dashing : MonoBehaviour
     public float dashForce = 10f;
     public float dashUpwardForce;
     public float dashDuration = 0.25f;
-    public float maxDashYSpeed;
 
     [Header("Settings")]
     public bool useCameraForward = true;
@@ -71,11 +70,9 @@ public class Dashing : MonoBehaviour
         
         pm.isDashing = true;
         pm.currentDashes--;
-        pm.maxYSpeed = maxDashYSpeed;
         playerCameraScript.DoFov(cameraDashFov);
         //Efecto de sonido de dash
         PlayerAudioManager.instance.PlayDashSound();
-
 
         // si usar el Forward de la camara o el del orientation (jugador)
         if(useCameraForward)
