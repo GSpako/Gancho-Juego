@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CambiarColorSala : MonoBehaviour
@@ -8,12 +7,11 @@ public class CambiarColorSala : MonoBehaviour
     [Header("Singleton")]
     public static CambiarColorSala instance;
 
-    [Header("Referencias")]
-    public Material materialACambiarElColor;
     [Header("Variables uwu")]
-    private Color colorInicial; // Para almacenar el color inicial
     public Color colorStart;    // Color inicial
     public Color colorEnd;      // Color final del material
+
+    private Dictionary<Renderer, Color> originalColors = new Dictionary<Renderer, Color>();
 
     private void Awake()
     {
@@ -26,7 +24,8 @@ public class CambiarColorSala : MonoBehaviour
             Destroy(gameObject);
         }
 
-        colorInicial = materialACambiarElColor.color;
+        // Buscar todas las paredes con el material "ParedesSala"
+        EncontrarParedesSala();
     }
 
     private void Update()
@@ -34,12 +33,35 @@ public class CambiarColorSala : MonoBehaviour
         float actualTime = TimerSystem.instance.getRemainingTime();
         float max = TimerSystem.instance.getMaxTime();
         float percentage = actualTime / max;
-        materialACambiarElColor.color = Color.Lerp(colorStart, colorEnd, 1 - percentage);
+
+        // Modificar el color de todas las paredes encontradas
+        foreach (var renderer in originalColors.Keys)
+        {
+            renderer.material.color = Color.Lerp(colorStart, colorEnd, 1 - percentage);
+        }
     }
 
-    // Función para restaurar el color inicial del material :O
-    public void RestaurarColorInicial()
+    private void EncontrarParedesSala()
     {
-        materialACambiarElColor.color = colorInicial;
+        // Encontrar todos los Renderers con el material "ParedesSala"
+        Renderer[] renderers = GameObject.FindObjectsOfType<Renderer>();
+
+        foreach (var renderer in renderers)
+        {
+            if (renderer.material.name.Contains("ParedesSala"))
+            {
+                // Almacenar el color original
+                originalColors[renderer] = renderer.material.color;
+            }
+        }
+    }
+
+    // Función para restaurar el color original de todas las paredes :O
+    public void RestaurarColoresOriginales()
+    {
+        foreach (var pair in originalColors)
+        {
+            pair.Key.material.color = pair.Value;
+        }
     }
 }
