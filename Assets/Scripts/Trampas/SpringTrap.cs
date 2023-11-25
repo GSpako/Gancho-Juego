@@ -13,6 +13,12 @@ public class SpringTrap : MonoBehaviour
     public bool esMuelleBueno = true;
     public float tiempoDeVidaMuelleMalo = 1f;
     private Animator animatorPadre; // El animador de MuelleCuadradado el papito
+    public Vector3 direccionDeLanzamiento = Vector3.up; // Dirección de lanzamiento modificable desde el editor
+    public float gizmoLineaLongitud = 5f; // Longitud de la línea del gizmo
+
+
+    // AVISO AVISO
+    // gracias por leer :D
 
 
     private void Awake()
@@ -34,8 +40,8 @@ public class SpringTrap : MonoBehaviour
                 StartCoroutine(ActivarCooldown());
             } else if (!esMuelleBueno) 
             {
-                LanzarMatarJugador();
-                StartCoroutine(MatarJugadorDespuesDeTiempo());
+                LanzarJugadorMuelleMalo(direccionDeLanzamiento);
+                StartCoroutine(ActivarCooldown());
             }
         }
     }
@@ -46,17 +52,34 @@ public class SpringTrap : MonoBehaviour
         Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
     }
 
+    // SE TOCA EN EL ESFERA 001 ES DONDE ESTA EL SCRIPT AHHHH, LO SIENTO NO SABIA DE OTRA MANERA EL COLLIDER
+    private void LanzarJugadorMuelleMalo(Vector3 direccionDeLanzamiento)
+    {
+        PlayerAudioManager.instance.PlayMuelleSound();
+        Player.instance.GetComponent<Rigidbody>().AddForce(direccionDeLanzamiento * fuerzaDeSalto, ForceMode.Impulse);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + direccionDeLanzamiento * gizmoLineaLongitud);
+        Gizmos.DrawLine(transform.position, transform.position + direccionDeLanzamiento * gizmoLineaLongitud + Vector3.up * 0.2f);
+        Gizmos.DrawLine(transform.position, transform.position + direccionDeLanzamiento * gizmoLineaLongitud - Vector3.up * 0.2f);
+    }
+
     private IEnumerator ActivarCooldown()
     {
         yield return new WaitForSeconds(cooldown);
     }
 
+    // Ya no mata el muelle, tuvo su arco de redencion
     private void LanzarMatarJugador()
     {
         PlayerAudioManager.instance.PlayMuelleSound();
         Player.instance.GetComponent<Rigidbody>().AddForce(Vector3.up * fuerzaDeSalto * 50f, ForceMode.Impulse);
     }
 
+    // Ya no mata el muelle, tuvo su arco de redencion
     private IEnumerator MatarJugadorDespuesDeTiempo()
     {
         yield return new WaitForSeconds(tiempoDeVidaMuelleMalo);
