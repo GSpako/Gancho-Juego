@@ -14,6 +14,7 @@ public class CanvasReferences : MonoBehaviour
     public TextMeshProUGUI movStateText;
     public Slider sloMo;
     public PauseMenuScript pause_script;
+    public GameObject indicator;
 
     public void Awake()
     {

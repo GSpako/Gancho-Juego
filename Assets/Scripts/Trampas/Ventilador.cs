@@ -6,6 +6,8 @@ public class Ventilador : MonoBehaviour
 {
     [SerializeField] float force;
     [SerializeField] Transform aspasRotator;
+
+
     // Start is called before the first frame update
     void Start()
     {

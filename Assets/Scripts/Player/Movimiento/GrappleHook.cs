@@ -34,7 +34,7 @@ public class GrappleHook : MonoBehaviour
     private void Start()
     {
         pauseMenuScript = CanvasReferences.instance.pause_script;
-        indicator = GameObject.Find("RangeIndic");
+        indicator = CanvasReferences.instance.indicator;
         grapling = false;
     }
     private void Update()
