@@ -55,7 +55,7 @@ public class CanvasBehaviour : MonoBehaviour
 
         img.GetComponent<Image>().raycastTarget = false;
         img.GetComponent<Image>().sprite = textImage;
-        img.GetComponent<RectTransform>().localScale = new Vector3(2, 1, 0);
+        img.GetComponent<RectTransform>().localScale = new Vector3(2*1.5f, 1*1.5f, 0);
 
         rt.GetComponent<RectTransform>().SetParent(img.GetComponent<RectTransform>());
 

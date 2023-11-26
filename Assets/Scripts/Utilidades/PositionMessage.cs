@@ -9,7 +9,7 @@ public class PositionMessage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
-            CanvasBehaviour.instance.Log(mensaje,Color.cyan);
+            CanvasBehaviour.instance.Log(mensaje,Color.black);
         }
     }
 }

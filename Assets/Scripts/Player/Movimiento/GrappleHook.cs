@@ -17,6 +17,7 @@ public class GrappleHook : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject grappleGunTip;
     [SerializeField] private PauseMenuScript pauseMenuScript;
+    [SerializeField] private GameObject ganchoPOV;
 
 
     [Header("Parameters")]
@@ -77,6 +78,7 @@ public class GrappleHook : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, enganchables))
         {
             grapling = true;
+            ganchoPOV.SetActive(false);
 
             Vector3 pos = hit.point;
             //Visualize(pos);
@@ -120,6 +122,7 @@ public class GrappleHook : MonoBehaviour
     public void stopGrapple()
     {
         collision_transform = null;
+        ganchoPOV.SetActive(true);
 
         grapling = false;
         Destroy(springjoint);
