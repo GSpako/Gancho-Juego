@@ -10,6 +10,7 @@ public class GrappleHook : MonoBehaviour
     private Transform collision_transform;
     private Vector3 collision_transform_initPosition;
     private Vector3 collPos;
+    private GameObject indicator;
 
     public bool grapling;
 
@@ -33,12 +34,20 @@ public class GrappleHook : MonoBehaviour
     private void Start()
     {
         pauseMenuScript = CanvasReferences.instance.pause_script;
+        indicator = GameObject.Find("RangeIndic");
         grapling = false;
     }
     private void Update()
     {
         if(!GameManager.Instance.pauseMenuScript.isGamePaused)
         {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), grappleLength, enganchables)) {
+                indicator.SetActive(true);
+            }
+            else
+            {
+                indicator.SetActive(false);
+            }
             if (Input.GetKeyDown(grappleB1))
             {
                 throwGrapple();

@@ -63,13 +63,14 @@ public class CanvasBehaviour : MonoBehaviour
         go.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
         go.GetComponent<TextMeshProUGUI>().DOFade(0, messageTime * 0.9f);
         go.GetComponent<TextMeshProUGUI>().font = fontStyle;
-        go.GetComponent<TextMeshProUGUI>().fontSize = 36;
+        go.GetComponent<TextMeshProUGUI>().fontSize = 28; // cambien esto tambien de 36 a 30
         go.GetComponent<TextMeshProUGUI>().color = c;
         go.GetComponent<TextMeshProUGUI>().raycastTarget = false;
 
         rt.DOShakeAnchorPos(messageTime*0.1f,strength:10, vibrato:50, randomness:10,snapping:false);
         //rt.DOLocalMove(new Vector2(-200, 0), messageTime*0.9f, false);
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 600f) ;
+        rt.anchoredPosition = new Vector2(5f, 5f); // para subir arriba la derecha un pelin el texto
         Destroy(img,messageTime);
     }
 }
