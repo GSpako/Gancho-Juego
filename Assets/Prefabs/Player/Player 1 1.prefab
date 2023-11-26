@@ -217,7 +217,7 @@ MonoBehaviour:
   pauseMenuScript: {fileID: 0}
   grappleLength: 100
   ropewidth: 0.01
-  ropecolor: {r: 1, g: 1, b: 1, a: 1}
+  ropecolor: {r: 0, g: 0, b: 0, a: 1}
   enganchables:
     serializedVersion: 2
     m_Bits: 961
