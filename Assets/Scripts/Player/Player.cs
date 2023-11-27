@@ -50,6 +50,9 @@ public class Player : MonoBehaviour
 
     public void kill()
     {
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<Dashing>().enabled = false;
+        GetComponent<GrappleHook>().enabled = false;
         if (!isDying)
         {
             isDying = true;
@@ -60,7 +63,7 @@ public class Player : MonoBehaviour
             //GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerCamera.instance.doTilt(new float[] { -20, 20 }[Random.Range(0, 2)]);
             PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
-            GetComponent<PlayerMovement>().enabled = false;
+            //GetComponent<PlayerMovement>().enabled = false;
             camera.enabled = false;
             Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime * 0.9f);
         }
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 9 && !isDying)
+        if ((deathLayer.value & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer && !isDying)
         {
             kill();
         }
