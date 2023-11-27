@@ -19,7 +19,7 @@ public class Ventilador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aspasRotator.Rotate(0,Time.deltaTime * 50 * force,0);
+        aspasRotator.Rotate(Time.deltaTime * 50 * force, 0,0);
     }
 
     private void OnTriggerStay(Collider other)
