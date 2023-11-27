@@ -1607,7 +1607,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9314be9b3e141334883fda9496671c45, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: af089ba3f236b004fb2bb64119f294d8, type: 2}
+      objectReference: {fileID: 2100000, guid: b25ae96b815b853409568a31546deb7d, type: 2}
     - target: {fileID: 919132149155446097, guid: 9314be9b3e141334883fda9496671c45, type: 3}
       propertyPath: m_Name
       value: SueloDelante
@@ -1746,6 +1746,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9314be9b3e141334883fda9496671c45, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 15fe0ab60c145234c851a9500938071f, type: 2}
     - target: {fileID: 919132149155446097, guid: 9314be9b3e141334883fda9496671c45, type: 3}
       propertyPath: m_Name
       value: Techo
@@ -3346,11 +3350,11 @@ PrefabInstance:
     - target: {fileID: -7918335002988649766, guid: ddb1f0b0f31af024dafe848b4854cebb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0270cd6310db34247b0c9c325895e169, type: 2}
+      objectReference: {fileID: 2100000, guid: be9382e790a0e4b45bf176da553d5add, type: 2}
     - target: {fileID: 882129737928793925, guid: ddb1f0b0f31af024dafe848b4854cebb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0270cd6310db34247b0c9c325895e169, type: 2}
+      objectReference: {fileID: 2100000, guid: be9382e790a0e4b45bf176da553d5add, type: 2}
     - target: {fileID: 919132149155446097, guid: ddb1f0b0f31af024dafe848b4854cebb, type: 3}
       propertyPath: m_Name
       value: ParedIzq
@@ -5793,7 +5797,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9314be9b3e141334883fda9496671c45, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: af089ba3f236b004fb2bb64119f294d8, type: 2}
+      objectReference: {fileID: 2100000, guid: b25ae96b815b853409568a31546deb7d, type: 2}
     - target: {fileID: 919132149155446097, guid: 9314be9b3e141334883fda9496671c45, type: 3}
       propertyPath: m_Name
       value: "SueloDetr\xE1s"
