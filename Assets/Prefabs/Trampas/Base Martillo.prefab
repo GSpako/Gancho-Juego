@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5589458516403032382}
   - component: {fileID: 5232048229411696558}
   - component: {fileID: 2444658007082314595}
+  - component: {fileID: 1178887315629058748}
   m_Layer: 8
   m_Name: Cabeza Martillo (1)
   m_TagString: Untagged
@@ -105,6 +106,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5784295, y: 1, z: 1}
   m_Center: {x: 0.024318017, y: 0, z: 0}
+--- !u!54 &1178887315629058748
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2425439041802463870}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3034667030869985237
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,12 +159,12 @@ Transform:
   m_GameObject: {fileID: 3034667030869985237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.521517, y: 5.178, z: 21.364368}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7.7855725, y: 7.7855725, z: 7.7855725}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1526681775352261420}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8065723400036154512
 MonoBehaviour:
@@ -152,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuerzaDeLanzamiento: 10
   cooldownOscilacion: 3
-  oscilacionMaxima: 80
+  oscilacionMaxima: 120
   velocidadOscilacion: 200
   anguloActual: 0
 --- !u!1 &4952422156557767170
@@ -168,6 +196,7 @@ GameObject:
   - component: {fileID: 5086202023477834515}
   - component: {fileID: 5739490058660851246}
   - component: {fileID: 1248511905857580516}
+  - component: {fileID: 5333135772112753533}
   m_Layer: 8
   m_Name: Cabeza Martillo
   m_TagString: Untagged
@@ -276,6 +305,33 @@ MonoBehaviour:
   tiempoParaMatarJugador: 0.5
   fuerzaDeLanzamiento: 150
   axeTrap: {fileID: 8065723400036154512}
+--- !u!54 &5333135772112753533
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952422156557767170}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8191376131015822838
 GameObject:
   m_ObjectHideFlags: 0
