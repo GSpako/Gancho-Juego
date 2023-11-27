@@ -29,9 +29,13 @@ Material:
         m_Texture: {fileID: 2800000, guid: 4952e9e5ed6889d47b476eccf210cbef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 4, y: 2}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 3bd59bcf5ac6f354f98a195bedea53bf, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4, y: 2}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -42,6 +46,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _BumpScale: 2
+    - _Glossiness: 0.58
+    - _Metallic: 0.79
     m_Colors: []
   m_BuildTextureStacks: []
