@@ -160,6 +160,9 @@ MonoBehaviour:
   laserSpeed: 10
   laserMaxLength: 40
   playerPositionDelay: 1
+  startWidth: 1
+  endWidth: 1
+  emissionBrightness: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
