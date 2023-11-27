@@ -105,6 +105,7 @@ public class LaserTurret : MonoBehaviour
 
             Vector3 directionToPlayer = lastPlayerPosition - boca.position; // Utilizar la última posición conocida
             directionToPlayer.Normalize();
+            PlayerAudioManager.instance.PlayLaserShootSound();
 
             RaycastHit hit;
 

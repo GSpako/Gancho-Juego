@@ -14,6 +14,9 @@ public class PlayerAudioManager : MonoBehaviour
     public AudioClip muelleSound;
     public AudioClip winLevelSound;
 
+    [Header("Sonidos de Trampas")]
+    public AudioClip laserDisparoSound;
+
 
     [Header("Música de Fondo")]
     public AudioClip level1Music;
@@ -89,6 +92,12 @@ public class PlayerAudioManager : MonoBehaviour
     {
         PlaySound(winLevelSound, 0.6f);
     }
+
+    public void PlayLaserShootSound()
+    {
+        PlaySoundPitcheado(laserDisparoSound, 0.1f, 0.6f, 1.1f);
+    }
+
 
 
 
