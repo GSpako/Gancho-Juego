@@ -13848,11 +13848,6 @@ Transform:
   m_Father: {fileID: 2008554696}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1512696913 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-  m_PrefabInstance: {fileID: 4290830937837517164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1530376884
 GameObject:
   m_ObjectHideFlags: 0
@@ -16148,7 +16143,6 @@ Transform:
   - {fileID: 1125199020}
   - {fileID: 1139323591}
   - {fileID: 1430126098}
-  - {fileID: 1512696913}
   m_Father: {fileID: 366392517}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20497,67 +20491,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
---- !u!1001 &4290830937837517164
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1787635576}
-    m_Modifications:
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 53.006756
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -21.805923
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -50.88002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173378452321278602, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8801859726548746288, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
-      propertyPath: m_Name
-      value: MuelleMalosoRendondo
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4bbc7b977e6a55e4bbd6e3f2cd113447, type: 3}
 --- !u!1001 &4351559836348496345
 PrefabInstance:
   m_ObjectHideFlags: 0
