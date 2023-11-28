@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        notPlayerCamera = GetComponentInChildren<Camera>(); 
+        notPlayerCamera = GetComponentInChildren<Camera>();
     }
 
     public void Spawn(types t) {
