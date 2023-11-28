@@ -1666,6 +1666,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6eed8072a86f4ff40b4740955cf9ec8f, type: 2}
     - target: {fileID: 919132149155446097, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
       propertyPath: m_Name
       value: HachaDelante
@@ -4881,6 +4885,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6eed8072a86f4ff40b4740955cf9ec8f, type: 2}
     - target: {fileID: 919132149155446097, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
       propertyPath: m_Name
       value: "HachaDetr\xE1s"
@@ -5073,7 +5081,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e25bf7d186a40d54b833fe026e7db19c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d114cde0600508c4f9eed72b935654e6, type: 2}
+      objectReference: {fileID: 2100000, guid: dcf804b507b2db94c847d87659c0fb52, type: 2}
     - target: {fileID: 919132149155446097, guid: e25bf7d186a40d54b833fe026e7db19c, type: 3}
       propertyPath: m_Name
       value: sierra
