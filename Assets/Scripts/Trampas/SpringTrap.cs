@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class SpringTrap : MonoBehaviour
@@ -14,7 +15,7 @@ public class SpringTrap : MonoBehaviour
     public float tiempoDeVidaMuelleMalo = 1f;
     private Animator animatorPadre; // El animador de MuelleCuadradado el papito
     public Vector3 direccionDeLanzamiento = Vector3.up; // Dirección de lanzamiento modificable desde el editor
-    public float gizmoLineaLongitud = 5f; // Longitud de la línea del gizmo
+    private float gizmoLineaLongitud = 10f; // Longitud de la línea del gizmo
 
 
     // AVISO AVISO
@@ -61,10 +62,8 @@ public class SpringTrap : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + direccionDeLanzamiento * gizmoLineaLongitud);
-        Gizmos.DrawLine(transform.position, transform.position + direccionDeLanzamiento * gizmoLineaLongitud + Vector3.up * 0.2f);
-        Gizmos.DrawLine(transform.position, transform.position + direccionDeLanzamiento * gizmoLineaLongitud - Vector3.up * 0.2f);
+        Handles.color = Color.red;
+        Handles.ArrowHandleCap(0, transform.position, Quaternion.LookRotation(direccionDeLanzamiento), gizmoLineaLongitud, EventType.Repaint);
     }
 
     private IEnumerator ActivarCooldown()
