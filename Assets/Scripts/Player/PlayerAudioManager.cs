@@ -95,7 +95,7 @@ public class PlayerAudioManager : MonoBehaviour
 
     public void PlayLaserShootSound()
     {
-        PlaySoundPitcheado(laserDisparoSound, 0.1f, 0.6f, 1.1f);
+        PlaySoundPitcheado(laserDisparoSound, 0.055f, 0.7f, 1.0f);
     }
 
 

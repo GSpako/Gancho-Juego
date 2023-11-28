@@ -8,6 +8,7 @@ TagManager:
   - Turret
   - Reticula
   - Trampa
+  - Trampolin
   layers:
   - Default
   - TransparentFX
