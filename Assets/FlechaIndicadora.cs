@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class FlechaIndicadora : MonoBehaviour
 {
-    [Header("Configuración")]
-    public Material materialFlecha;
+    [Header("Configuración Flecha")]
     public Color colorFlecha = Color.green;
     public float tamañoFlecha = 1.0f;
+    public float grosorFlecha = 0.1f;  // Grosor de la flecha
 
     private void OnDrawGizmos()
+    {
+        DrawArrow();
+    }
+
+    private void Update()
     {
         DrawArrow();
     }
@@ -16,14 +21,22 @@ public class FlechaIndicadora : MonoBehaviour
     {
         Gizmos.color = colorFlecha;
         Gizmos.DrawRay(transform.position, transform.forward * tamañoFlecha);
+        DrawArrowHead(transform.position + transform.forward * tamañoFlecha, transform.forward, grosorFlecha);
+    }
 
-        float size = tamañoFlecha * 0.2f;
-        float coneSize = tamañoFlecha * 0.6f;
+    private void DrawArrowHead(Vector3 position, Vector3 direction, float thickness)
+    {
+        float arrowHeadLength = 0.25f * tamañoFlecha;
+        float arrowHeadAngle = 20.0f;
 
-        // Dibujar el cuerpo de la flecha
-        Gizmos.DrawWireCube(transform.position + transform.forward * tamañoFlecha, new Vector3(size, size, tamañoFlecha - coneSize));
+        // Calcula la posición de la punta de la flecha
+        Vector3 arrowHeadPos = position - direction * arrowHeadLength;
 
-        // Dibujar la cabeza de la flecha (cono)
-        Gizmos.DrawCone(transform.position + transform.forward * tamañoFlecha, transform.forward * coneSize, 0);
+        // Calcula la rotación de la punta de la flecha
+        Quaternion arrowHeadRotation = Quaternion.LookRotation(direction) * Quaternion.Euler(arrowHeadAngle, 0, 0);
+
+        // Dibuja la punta de la flecha
+        Gizmos.DrawRay(position, arrowHeadRotation * Vector3.up * thickness);
+        Gizmos.DrawRay(position, arrowHeadRotation * Vector3.down * thickness);
     }
 }
