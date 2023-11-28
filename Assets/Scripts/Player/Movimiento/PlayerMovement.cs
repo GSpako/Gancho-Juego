@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.5f;
     private float startYScale;
-    private float crouchForce = 5f;
+    //private float crouchForce = 5f;
 
     [Header("KeyCodes")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool upwardsRunning;
     private bool downwardsRunning;
-    private float wallClimbSpeed = 3f;
+    //private float wallClimbSpeed = 3f;
 
     // variables para el momentum
     private float desiredMoveSpeed;
