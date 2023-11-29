@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5652337975769379346, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: volumen
-      value: 0.67
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -5652337975769379346, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: trapAudioSource

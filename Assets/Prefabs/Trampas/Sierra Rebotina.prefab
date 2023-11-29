@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 5931783516024018477}
     - target: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: MaxDistance
-      value: 50.3
+      value: 51.23
       objectReference: {fileID: 0}
     - target: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: MinDistance
-      value: 45
+      value: 46.6
       objectReference: {fileID: 0}
     - target: {fileID: 2363524336866688233, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: m_Materials.Array.data[0]
