@@ -3405,7 +3405,7 @@ PrefabInstance:
     - target: {fileID: 7202271454713460447, guid: ddb1f0b0f31af024dafe848b4854cebb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4a2abd4f67aefc24b9c6cca2d197adc7, type: 2}
+      objectReference: {fileID: 2100000, guid: aab8bf1bb3bd22444887c755f2730d59, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3490,7 +3490,7 @@ PrefabInstance:
     - target: {fileID: 7202271454713460447, guid: ddb1f0b0f31af024dafe848b4854cebb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4a2abd4f67aefc24b9c6cca2d197adc7, type: 2}
+      objectReference: {fileID: 2100000, guid: aab8bf1bb3bd22444887c755f2730d59, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4487,7 +4487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: aeea3927a8273674ab354f29cc5ae835, type: 3}
+  m_Texture: {fileID: 2800000, guid: fd25831f76140cb43bf8487480a79387, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
