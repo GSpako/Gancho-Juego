@@ -28,6 +28,7 @@ public class LaserTurret : MonoBehaviour
     public float turretStunTime = 3f;
     public ParticleSystem stunParticles;
     public AudioSource stunSound;
+    public AudioSource laserSound;
     public AudioSource recoverStunSound;
     public static bool isStunned = false;
 
@@ -105,9 +106,7 @@ public class LaserTurret : MonoBehaviour
 
             Vector3 directionToPlayer = lastPlayerPosition - boca.position; // Utilizar la última posición conocida
             directionToPlayer.Normalize();
-            // EFECTO DE AUDIO; COMO SOBREESCRIBE DEL PLAYER LO QUITO TEMPORAL, queda raro xd
-            //PlayerAudioManager.instance.PlayLaserShootSound();
-
+            
             RaycastHit hit;
 
             if (Physics.Raycast(boca.position, directionToPlayer, out hit, laserMaxLength, playerLayer))
@@ -115,6 +114,8 @@ public class LaserTurret : MonoBehaviour
                 //Debug.Log("ahh disparie");
                 laserLine.SetPosition(0, boca.position);
                 laserLine.SetPosition(1, hit.point);
+                // EFECTO DE SONIDO
+                laserSound.Play();
 
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {

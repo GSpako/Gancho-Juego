@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5652337975769379346, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
+      propertyPath: volumen
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5652337975769379346, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
+      propertyPath: trapAudioSource
+      value: 
+      objectReference: {fileID: 5931783516024018477}
+    - target: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
+      propertyPath: MaxDistance
+      value: 95.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
+      propertyPath: MinDistance
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 2363524336866688233, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -30,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b52c07217b09086418c57edd79fda15d, type: 2}
     - target: {fileID: 9192914304861888781, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9192914304861888781, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: m_LocalScale.x
@@ -89,3 +105,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
+--- !u!82 &5931783516024018477 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
+  m_PrefabInstance: {fileID: 1819527803571289932}
+  m_PrefabAsset: {fileID: 0}
