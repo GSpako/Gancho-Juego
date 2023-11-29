@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5652337975769379346, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: volumen
-      value: 0.5
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: -5652337975769379346, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: trapAudioSource
@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 5931783516024018477}
     - target: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: MaxDistance
-      value: 95.3
+      value: 96.55
       objectReference: {fileID: 0}
     - target: {fileID: -3814074669863982751, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: MinDistance
-      value: 72
+      value: 79.9
       objectReference: {fileID: 0}
     - target: {fileID: 2363524336866688233, guid: 993e8fffde0b0134fa80e16f62bf19d8, type: 3}
       propertyPath: m_Materials.Array.data[0]

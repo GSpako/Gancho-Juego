@@ -101,6 +101,7 @@ MonoBehaviour:
   cooldown: 0.5
   esMuelleBueno: 0
   tiempoDeVidaMuelleMalo: 1
+  direccionDeLanzamiento: {x: 0, y: 1, z: 0}
 --- !u!65 &5111748491598054374
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b52c07217b09086418c57edd79fda15d, type: 2}
+  - {fileID: 2100000, guid: e6807320d7e45b444b5070a1afb6b15a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -259,7 +260,7 @@ Transform:
   - {fileID: 1281976637704720765}
   - {fileID: 6741516956412734535}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2983220195214105337
 Animator:
