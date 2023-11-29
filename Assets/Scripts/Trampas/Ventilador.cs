@@ -11,7 +11,7 @@ public class Ventilador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform ventilador = aspasRotator = transform.Find("Ventilador");
+        Transform ventilador = aspasRotator = transform.Find("VentiladorConMaterial");
         aspasRotator = ventilador.Find("Rotator").transform;
 
     }
