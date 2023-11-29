@@ -192,7 +192,7 @@ public class PlayerAudioManager : MonoBehaviour
 
         if (levelMusic != null && audioSourceMusic != null)
         {
-            MusicClipManager.instance.SaveCurrentMusicClip(levelMusic);
+            //MusicClipManager.instance.SaveCurrentMusicClip(levelMusic);
             audioSourceMusic.clip = levelMusic;
             audioSourceMusic.loop = true;
             audioSourceMusic.volume = volumen;

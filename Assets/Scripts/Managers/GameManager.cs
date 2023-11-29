@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         if (win) {
             //Aquí haremos algo pues el jugador se ha pasado el nivel satisfactoriamente
             PlayerAudioManager.instance.PlayWinLevel();
+            musicPlayedForCurrentLevel = false;
         }
 
         StartCoroutine(delay());
@@ -140,7 +141,7 @@ public class GameManager : MonoBehaviour
                     PlayerAudioManager.instance.PlayLevelMusic(6, 0.10f);
                     Debug.Log("Musica Antonio OK");
                     break;
-                case "NivelPako":
+                case "NivelPako 1":
                     PlayerAudioManager.instance.PlayLevelMusic(7, 0.10f);
                     Debug.Log("Musica Pako OK");
                     break;
@@ -149,7 +150,6 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Musica NIVEL NO OFICIAL OK");
                     break;
             }
-
             musicPlayedForCurrentLevel = true;
         }
     }
@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
         // Actualizar el nombre de la escena en el GameManager
         sceneName = scene.name;
         Debug.Log(sceneName);
+        musicPlayedForCurrentLevel = false;
 
         PlayMusic();
     }
