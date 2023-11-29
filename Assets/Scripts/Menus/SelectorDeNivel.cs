@@ -19,6 +19,7 @@ public class SelectorDeNivel : MonoBehaviour
             GameObject bot = Instantiate(buttonPrefab, levelsParetCo);
             bot.name = "Boton_" + str;
             bot.GetComponentInChildren<TextMeshProUGUI>().text = str;
+            bot.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             int index = i;
             bot.GetComponent<Button>().onClick.AddListener(() => ButtonClicked(index));
             i++;
