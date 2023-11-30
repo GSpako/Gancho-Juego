@@ -61,9 +61,10 @@ public class SpringTrap : MonoBehaviour
     }
 
     private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.ArrowHandleCap(0, transform.position, Quaternion.LookRotation(direccionDeLanzamiento), gizmoLineaLongitud, EventType.Repaint);
+    {   
+        // Comento por error de build baia
+        //Handles.color = Color.red;
+        //Handles.ArrowHandleCap(0, transform.position, Quaternion.LookRotation(direccionDeLanzamiento), gizmoLineaLongitud, EventType.Repaint);
     }
 
     private IEnumerator ActivarCooldown()

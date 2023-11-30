@@ -11277,10 +11277,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8127739217470548975, guid: 2d896c4b1b6a8944f8db4e41b4c09f14, type: 3}
-      propertyPath: laserDisparoSound
-      value: 
-      objectReference: {fileID: 8300000, guid: d2e6c9fb7b1bc8d46bdf2ac7a4c8e7b1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

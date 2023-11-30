@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 6122241511995597492}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1226840400455442057
 MonoBehaviour:
@@ -51,12 +51,12 @@ MonoBehaviour:
   player: {fileID: 0}
   currentLevel: 0
   levels:
-  - Level1
-  - LevelBase 1
-  - NivelPako 1
   - LevelAntonio
-  - Movimiento
+  - NivelPako
   - NivelPako 1
+  - LevelAntonio2
+  - Level Adr 1
+  - LevelAntonio3
   sceneName: 
   musicPlayedForCurrentLevel: 0
 --- !u!1001 &4882823052183932061
