@@ -10627,6 +10627,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuchilla
       objectReference: {fileID: 0}
+    - target: {fileID: 6351249745973205624, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: MaxDistance
+      value: 46.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351249745973205624, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: MinDistance
+      value: 41.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6684367017187002640, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_RootOrder
       value: -1
