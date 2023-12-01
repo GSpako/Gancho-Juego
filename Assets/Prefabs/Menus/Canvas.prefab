@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -114.7}
+  m_AnchoredPosition: {x: 0, y: -118.9}
   m_SizeDelta: {x: 280, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7476597780999165230
@@ -271,7 +271,7 @@ RectTransform:
   - {fileID: 4302554318629483009}
   - {fileID: 218617661639810500}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec2309d561e2aa408678646100d543a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageTime: 8
+  messageTime: 10
   defColorcolor: {r: 0, g: 0, b: 0, a: 1}
   fontStyle: {fileID: 11400000, guid: ec735e57631a66445828fd9a8f6f42d4, type: 2}
   mensajesRT: {fileID: 218617661639810500}
@@ -3125,5 +3125,4 @@ MonoBehaviour:
   dashSlider: {fileID: 7476597780999165230}
   sliderObject: {fileID: 926377372423722960}
   playerMovement: {fileID: 0}
-  dashing: {fileID: 0}
   bloquearMenus: 0
