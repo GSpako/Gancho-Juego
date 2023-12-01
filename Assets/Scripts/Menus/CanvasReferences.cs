@@ -15,6 +15,7 @@ public class CanvasReferences : MonoBehaviour
     public Slider sloMo;
     public PauseMenuScript pause_script;
     public GameObject indicator;
+    public Slider dash;
 
     public void Awake()
     {

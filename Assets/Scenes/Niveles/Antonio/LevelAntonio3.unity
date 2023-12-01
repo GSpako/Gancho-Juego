@@ -1935,6 +1935,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2277399964483662248, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
   m_PrefabInstance: {fileID: 1046495633}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &447846769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2733110468931208857, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
+  m_PrefabInstance: {fileID: 1046495633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447846764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288c9b244b146064c91f6c307a4421fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &447846770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2741070703352689577, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
+  m_PrefabInstance: {fileID: 1046495633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447846764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c66b7c4eeb9ee447a7de46cbe4c9382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &471395319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10913,15 +10935,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2083442496186418870, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2445078741779162595, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2445078741779162595, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798691453711140473, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798691453711140473, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -11009,6 +11035,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4373695426404016229, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: dashing
+      value: 
+      objectReference: {fileID: 447846769}
+    - target: {fileID: 4373695426404016229, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 447846770}
     - target: {fileID: 7110837756075674967, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: playerCamera
       value: 
