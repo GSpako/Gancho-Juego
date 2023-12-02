@@ -55,6 +55,7 @@ public class DashSlider : MonoBehaviour
         {
             dashSlider.value = 1f;
         }
+        
         playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
 
     }

@@ -538,6 +538,17 @@ public class PlayerMovement : MonoBehaviour
 
         //Atraer al muro
         rb.AddForce(-wallNormal * muroAtraccion, ForceMode.Force);
+
+
+        /// PARTE NUEVA POSIBLE QUE ESTE MAL AVISO AVISO; LO SIENTO SI SALE MAL AAA
+        // Limitar velocidad del wallRun para que no vaya tan rapido
+        if (rb.velocity.magnitude >= wallRunSpeed)
+        {
+            // Limitar la velocidad en los ejes X y Z
+            Vector3 limitedVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z).normalized * wallRunSpeed * 2.5f;
+            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+        }
+
     }
 
     private void WallJump()
@@ -552,6 +563,12 @@ public class PlayerMovement : MonoBehaviour
 
     // ############################################
     // QUARENTENA DE CODIGO
+
+    /*
+     * DEJO AQUI EL ANTIGUO WallRunningMovement por si peta algo luego de que lo toque xd
+    
+    */
+
 
     /*
     private void SpeedControl()

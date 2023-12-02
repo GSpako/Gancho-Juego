@@ -14,6 +14,7 @@ public class GrappleHook : MonoBehaviour
 
     public bool grapling;
 
+
     [Header("References")]
     [SerializeField] private GameObject grappleGunTip;
     [SerializeField] private PauseMenuScript pauseMenuScript;
@@ -24,6 +25,7 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private float grappleLength;
     public float ropewidth = 0.01f;
     public Color ropecolor = Color.white;
+    private GameObject hookSphere;
     [Header("Donde puede engancharse el gancho")]
     public LayerMask enganchables;
 
@@ -75,13 +77,16 @@ public class GrappleHook : MonoBehaviour
 
     public void throwGrapple() {
         RaycastHit hit;
+        
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grappleLength, enganchables))
         {
             grapling = true;
             ganchoPOV.SetActive(false);
 
             Vector3 pos = hit.point;
-            //Visualize(pos);
+            
+            Visualize(pos);
+
             collPos = pos;
             //InitPos
             collision_transform_initPosition = hit.collider.transform.position;
@@ -127,12 +132,12 @@ public class GrappleHook : MonoBehaviour
         grapling = false;
         Destroy(springjoint);
         Destroy(rope);
+        Destroy(hookSphere);
     }
     void Visualize(Vector3 pos) {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        go.transform.localScale = Vector3.one;
-        go.transform.position = pos;
-        
-        Destroy(go, 10);
+        hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        hookSphere.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        hookSphere.transform.position = pos;
+        hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 }

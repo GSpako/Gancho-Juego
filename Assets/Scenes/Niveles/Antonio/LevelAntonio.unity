@@ -20740,14 +20740,6 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1046495634}
-    - target: {fileID: 7110837756075674967, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: sensibilidadXanterior
-      value: 850
-      objectReference: {fileID: 0}
-    - target: {fileID: 7110837756075674967, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
-      propertyPath: sensibilidadYanteriror
-      value: 850
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
