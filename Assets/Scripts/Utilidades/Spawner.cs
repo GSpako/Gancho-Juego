@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
 
     [Header("Parameters")]
     public float respawnTime;
+    public float sensiX, sensiY;
 
     Camera notPlayerCamera;
 
@@ -19,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        notPlayerCamera = GetComponentInChildren<Camera>();
+        notPlayerCamera = GetComponentInChildren<Camera>(); 
     }
 
     public void Spawn(types t) {
@@ -27,12 +28,20 @@ public class Spawner : MonoBehaviour
             case types.player:
                 Invoke("rezPlayer", respawnTime);
                 CambiarColorSala.instance.RestaurarColoresOriginales();
+                
                 break;
         }
     }
 
     private void rezPlayer() {
         Instantiate(player,transform.position,transform.rotation);
+        // Para el bug de que la camara no guardaba la sensisibilidad al respawnear
+        PlayerCamera.instance.cameraRespawn = true;
+        sensiX = GameManager.Instance.pauseMenuScript.sensibilidadXanterior;
+        sensiY = GameManager.Instance.pauseMenuScript.sensibilidadYanteriror;
+        PlayerCamera.instance.sensibilityX = sensiX;
+        PlayerCamera.instance.sensibilityY = sensiY;
+
     }
 
     private void LateUpdate()

@@ -22,6 +22,7 @@ public class PauseMenuScript : MonoBehaviour
     public TextMeshProUGUI volumenText;
     public Button continuarButton;
     [SerializeField] GameObject reticula;
+    public float sensibilidadXanterior, sensibilidadYanteriror;
 
 
     private void Awake()
@@ -75,12 +76,16 @@ public class PauseMenuScript : MonoBehaviour
 
     public void SetSensibilidad(float sensibilidad)
     {
-        if (PlayerCamera.instance != null)
+        if (PlayerCamera.instance != null || PlayerCamera.instance.cameraRespawn)
         {
             PlayerCamera.instance.sensibilityX = sensibilidad;
             PlayerCamera.instance.sensibilityY = sensibilidad * 0.6f;
             sensibilidadText.text = (sensibilidad / 100.0f).ToString("F2");
-        }
+
+            // guardar valores de sensibilidad anterior
+            sensibilidadXanterior = sensibilidad;
+            sensibilidadYanteriror = sensibilidad * 0.6f;
+        } 
     }
 
 
@@ -97,6 +102,8 @@ public class PauseMenuScript : MonoBehaviour
         Time.timeScale = 1f;
 
         GameManager.Instance.gameState = GameState.level;
+
+        PlayerCamera.instance.cameraRespawn = false;
     }
 
     public void PauseGame()

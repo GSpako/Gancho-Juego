@@ -12,6 +12,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("Parameters")]
     public float sensibilityX;
     public float sensibilityY;
+    public bool cameraRespawn = false;
 
     public Transform orientation;
     public Transform camHolder;
