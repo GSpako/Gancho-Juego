@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -469,6 +469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 3062441090331311058, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
   respawnTime: 2.02
+  sensiX: 0
+  sensiY: 0
 --- !u!4 &126233325
 Transform:
   m_ObjectHideFlags: 0
@@ -2516,6 +2518,7 @@ MonoBehaviour:
   turretStunTime: 3
   stunParticles: {fileID: 545138833}
   stunSound: {fileID: 545138834}
+  laserSound: {fileID: 0}
   recoverStunSound: {fileID: 545138835}
 --- !u!54 &545138831
 Rigidbody:
@@ -16246,6 +16249,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2445078741779162595, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798691453711140473, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798691453711140473, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

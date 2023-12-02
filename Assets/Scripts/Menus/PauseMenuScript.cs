@@ -22,7 +22,7 @@ public class PauseMenuScript : MonoBehaviour
     public TextMeshProUGUI volumenText;
     public Button continuarButton;
     [SerializeField] GameObject reticula;
-    public float sensibilidadXanterior, sensibilidadYanteriror;
+    public float sensibilidadXanterior = 850f, sensibilidadYanteriror = 850f;
 
 
     private void Awake()

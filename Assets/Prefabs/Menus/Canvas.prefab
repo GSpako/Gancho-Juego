@@ -397,6 +397,8 @@ MonoBehaviour:
   volumenText: {fileID: 3939063685884808968}
   continuarButton: {fileID: 6698616714686755227}
   reticula: {fileID: 7988853466115644336}
+  sensibilidadXanterior: 850
+  sensibilidadYanteriror: 850
 --- !u!1 &2288314406686566830
 GameObject:
   m_ObjectHideFlags: 0

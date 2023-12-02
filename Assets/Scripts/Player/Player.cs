@@ -65,6 +65,10 @@ public class Player : MonoBehaviour
             PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
             //GetComponent<PlayerMovement>().enabled = false;
             camera.enabled = false;
+
+            DashSlider.instance.StopAllCoroutines();
+            DashSlider.instance.sliderObject.SetActive(false);
+
             Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime * 0.9f);
         }
     }

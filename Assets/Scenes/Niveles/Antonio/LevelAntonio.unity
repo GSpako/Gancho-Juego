@@ -20740,6 +20740,14 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1046495634}
+    - target: {fileID: 7110837756075674967, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: sensibilidadXanterior
+      value: 850
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110837756075674967, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: sensibilidadYanteriror
+      value: 850
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20996,10 +21004,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn
       objectReference: {fileID: 0}
-    - target: {fileID: 4934606146802697702, guid: d2361904009aabd46ae7af88c2760d82, type: 3}
-      propertyPath: playerAudioManagerPrefab
-      value: 
-      objectReference: {fileID: 1452931295024640996, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
     - target: {fileID: 6644434810266454304, guid: d2361904009aabd46ae7af88c2760d82, type: 3}
       propertyPath: m_RootOrder
       value: -1

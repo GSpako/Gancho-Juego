@@ -10,9 +10,22 @@ public class DashSlider : MonoBehaviour
     public PlayerMovement playerMovement;
     public bool bloquearMenus = false;
 
+
+    [Header("Singleton")]
+    public static DashSlider instance;
+
+
     private void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
+
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(instance);
+            instance = this;
+        }
     }
 
     void Start()
@@ -41,14 +54,15 @@ public class DashSlider : MonoBehaviour
         } else if (playerMovement.grounded || playerMovement.isWallRunning) 
         {
             dashSlider.value = 1f;
-
         }
+        playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
 
     }
 
     public void StartDashCooldown()
     {
         // Iniciar el cooldown del Dash
+
         StartCoroutine(DashCooldown());
     }
 
