@@ -139,7 +139,7 @@ public class GrappleHook : MonoBehaviour
         if (hookSphere == null)
         {
             hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            hookSphere.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            hookSphere.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
