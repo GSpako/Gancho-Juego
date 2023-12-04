@@ -21,13 +21,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Textura_Pared_3
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_Parent: {fileID: 2100000, guid: 38717bf07f99dab4a84c1c028647953f, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _HALFTONESHAPE_DOT
   - _NORMALMAP
+  - _OUTLINE
+  - _TOON_SHADING_ON
+  m_InvalidKeywords:
   - _PARALLAXMAP
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

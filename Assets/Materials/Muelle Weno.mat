@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Muelle Weno
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: c6e20138c883b2949b1ad6c5999aea91, type: 2}
+  m_Parent: {fileID: 2100000, guid: 919bf02f7801f8a449876144b0fe8d7a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,12 +24,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 82727f00aa7be504c83aac04d80e4218, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: aad6a757d5dcc3f409d81bbeb2a94778, type: 3}
+        m_Texture: {fileID: 2800000, guid: 82727f00aa7be504c83aac04d80e4218, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -38,9 +42,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Metallic: 0.954
+    - _Metallic: 1
+    - _Smoothness: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.15056188, g: 1, b: 0.032075405, a: 1}
+    - _Color: {r: 0.15056188, g: 1, b: 0.032075405, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6104142769924142786
 MonoBehaviour:

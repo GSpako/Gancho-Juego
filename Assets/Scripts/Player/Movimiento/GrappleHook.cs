@@ -140,6 +140,7 @@ public class GrappleHook : MonoBehaviour
         {
             hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             hookSphere.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            hookSphere.GetComponent<SphereCollider>().enabled = false; // sino si dispara encima tuya tocas xd
             hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
