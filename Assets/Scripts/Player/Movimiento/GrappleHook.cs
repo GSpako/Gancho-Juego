@@ -72,6 +72,8 @@ public class GrappleHook : MonoBehaviour
             Vector3 newPos = collPos + collision_transform.position - collision_transform_initPosition;
             rope.SetPosition(1, newPos);
             springjoint.connectedAnchor = newPos;
+
+            Visualize(newPos);
         }
     }
 
@@ -84,8 +86,6 @@ public class GrappleHook : MonoBehaviour
             ganchoPOV.SetActive(false);
 
             Vector3 pos = hit.point;
-            
-            Visualize(pos);
 
             collPos = pos;
             //InitPos
@@ -98,6 +98,8 @@ public class GrappleHook : MonoBehaviour
             springjoint.autoConfigureConnectedAnchor = false;
 
             springjoint.connectedAnchor = pos;
+
+            
 
             float distance = Vector3.Distance(transform.position, pos);
             springjoint.minDistance = distance * 0.01f;
@@ -113,7 +115,6 @@ public class GrappleHook : MonoBehaviour
             rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
             rope.material.SetColor("_Color",ropecolor);
             rope.endColor = ropecolor;
-
 
 
             if (hit.collider.CompareTag("Turret"))
@@ -135,9 +136,13 @@ public class GrappleHook : MonoBehaviour
         Destroy(hookSphere);
     }
     void Visualize(Vector3 pos) {
-        hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        hookSphere.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        if (hookSphere == null)
+        {
+            hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            hookSphere.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+
         hookSphere.transform.position = pos;
-        hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 }

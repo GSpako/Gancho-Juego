@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
             //GetComponent<PlayerMovement>().enabled = false;
             camera.enabled = false;
 
+            DashSlider.instance.respawneaPlayer = true;
             DashSlider.instance.StopAllCoroutines();
             DashSlider.instance.sliderObject.SetActive(false);
 

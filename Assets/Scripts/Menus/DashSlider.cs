@@ -9,6 +9,7 @@ public class DashSlider : MonoBehaviour
     [SerializeField] public GameObject sliderObject;
     public PlayerMovement playerMovement;
     public bool bloquearMenus = false;
+    public bool respawneaPlayer = false;
 
 
     [Header("Singleton")]
@@ -55,15 +56,18 @@ public class DashSlider : MonoBehaviour
         {
             dashSlider.value = 1f;
         }
-        
-        playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
+
+        if (respawneaPlayer == true) 
+        {
+            playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
+        } 
 
     }
 
     public void StartDashCooldown()
     {
         // Iniciar el cooldown del Dash
-
+        respawneaPlayer = false;
         StartCoroutine(DashCooldown());
     }
 

@@ -164,7 +164,7 @@ Transform:
   m_Children:
   - {fileID: 1526681775352261420}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8065723400036154512
 MonoBehaviour:
@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 6167075265920955591}
   - component: {fileID: 1407435442042112941}
   - component: {fileID: 4434279683028771802}
+  - component: {fileID: 507653790153554643}
   m_Layer: 8
   m_Name: Cuerpo Martillo
   m_TagString: Untagged
@@ -358,7 +359,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8191376131015822838}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.8080001, z: 0}
   m_LocalScale: {x: 1, y: 1.8122, z: 1}
   m_ConstrainProportionsScale: 0
@@ -441,3 +442,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!95 &507653790153554643
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191376131015822838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b7749ee9ef78ab46a5db506b147869f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
