@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8897026813322220567}
   - {fileID: 9213889588340758789}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8488255762158684310
 Rigidbody:
@@ -354,7 +354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2399084937217871545
 Transform:
   m_ObjectHideFlags: 0
@@ -379,7 +379,7 @@ Camera:
   m_GameObject: {fileID: 4507303482286716152}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -758,7 +758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7772617277243246912, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 6143
+      value: 7159
       objectReference: {fileID: 0}
     - target: {fileID: 7772617277243246912, guid: cf481e6e50cda7840af8a0c553b7e5b0, type: 3}
       propertyPath: m_projectionMatrixMode
