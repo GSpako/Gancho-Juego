@@ -5416,7 +5416,7 @@ GameObject:
   - component: {fileID: 6928725155482999982}
   - component: {fileID: 4359453320727167807}
   - component: {fileID: 3649268646881972218}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Punta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5466,7 +5466,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7405b0fd0ee49cf4ca10f11685b8f196, type: 2}
+  - {fileID: 2100000, guid: 6d1e4bb586d12f147b75d85242a2b49a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

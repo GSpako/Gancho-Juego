@@ -27,7 +27,6 @@ Material:
   m_ValidKeywords:
   - _EMISSION
   - _HALFTONESHAPE_DOT
-  - _OUTLINE
   - _SPECULAR_COLOR
   m_InvalidKeywords:
   - _FLIPBOOKBLENDING_OFF
@@ -196,7 +195,7 @@ Material:
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineMode: 0
     - _OutlineWidth: 15
     - _OverrideShadowColor: 0

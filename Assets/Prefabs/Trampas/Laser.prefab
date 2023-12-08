@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7886194839676708826}
   - component: {fileID: 1616374243891934128}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d1e4bb586d12f147b75d85242a2b49a, type: 2}
+  - {fileID: 2100000, guid: 51b48f1ee859bef47aae04db8397aeb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
