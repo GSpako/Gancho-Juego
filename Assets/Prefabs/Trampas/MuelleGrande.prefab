@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuelleBueno
       objectReference: {fileID: 0}
+    - target: {fileID: 4007647261569731507, guid: 430242f858cb1f242aeb7bc1cc4b8ff0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007647261569731507, guid: 430242f858cb1f242aeb7bc1cc4b8ff0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5670804690640866763, guid: 430242f858cb1f242aeb7bc1cc4b8ff0, type: 3}
       propertyPath: m_RootOrder
       value: -1
