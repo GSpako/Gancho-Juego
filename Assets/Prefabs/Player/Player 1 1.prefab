@@ -219,6 +219,7 @@ MonoBehaviour:
   grappleLength: 100
   ropewidth: 0.035
   ropecolor: {r: 0, g: 0, b: 0, a: 1}
+  hookSphere: {fileID: 0}
   enganchables:
     serializedVersion: 2
     m_Bits: 961
@@ -236,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55ab35f42e0a724a99c0273e8236edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hookSphere: {fileID: 6294391959765864908}
   deathLayer:
     serializedVersion: 2
     m_Bits: 4608

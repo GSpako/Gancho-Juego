@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [Header("References")]
     public static PlayerCamera camera;
+    public GrappleHook hookSphere;
 
     [Header("Parameters")]
     public LayerMask deathLayer;
@@ -66,10 +67,13 @@ public class Player : MonoBehaviour
             //GetComponent<PlayerMovement>().enabled = false;
             camera.enabled = false;
 
-            DashSlider.instance.respawneaPlayer = true;
-            DashSlider.instance.StopAllCoroutines();
+            //DashSlider.instance.StopAllCoroutines();
+            DashSlider.instance.StopDashCooldown();
             DashSlider.instance.sliderObject.SetActive(false);
+            
 
+            hookSphere.stopGrapple();
+            
             Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime * 0.9f);
         }
     }

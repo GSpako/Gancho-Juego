@@ -25,7 +25,7 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private float grappleLength;
     public float ropewidth = 0.01f;
     public Color ropecolor = Color.white;
-    private GameObject hookSphere;
+    public GameObject hookSphere;
     [Header("Donde puede engancharse el gancho")]
     public LayerMask enganchables;
 
@@ -136,6 +136,7 @@ public class GrappleHook : MonoBehaviour
         Destroy(hookSphere);
     }
     void Visualize(Vector3 pos) {
+        // Para que no hayan infinitas
         if (hookSphere == null)
         {
             hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
