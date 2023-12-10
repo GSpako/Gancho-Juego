@@ -4854,64 +4854,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2615040784742695461, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_RendererIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2615040784742695461, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2615040784742695461, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2615040784742695461, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_VolumeFrameworkUpdateModeOption
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3062441090331311058, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
       propertyPath: m_Name
       value: Player 1 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5459345404723798860, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_AllowDynamicResolution
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857917292566933540, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_ClearDepth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857917292566933540, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_RenderShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857917292566933540, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_RendererIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857917292566933540, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857917292566933540, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 14334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6554018655669153458, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6554018655669153458, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-      propertyPath: m_AllowDynamicResolution
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4595740675412256473, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-    - {fileID: 1550482129760079870, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-    - {fileID: 8583496506530619829, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-    - {fileID: 1201344700780876652, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-    - {fileID: 9167277581007415442, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

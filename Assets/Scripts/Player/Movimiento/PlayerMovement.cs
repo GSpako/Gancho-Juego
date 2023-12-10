@@ -545,7 +545,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.magnitude >= wallRunSpeed)
         {
             // Limitar la velocidad en los ejes X y Z
-            Vector3 limitedVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z).normalized * wallRunSpeed * 2.5f;
+            Vector3 limitedVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z).normalized * wallRunSpeed * 3.5f;
             rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
         }
 

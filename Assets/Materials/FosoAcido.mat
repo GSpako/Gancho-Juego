@@ -47,6 +47,7 @@ Material:
     - _Smoothness: 0.622
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.16260582, b: 0, a: 1}
+    - _BaseColor: {r: 1, g: 0.16078432, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.16078432, b: 0, a: 1}
     - _EmissionColor: {r: 0.51580817, g: 4, b: 0.32075477, a: 1}
   m_BuildTextureStacks: []
