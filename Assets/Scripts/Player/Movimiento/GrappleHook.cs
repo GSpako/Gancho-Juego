@@ -25,7 +25,8 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private float grappleLength;
     public float ropewidth = 0.01f;
     public Color ropecolor = Color.white;
-    public GameObject hookSphere;
+    private GameObject hookSphere;
+    public GameObject hookPrefab;
     [Header("Donde puede engancharse el gancho")]
     public LayerMask enganchables;
 
