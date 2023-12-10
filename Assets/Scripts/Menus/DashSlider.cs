@@ -9,7 +9,6 @@ public class DashSlider : MonoBehaviour
     [SerializeField] public GameObject sliderObject;
     public PlayerMovement playerMovement;
     public bool bloquearMenus = false;
-    public bool respawneaPlayer = false;
 
 
     [Header("Singleton")]
@@ -56,18 +55,11 @@ public class DashSlider : MonoBehaviour
         {
             dashSlider.value = 1f;
         }
-
-        if (respawneaPlayer == true) 
-        {
-            playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
-        } 
-
     }
 
     public void StartDashCooldown()
     {
         // Iniciar el cooldown del Dash
-        respawneaPlayer = false;
         StartCoroutine(DashCooldown());
     }
 
@@ -82,5 +74,13 @@ public class DashSlider : MonoBehaviour
     {
         // Si la barra está al máximo, ocultarla; en caso contrario, mostrarla
         sliderObject.SetActive(dashSlider.value < dashSlider.maxValue * 0.99f);
+    }
+
+    public void StopDashCooldown()
+    {
+        // Iniciar el cooldown del Dash
+        dashSlider.value = 1f;
+        sliderObject.SetActive(false);
+        StopCoroutine(DashCooldown());
     }
 }
