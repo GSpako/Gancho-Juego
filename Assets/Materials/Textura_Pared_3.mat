@@ -28,6 +28,7 @@ Material:
   - _HALFTONESHAPE_DOT
   - _NORMALMAP
   - _OUTLINE
+  - _SPECULARHIGHLIGHTS_OFF
   - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _PARALLAXMAP

@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
             
 
             hookSphere.stopGrapple();
+
+            
             
             Destroy(gameObject, GameManager.Instance.LevelManager.spawner.respawnTime * 0.9f);
         }

@@ -93,7 +93,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 82727f00aa7be504c83aac04d80e4218, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -198,7 +198,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _StencilComp: 0
     - _StencilRef: 0
-    - _StepViaRampTexture: 0
+    - _StepViaRampTexture: 1
     - _Surface: 0
     - _UVSec: 0
     - _UseRampColor: 0
