@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 659a7e13504c2fd43bad1e7a7eb591d0, type: 3}
+  - {fileID: 2100000, guid: dcf804b507b2db94c847d87659c0fb52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4679176515897859078}
   - component: {fileID: 6122590083884916317}
   - component: {fileID: 789992636132210567}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Ventilador Weno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5033,7 +5033,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4874126678125670354, guid: 659a7e13504c2fd43bad1e7a7eb591d0, type: 3}
+  - {fileID: 2100000, guid: dcf804b507b2db94c847d87659c0fb52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5116,7 +5116,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6922793697723135513, guid: 659a7e13504c2fd43bad1e7a7eb591d0, type: 3}
+  - {fileID: 2100000, guid: dcf804b507b2db94c847d87659c0fb52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5234,7 +5234,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 659a7e13504c2fd43bad1e7a7eb591d0, type: 3}
+  - {fileID: 2100000, guid: dcf804b507b2db94c847d87659c0fb52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
