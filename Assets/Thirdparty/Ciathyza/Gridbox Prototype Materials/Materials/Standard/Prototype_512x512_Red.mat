@@ -333,7 +333,7 @@ Material:
     - _OpaqueCullMode: 2
     - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlineWidth: 15
+    - _OutlineWidth: 5.8
     - _OverrideShadowColor: 0
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15

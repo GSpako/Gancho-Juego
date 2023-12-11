@@ -359,7 +359,7 @@ Material:
     - _OpaqueCullMode: 2
     - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlineWidth: 15
+    - _OutlineWidth: 8.4
     - _OverrideShadowColor: 0
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -455,7 +455,7 @@ Material:
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -200, g: 200, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.67}
     - _SpecColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 0.5}

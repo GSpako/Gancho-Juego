@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   k_AssetVersion: 3
   m_RenderingLayerNames:
-  - Default
-  m_ValidRenderingLayers: 1
+  - whatIsGround
+  - whatIsWall
+  - whatIsGrappleable
+  - whatIsDeath
+  m_ValidRenderingLayers: 15
   lightLayerName0: 
   lightLayerName1: 
   lightLayerName2: 
