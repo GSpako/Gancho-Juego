@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
         PlayerCamera.instance.sensibilityX = sensiX;
         PlayerCamera.instance.sensibilityY = sensiY;
         DashSlider.instance.playerMovement = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
-
+        
     }
 
     private void LateUpdate()

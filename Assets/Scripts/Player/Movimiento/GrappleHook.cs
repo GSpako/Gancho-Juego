@@ -140,12 +140,19 @@ public class GrappleHook : MonoBehaviour
         // Para que no hayan infinitas
         if (hookSphere == null)
         {
-            hookSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            hookSphere.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            hookSphere = Instantiate(hookPrefab);
+            hookSphere.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
             hookSphere.GetComponent<SphereCollider>().enabled = false; // sino si dispara encima tuya tocas xd
-            hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
+            //hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
         hookSphere.transform.position = pos;
+
+        // Calcula la rotación para que el gancho mire hacia la superficie
+        Vector3 direction = pos - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+
+        // Solo rota en el eje X
+        hookSphere.transform.rotation = Quaternion.Euler(rotation.eulerAngles.x + 90, rotation.eulerAngles.y, rotation.eulerAngles.z);
     }
 }
