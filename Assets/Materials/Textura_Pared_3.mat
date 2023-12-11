@@ -43,6 +43,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: cb3c945886649e84191e5ff85c79f0f2, type: 3}
+        m_Scale: {x: 40, y: 20}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: e08e760da84896c4c989a67ff4ada647, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -57,7 +61,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: cb3c945886649e84191e5ff85c79f0f2, type: 3}
-        m_Scale: {x: 5, y: 4}
+        m_Scale: {x: 40, y: 20}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 2800000, guid: 43d917d1964ad2140b3bd9ded1d455d8, type: 3}
@@ -67,8 +71,8 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Glossiness: 0.9
-    - _Metallic: 0.85
+    - _Metallic: 0.415
     - _Parallax: 0.08
-    - _Smoothness: 0.9
+    - _Smoothness: 0.37
     m_Colors: []
   m_BuildTextureStacks: []
