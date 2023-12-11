@@ -29,6 +29,7 @@ Material:
   - _NORMALMAP
   - _OCCLUSIONMAP
   - _OUTLINE
+  - _SPECULARHIGHLIGHTS_OFF
   - _TOON_SHADING_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -138,7 +139,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BrushLowerCut: 0
     - _BrushSize: 0.8
-    - _BumpScale: 1
+    - _BumpScale: 0.2
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -184,7 +185,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlineWidth: 12
+    - _OutlineWidth: 5.8
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -199,7 +200,7 @@ Material:
     - _SpecShadowStrength: 1
     - _SpecularClipStrength: 0
     - _SpecularFalloff: 1
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     - _SpecularSize: 1
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
@@ -224,7 +225,7 @@ Material:
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -50.980515, g: 200, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -200, g: 200, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
