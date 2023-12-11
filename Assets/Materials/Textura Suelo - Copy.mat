@@ -23,18 +23,20 @@ Material:
   m_Name: Textura Suelo - Copy
   m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
   m_Parent: {fileID: 2100000, guid: ecf19182210524945b02e2dd950f3a57, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _HALFTONESHAPE_DOT
   - _NORMALMAP
   - _OUTLINE
+  - _SPECULAR_COLOR
   m_InvalidKeywords:
   - _OCCLUSIONMAP
   - _SPECULARHIGHLIGHTS_OFF
+  - _STEPVIARAMPTEXTURE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2050
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -60,5 +62,6 @@ Material:
     - _Glossiness: 0.69
     - _Metallic: 1
     - _Smoothness: 0.69
-    m_Colors: []
+    m_Colors:
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.69}
   m_BuildTextureStacks: []

@@ -88,14 +88,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3939491338866107914, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 619e0f8f9d12e324e9db1f24dfb26fea, type: 2}
     - target: {fileID: 5316047984133271742, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5539220249170616639, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 619e0f8f9d12e324e9db1f24dfb26fea, type: 2}
+    - target: {fileID: 6288486774752252418, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 619e0f8f9d12e324e9db1f24dfb26fea, type: 2}
     - target: {fileID: 6699695075683032362, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7071182760956848314, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 619e0f8f9d12e324e9db1f24dfb26fea, type: 2}
+    - target: {fileID: 7202271454713460447, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 619e0f8f9d12e324e9db1f24dfb26fea, type: 2}
+    - target: {fileID: 8411524496135581498, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 619e0f8f9d12e324e9db1f24dfb26fea, type: 2}
     - target: {fileID: 8513859187771203891, guid: c688b92e8fc924a4085ba017500642b8, type: 3}
       propertyPath: m_Layer
       value: 8

@@ -27,6 +27,7 @@ public class GrappleHook : MonoBehaviour
     public Color ropecolor = Color.white;
     private GameObject hookSphere;
     public GameObject hookPrefab;
+    private ParticleSystem particleHook;
     [Header("Donde puede engancharse el gancho")]
     public LayerMask enganchables;
 
@@ -141,8 +142,12 @@ public class GrappleHook : MonoBehaviour
         if (hookSphere == null)
         {
             hookSphere = Instantiate(hookPrefab);
-            hookSphere.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
+            hookSphere.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
             hookSphere.GetComponent<SphereCollider>().enabled = false; // sino si dispara encima tuya tocas xd
+            if(particleHook != null)
+            {
+                particleHook.Play();
+            }
             //hookSphere.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
@@ -153,6 +158,6 @@ public class GrappleHook : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
 
         // Solo rota en el eje X
-        hookSphere.transform.rotation = Quaternion.Euler(rotation.eulerAngles.x + 90, rotation.eulerAngles.y, rotation.eulerAngles.z);
+        hookSphere.transform.rotation = Quaternion.Euler(rotation.eulerAngles.x + -90, rotation.eulerAngles.y, rotation.eulerAngles.z);
     }
 }
