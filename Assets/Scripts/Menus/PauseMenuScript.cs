@@ -24,6 +24,12 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] GameObject reticula;
     public float sensibilidadXanterior = 850f, sensibilidadYanteriror = 850f;
 
+    // Nombres clave para las configuraciones
+    private const string SensibilidadXKey = "SensibilidadX";
+    private const string SensibilidadYKey = "SensibilidadY";
+    private const string VolumenKey = "Volumen";
+
+
 
     private void Awake()
     {
@@ -36,6 +42,9 @@ public class PauseMenuScript : MonoBehaviour
         if (bT == null) { 
             bT = GameObject.FindObjectOfType<BulletTime>();
         }
+
+        // Cargar configuraciones al inicio
+        LoadConfigurations();
     }
 
 
@@ -72,6 +81,9 @@ public class PauseMenuScript : MonoBehaviour
         float volumenNormalizado = Mathf.InverseLerp(-80f, 0f, volumen);
         volumenNormalizado *= 10;
         volumenText.text = volumenNormalizado.ToString("F0");
+
+        // Guardar la configuración de volumen
+        PlayerPrefs.SetFloat(VolumenKey, volumen);
     }
 
     public void SetSensibilidad(float sensibilidad)
@@ -85,8 +97,13 @@ public class PauseMenuScript : MonoBehaviour
             // guardar valores de sensibilidad anterior
             sensibilidadXanterior = sensibilidad;
             sensibilidadYanteriror = sensibilidad * 0.6f;
-        } 
-    }
+
+            // Guardar las configuraciones de sensibilidad
+            PlayerPrefs.SetFloat(SensibilidadXKey, sensibilidad);
+            PlayerPrefs.SetFloat(SensibilidadYKey, sensibilidad * 0.6f);
+        }
+    } 
+    
 
 
     public void ContinueGame()
@@ -139,5 +156,20 @@ public class PauseMenuScript : MonoBehaviour
         {
             PauseGame();
         }
+    }
+
+
+    // Método para cargar las configuraciones almacenadas
+    private void LoadConfigurations()
+    {
+        // Cargar y aplicar sensibilidad
+        float sensibilidadX = PlayerPrefs.GetFloat(SensibilidadXKey, sensibilidadXanterior);
+        float sensibilidadY = PlayerPrefs.GetFloat(SensibilidadYKey, sensibilidadYanteriror);
+
+        SetSensibilidad(sensibilidadX);
+
+        // Cargar y aplicar volumen
+        float volumen = PlayerPrefs.GetFloat(VolumenKey, 0f); // Valor por defecto 0f
+        SetVolumen(volumen);
     }
 }
