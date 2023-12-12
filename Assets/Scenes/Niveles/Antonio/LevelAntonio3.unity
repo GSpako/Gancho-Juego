@@ -5076,7 +5076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8719909734123451964, guid: d42bde44954ee0c458827a70e50a4998, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8719909734123451964, guid: d42bde44954ee0c458827a70e50a4998, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6868,6 +6868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuchilla (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730342811185654204, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: trailMaterial
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5331997707972978787, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -6918,11 +6922,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6684367017187002640, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.756
+      value: 51.38
       objectReference: {fileID: 0}
     - target: {fileID: 6684367017187002640, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.727
+      value: -19.26
       objectReference: {fileID: 0}
     - target: {fileID: 6684367017187002640, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11783,7 +11787,7 @@ PrefabInstance:
       objectReference: {fileID: 1848019184}
     - target: {fileID: 4769036858508377580, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4769036858508377580, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -11807,7 +11811,7 @@ PrefabInstance:
       objectReference: {fileID: 1046495634}
     - target: {fileID: 8427292591206040320, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
