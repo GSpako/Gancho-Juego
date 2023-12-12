@@ -24,6 +24,7 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] GameObject reticula;
     public float sensibilidadXanterior = 850f, sensibilidadYanteriror = 850f;
 
+    
     // Nombres clave para las configuraciones
     private const string SensibilidadXKey = "SensibilidadX";
     private const string SensibilidadYKey = "SensibilidadY";
