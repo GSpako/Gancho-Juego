@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 //using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -75,7 +76,8 @@ public class GrappleHook : MonoBehaviour
             rope.SetPosition(1, newPos);
             springjoint.connectedAnchor = newPos;
 
-            Visualize(newPos);
+            //Ahora debajo...
+            //Visualize(newPos);
         }
     }
 
@@ -124,6 +126,10 @@ public class GrappleHook : MonoBehaviour
                 LaserTurret.isStunned = true;
                 //Debug.Log("Stuneada grapple");
             }
+
+
+            Visualize(pos, -hit.normal);
+
         }
         else Debug.Log("Demasiado lejos!");
     }
@@ -137,7 +143,7 @@ public class GrappleHook : MonoBehaviour
         Destroy(rope);
         Destroy(hookSphere);
     }
-    void Visualize(Vector3 pos) {
+    void Visualize(Vector3 pos, Vector3 normal) {
         // Para que no hayan infinitas
         if (hookSphere == null)
         {
@@ -154,8 +160,11 @@ public class GrappleHook : MonoBehaviour
         hookSphere.transform.position = pos;
 
         // Calcula la rotación para que el gancho mire hacia la superficie
-        Vector3 direction = pos - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
+        //Vector3 direction = pos - transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(direction);
+
+        //Lo he cambiado para que mire a la normal de la superficie, así no mira solo al personaje
+        Quaternion rotation = Quaternion.LookRotation(normal);
 
         // Solo rota en el eje X
         hookSphere.transform.rotation = Quaternion.Euler(rotation.eulerAngles.x + -90, rotation.eulerAngles.y, rotation.eulerAngles.z);
