@@ -70,9 +70,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
+    - _DstBlend: 0
     - _Glossiness: 0.9
     - _Metallic: 0.415
     - _Parallax: 0.08
     - _Smoothness: 0.37
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _ZWrite: 1
     m_Colors: []
   m_BuildTextureStacks: []

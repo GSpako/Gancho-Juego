@@ -1669,7 +1669,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6eed8072a86f4ff40b4740955cf9ec8f, type: 2}
+      objectReference: {fileID: 2100000, guid: 02bdaa8264eb53b448653d50e340d83f, type: 2}
     - target: {fileID: 919132149155446097, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
       propertyPath: m_Name
       value: HachaDelante
@@ -4683,7 +4683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.7058824}
+  m_Color: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.14901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4912,7 +4912,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6eed8072a86f4ff40b4740955cf9ec8f, type: 2}
+      objectReference: {fileID: 2100000, guid: 02bdaa8264eb53b448653d50e340d83f, type: 2}
     - target: {fileID: 919132149155446097, guid: 1447cff0feeea0c4f9ce2fe7230f6e9f, type: 3}
       propertyPath: m_Name
       value: "HachaDetr\xE1s"
@@ -5109,6 +5109,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e25bf7d186a40d54b833fe026e7db19c, type: 3}
       propertyPath: m_Name
       value: sierra
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e25bf7d186a40d54b833fe026e7db19c, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6627,6 +6631,7 @@ GameObject:
   - component: {fileID: 1907356742}
   - component: {fileID: 1907356741}
   - component: {fileID: 1907356740}
+  - component: {fileID: 1907356743}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6708,6 +6713,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 35.484, y: 18.795, z: 5.704}
+--- !u!114 &1907356743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907356739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1009
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1938381852
 GameObject:
   m_ObjectHideFlags: 0

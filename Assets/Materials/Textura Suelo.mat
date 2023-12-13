@@ -69,7 +69,7 @@ Material:
     - _Glossiness: 0.69
     - _HalfToneEnabled: 0
     - _Metallic: 1
-    - _OutlineWidth: 9.6
+    - _OutlineWidth: 5.8
     - _RimEnabled: 0
     - _RimLightAlign: -0.75
     - _RimLightSmoothness: 0.07
