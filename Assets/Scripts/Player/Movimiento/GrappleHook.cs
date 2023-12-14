@@ -29,6 +29,8 @@ public class GrappleHook : MonoBehaviour
     private GameObject hookSphere;
     public GameObject hookPrefab;
     private ParticleSystem particleHook;
+    private Vector3 hitNormal;
+
     [Header("Donde puede engancharse el gancho")]
     public LayerMask enganchables;
 
@@ -77,7 +79,8 @@ public class GrappleHook : MonoBehaviour
             springjoint.connectedAnchor = newPos;
 
             //Ahora debajo...
-            //Visualize(newPos);
+            // Hola soy Antonio lo volvi a poner arriba 
+            Visualize(newPos, -hitNormal);
         }
     }
 
@@ -128,7 +131,8 @@ public class GrappleHook : MonoBehaviour
             }
 
 
-            Visualize(pos, -hit.normal);
+            //Visualize(pos, -hit.normal);
+            hitNormal = hit.normal;
 
         }
         else Debug.Log("Demasiado lejos!");
