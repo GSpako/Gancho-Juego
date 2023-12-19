@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
         sceneName = scene.name;
         Debug.Log(sceneName);
 
+        musicPlayedForCurrentLevel = false;
         PlayMusic();
     }
 
