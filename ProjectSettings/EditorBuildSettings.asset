@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menus/Animatica.unity
+    guid: 4b15895f2a805aa4298adc0a737d070a
+  - enabled: 1
     path: Assets/Scenes/Menus/Menu.unity
     guid: 3ae6212765f843946a502785a8da66ef
   - enabled: 1
