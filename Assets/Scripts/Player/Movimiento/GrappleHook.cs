@@ -12,6 +12,7 @@ public class GrappleHook : MonoBehaviour
     private Vector3 collision_transform_initPosition;
     private Vector3 collPos;
     private GameObject indicator;
+    public Material mat;
 
     public bool grapling;
 
@@ -25,7 +26,7 @@ public class GrappleHook : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float grappleLength;
     public float ropewidth = 0.01f;
-    public Color ropecolor = Color.white;
+    public Color ropecolor = Color.black;
     private GameObject hookSphere;
     public GameObject hookPrefab;
     private ParticleSystem particleHook;
@@ -121,6 +122,7 @@ public class GrappleHook : MonoBehaviour
             rope.endWidth = ropewidth;
             rope.SetPositions(new Vector3[] { grappleGunTip.transform.position, pos});
             rope.material.SetColor("_Color",ropecolor);
+            rope.material = mat;
             rope.endColor = ropecolor;
 
 

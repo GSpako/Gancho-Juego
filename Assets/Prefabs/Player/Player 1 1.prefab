@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcdca6846fec7b478faa873dd2ca1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 2b230afbc8e19454eb499a4b2e053ea8, type: 2}
   grapling: 0
   grappleGunTip: {fileID: 7727493921262748382}
   pauseMenuScript: {fileID: 0}
