@@ -32,7 +32,7 @@ Transform:
   - {fileID: 6122241511995597492}
   - {fileID: 5581082280279902358}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1226840400455442057
 MonoBehaviour:
@@ -53,11 +53,15 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - LevelAntonio
-  - NivelPako
-  - NivelPako 1
   - LevelAntonio2
   - Level Adr 1
   - LevelAntonio3
+  - LaserNivelPako 1
+  - NivelPako 2
+  - NivelPako 3
+  - NivelPako 4
+  - NivelPako 5
+  - NivelPako 1
   sceneName: 
   musicPlayedForCurrentLevel: 0
 --- !u!1 &8052965908660727885

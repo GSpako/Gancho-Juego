@@ -15,11 +15,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Niveles/Antonio/LevelAntonio.unity
     guid: f1fc0a034a609664983506fa9eefa1df
   - enabled: 1
-    path: Assets/Scenes/Niveles/Pako/Hacha/NivelPako 1.unity
-    guid: 1df7a44b9bc4741139994782aafb6fcc
+    path: Assets/Scenes/Niveles/Antonio/LevelAntonio2.unity
+    guid: 0484a401e85052242995ff1e47d41b48
+  - enabled: 1
+    path: "Assets/Scenes/Niveles/Adri\xE1n/Level Adr 1.unity"
+    guid: 14f84a5272d729049ae477043282d97c
+  - enabled: 1
+    path: Assets/Scenes/Niveles/Antonio/LevelAntonio3.unity
+    guid: 38e33b1c55c27884ab96639e61b2b883
   - enabled: 1
     path: Assets/Scenes/Niveles/Pako/Laser/LaserNivelPako 1.unity
     guid: ee6c9c11f2f8ae743a40e4ecd9dd0250
+  - enabled: 1
+    path: Assets/Scenes/Niveles/Pako/Laser/NivelPako 2.unity
+    guid: e5a187ce38ee141878f762743ce6542e
   - enabled: 1
     path: Assets/Scenes/Niveles/Pako/Laser/NivelPako 3.unity
     guid: 182c296adf90a4aa8b8e08e8a0d8c4e1
@@ -27,27 +36,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Niveles/Pako/Laser/NivelPako 4.unity
     guid: f6ab9f5f7deed45499dd0197877e2706
   - enabled: 1
+    path: Assets/Scenes/Niveles/Pako/Laser/NivelPako 5.unity
+    guid: 5cd85da6dbf16a14090ef543743706f3
+  - enabled: 1
+    path: Assets/Scenes/Niveles/Pako/Hacha/NivelPako 1.unity
+    guid: 1df7a44b9bc4741139994782aafb6fcc
+  - enabled: 0
     path: Assets/Scenes/Niveles/Pako/Hacha/NivelPako.unity
     guid: 94b17dbaf27296d40a3359b606f13f14
-  - enabled: 1
-    path: Assets/Scenes/Niveles/Antonio/LevelAntonio2.unity
-    guid: 0484a401e85052242995ff1e47d41b48
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Scenes/Niveles/Adri\xE1n/Level Adr 2.unity"
     guid: c0c1bbd62faab22468b3db0f3ca6912e
-  - enabled: 1
-    path: Assets/Scenes/Niveles/Antonio/LevelAntonio3.unity
-    guid: 38e33b1c55c27884ab96639e61b2b883
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Movimiento.unity
     guid: aea94491f88b7a1449a7a59806e133e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Niveles/Level1.unity
     guid: 98d29b83b66f97e45ba1b1b9b6b76034
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Niveles/LevelBase 1.unity
     guid: e871bdfef46c04d14b0c03470dd6edc3
-  - enabled: 1
-    path: "Assets/Scenes/Niveles/Adri\xE1n/Level Adr 1.unity"
-    guid: 14f84a5272d729049ae477043282d97c
   m_configObjects: {}

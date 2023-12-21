@@ -21,7 +21,10 @@ public class VideoFinish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) 
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     void GoToMenu(VideoPlayer vp)
