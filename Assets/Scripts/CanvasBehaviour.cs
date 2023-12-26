@@ -51,7 +51,7 @@ public class CanvasBehaviour : MonoBehaviour
         img.GetComponent<RectTransform>().SetParent(mensajesRT);
         GameObject go = new GameObject("MensajeText", typeof(RectTransform));
         RectTransform rt = go.GetComponent<RectTransform>();
-        img.GetComponent<Image>().DOFade(0, messageTime * 0.9f);
+        img.GetComponent<Image>().DOFade(0, messageTime * 1.6f);
 
         img.GetComponent<Image>().raycastTarget = false;
         img.GetComponent<Image>().sprite = textImage;
@@ -61,13 +61,13 @@ public class CanvasBehaviour : MonoBehaviour
 
         go.AddComponent<TextMeshProUGUI>().text = msg;
         go.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-        go.GetComponent<TextMeshProUGUI>().DOFade(0, messageTime * 0.9f);
+        go.GetComponent<TextMeshProUGUI>().DOFade(0, messageTime * 1.6f);
         go.GetComponent<TextMeshProUGUI>().font = fontStyle;
         go.GetComponent<TextMeshProUGUI>().fontSize = 25; // cambien esto tambien de 36 a 30
         go.GetComponent<TextMeshProUGUI>().color = c;
         go.GetComponent<TextMeshProUGUI>().raycastTarget = false;
 
-        rt.DOShakeAnchorPos(messageTime*0.1f,strength:10, vibrato:50, randomness:10,snapping:false);
+        rt.DOShakeAnchorPos(messageTime * 0.05f, strength:2, vibrato:10, randomness:6,snapping:false);
         //rt.DOLocalMove(new Vector2(-200, 0), messageTime*0.9f, false);
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 600f) ;
         rt.anchoredPosition = new Vector2(20, 5f); // para subir arriba la derecha un pelin el texto

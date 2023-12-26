@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec2309d561e2aa408678646100d543a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageTime: 10
+  messageTime: 7
   defColorcolor: {r: 0, g: 0, b: 0, a: 1}
   fontStyle: {fileID: 11400000, guid: ec735e57631a66445828fd9a8f6f42d4, type: 2}
   mensajesRT: {fileID: 218617661639810500}

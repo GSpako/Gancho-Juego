@@ -32,7 +32,7 @@ Transform:
   - {fileID: 6122241511995597492}
   - {fileID: 5581082280279902358}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1226840400455442057
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   LevelManager: {fileID: 0}
   gameState: 0
   pauseMenuScript: {fileID: 0}
-  player: {fileID: 3062441090331311058, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
+  player: {fileID: 0}
   currentLevel: 0
   levels:
   - LevelAntonio
@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2553536390824887136, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
       propertyPath: NivelPako

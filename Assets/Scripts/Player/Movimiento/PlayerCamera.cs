@@ -10,8 +10,8 @@ public class PlayerCamera : MonoBehaviour
     public static PlayerCamera instance;
 
     [Header("Parameters")]
-    public float sensibilityX = 850f;
-    public float sensibilityY = 850f;
+    public float sensibilityX = 550f;
+    public float sensibilityY = 350f;
     public bool cameraRespawn = false;
 
     public Transform orientation;
