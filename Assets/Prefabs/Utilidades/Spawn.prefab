@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 512529377456207979}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4934606146802697702
 MonoBehaviour:
@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3062441090331311058, guid: 033941d0877eb474d90290dd16b6c34f, type: 3}
-  respawnTime: 0
+  respawnTime: 0.01
   sensiX: 850
   sensiY: 850
+  panelMuerte: {fileID: 0}
 --- !u!1 &2672391610735663956
 GameObject:
   m_ObjectHideFlags: 0

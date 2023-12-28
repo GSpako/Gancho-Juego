@@ -16,6 +16,7 @@ public class CanvasReferences : MonoBehaviour
     public PauseMenuScript pause_script;
     public GameObject indicator;
     public Slider dash;
+    public GameObject panelMuerte;
 
     public void Awake()
     {
