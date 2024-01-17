@@ -30,6 +30,13 @@ public class PlayerAudioManager : MonoBehaviour
     public AudioSource audioSourceMusic;    // Este playea la musica
     private AudioSource currentSoundSource; // Almacena la referencia al audioSource del sonido actualmente en reproducción
 
+    [Header("Aceleración de la Música")]
+    public float velocidadNormal = 1.0f;
+    public float velocidadAcelerada = 1.07f;
+    public float velocidadMaxima = 1.14f;
+    private float tiempoAceleracionProgresiva = 0.25f; // Ajusta según sea necesario
+
+
 
     private void Awake()
     {
@@ -249,6 +256,40 @@ public class PlayerAudioManager : MonoBehaviour
                 default:
                     return null;
             }
+        }
+    }
+
+    public void AcelerarMusicaNivel()
+    {
+        float actualTime = TimerSystem.instance.getRemainingTime();
+        float max = TimerSystem.instance.getMaxTime();
+        float percentage = actualTime / max;
+
+        if (percentage < 0.50f && percentage >= 0.20f)
+        {
+            // Acelera progresivamente
+            //Debug.Log("progesiva");
+            audioSourceMusic.pitch = Mathf.SmoothStep(velocidadNormal, velocidadAcelerada, velocidadAcelerada);
+        }
+        else if(percentage < 0.20f)
+        {
+            // Acelera rápidamente
+            //Debug.Log("rapida");
+            audioSourceMusic.pitch = Mathf.SmoothStep(velocidadAcelerada, velocidadMaxima, velocidadMaxima);
+        }
+        else if(percentage > 0.50f) // Al principio
+        {
+            // Mantén velocidad normal antes del 50%
+            //Debug.Log("normal");
+            audioSourceMusic.pitch = velocidadNormal;
+        }
+    }
+
+    public void Update()
+    {
+        if(audioSourceMusic != null)
+        {
+            AcelerarMusicaNivel();
         }
     }
 }
