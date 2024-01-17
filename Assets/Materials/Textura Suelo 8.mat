@@ -184,5 +184,5 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
+    - _SpherizeNormalOrigin: {r: 57.5, g: 24.199999, b: -54.86521, a: 0}
   m_BuildTextureStacks: []

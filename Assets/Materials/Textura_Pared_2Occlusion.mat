@@ -123,7 +123,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DiffuseStep: 0
+    - _DiffuseStep: 1
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
     - _DstBlend: 0
