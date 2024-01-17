@@ -186,9 +186,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 945859608a3442a4193753c2721affac, type: 3}
     - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
+      propertyPath: velocidadMaxima
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
       propertyPath: audioSourceMusic
       value: 
       objectReference: {fileID: 8192650997841160737}
+    - target: {fileID: 3677402896583157618, guid: 0d2f55971ec929e48bb59790d43cb2f0, type: 3}
+      propertyPath: velocidadAcelerada
+      value: 1.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
