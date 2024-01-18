@@ -11,7 +11,7 @@ public class CambiarColorSala : MonoBehaviour
     public Color colorStart;    // Color inicial
     public Color colorEnd;      // Color final del material
     [Tooltip("Poner el nombre del material que quieres cambiar, y aplicar ese material a varias cosas")]
-    public string nombreMaterialACambiar = "ParedesSala";
+    public string nombreMaterialACambiar = "ParedesSala12";
 
     private Dictionary<Renderer, Color> originalColors = new Dictionary<Renderer, Color>();
 
