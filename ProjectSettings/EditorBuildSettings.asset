@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Niveles/Pako/Laser/NivelPako 4.unity
     guid: f6ab9f5f7deed45499dd0197877e2706
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Niveles/Pako/Hacha/NivelPako 1.unity
     guid: 1df7a44b9bc4741139994782aafb6fcc
   - enabled: 0
