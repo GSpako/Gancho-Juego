@@ -3667,12 +3667,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 218617661639810500, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 227.549
+      objectReference: {fileID: 0}
+    - target: {fileID: 218617661639810500, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3715
       objectReference: {fileID: 0}
     - target: {fileID: 218617661639810500, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 218617661639810500, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.4601
       objectReference: {fileID: 0}
     - target: {fileID: 547604608864668943, guid: 15255ec69ddd88a4cb5fe6fabec91292, type: 3}
       propertyPath: playerCamera

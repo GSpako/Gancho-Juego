@@ -884,8 +884,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 366392517}
     m_Modifications:
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: angle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: startDelay
-      value: 0
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2041278393557889631, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_Name
@@ -7917,8 +7925,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 366392517}
     m_Modifications:
     - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 589158668453161891, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: startDelay
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2041278393557889631, guid: 423a0dded0701b94bb58af1dcd3ee99a, type: 3}
       propertyPath: m_Name
