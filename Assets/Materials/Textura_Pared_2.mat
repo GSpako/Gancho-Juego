@@ -29,6 +29,7 @@ Material:
   - _NORMALMAP
   - _OUTLINE
   - _SPECULARHIGHLIGHTS_OFF
+  - _SPECULAR_SETUP
   - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _PARALLAXMAP
@@ -57,7 +58,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: cb3c945886649e84191e5ff85c79f0f2, type: 3}
-        m_Scale: {x: 5, y: 4}
+        m_Scale: {x: 2, y: 6}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -72,6 +73,6 @@ Material:
     - _BumpScale: 2
     - _Glossiness: 0.58
     - _Metallic: 0.79
-    - _Smoothness: 0.58
+    - _Smoothness: 0
     m_Colors: []
   m_BuildTextureStacks: []
