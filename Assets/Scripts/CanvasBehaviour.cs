@@ -63,7 +63,7 @@ public class CanvasBehaviour : MonoBehaviour
         go.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
         go.GetComponent<TextMeshProUGUI>().DOFade(0, messageTime * 1.6f);
         go.GetComponent<TextMeshProUGUI>().font = fontStyle;
-        go.GetComponent<TextMeshProUGUI>().fontSize = 16; // cambien esto tambien de 36 a 30
+        go.GetComponent<TextMeshProUGUI>().fontSize = 28; // ANTONIO: En la build es chiquito antes era 16
         go.GetComponent<TextMeshProUGUI>().color = c;
         go.GetComponent<TextMeshProUGUI>().raycastTarget = false;
 

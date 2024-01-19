@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
         {
             case types.player:
                 StartCoroutine(RespawnPlayer());
-                CambiarColorSala.instance.RestaurarColoresOriginales();
+                //CambiarColorSala.instance.RestaurarColoresOriginales();
                 break;
         }
     }

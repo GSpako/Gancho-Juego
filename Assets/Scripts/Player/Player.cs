@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
             PlayerCamera.instance.doTilt(new float[] { -20, 20 }[Random.Range(0, 2)]);
             PlayerCamera.instance.GetComponent<Camera>().backgroundColor = Color.red;
             //GetComponent<PlayerMovement>().enabled = false;
-            camera.enabled = false;
+            //camera.enabled = false;
 
             //DashSlider.instance.StopAllCoroutines();
             DashSlider.instance.StopDashCooldown();

@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec2309d561e2aa408678646100d543a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageTime: 7
+  messageTime: 6
   defColorcolor: {r: 0, g: 0, b: 0, a: 1}
   fontStyle: {fileID: 11400000, guid: ec735e57631a66445828fd9a8f6f42d4, type: 2}
   mensajesRT: {fileID: 218617661639810500}
@@ -1678,7 +1678,7 @@ RectTransform:
   m_GameObject: {fileID: 6575203193989095743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4261671984437536816}
@@ -2872,6 +2872,10 @@ PrefabInstance:
     - target: {fileID: 3545797111895515335, guid: 83923d597c7a736429ee15677500955f, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740901321933716873, guid: 83923d597c7a736429ee15677500955f, type: 3}
+      propertyPath: m_Name
+      value: VolverAlMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4182996177532610225, guid: 83923d597c7a736429ee15677500955f, type: 3}
       propertyPath: m_Sprite
